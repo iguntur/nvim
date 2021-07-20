@@ -1,0 +1,6 @@
+# Directories
+public
+.nyc_output
+
+# Files
+*.log*
