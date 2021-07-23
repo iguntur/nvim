@@ -1,4 +1,4 @@
-# ae
+# 'nvim' - Neovim Configurations
 
 > My Neovim Editor Configurations
 
