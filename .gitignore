@@ -1,8 +1,8 @@
-# Directories
-public
-node_modules
+# directory
 venv
-.nyc_output
+node_modules
+plugin
 
-# Files
-*.log*
+# files
+*.old
+*.bak
