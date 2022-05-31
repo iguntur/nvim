@@ -26,6 +26,10 @@ packer.init({
 	},
 })
 
+function D(args)
+	print(vim.inspect(args))
+end
+
 -- Plugins
 return packer.startup(function(use)
 	use("wbthomason/packer.nvim") -- Packer can manage itself
