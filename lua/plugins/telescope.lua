@@ -8,7 +8,7 @@ local function setup_keymap()
 	-- Find files using Telescope command-line sugar.
 	-- n_map('<Leader>ff', '<cmd>Telescope find_files<CR>') -- search file by filename
 	n_map("<Leader>pp", "<cmd>Telescope find_files<CR>") -- search file by filename
-	n_map("<Leader>pa", "<cmd>Telescope find_files no_ignore=true<CR>") -- search file by filename
+	n_map("<Leader>pa", "<cmd>Telescope find_files no_ignore=true hidden=true<CR>") -- search file by filename
 	n_map("<Leader>fg", "<cmd>Telescope live_grep<CR>") -- search file by text/keyword inside of the file
 	n_map("<Leader>fb", "<cmd>Telescope buffers<CR>") -- list the opened file buffers
 	n_map("<Leader>f?", "<cmd>Telescope help_tags<CR>")
@@ -77,8 +77,8 @@ local function load_extension()
 	end
 
 	local extensions = {
-		"file_browser",
 		"fzf",
+		"file_browser", -- load this after fzf
 	}
 
 	for _, ext in ipairs(extensions) do
