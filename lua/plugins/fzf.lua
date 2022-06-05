@@ -16,14 +16,14 @@ local function setup_keymaps()
 	local options = { noremap = true, silent = true }
 	local keymap = vim.api.nvim_set_keymap
 
-	keymap('n', '<C-p>', '<cmd>Files<CR>', options)
-	keymap('v', '<C-p><Esc>', '<cmd>Files<CR>', options)
-	keymap('n', '<leader>rg', '<cmd>RG<CR>', options)
+	-- keymap('n', '<C-p>', '<cmd>Files<CR>', options)
+	-- keymap('v', '<C-p><Esc>', '<cmd>Files<CR>', options)
+	keymap("n", "<leader>rg", "<cmd>RG<CR>", options)
 end
 
 M.setup = function(use)
-	use('junegunn/fzf')
-	use('junegunn/fzf.vim')
+	use("junegunn/fzf")
+	use("junegunn/fzf.vim")
 
 	vim.api.nvim_exec(
 		[[

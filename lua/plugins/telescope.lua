@@ -4,11 +4,18 @@ local function n_map(lhs, rhs)
 	vim.api.nvim_set_keymap("n", lhs, rhs, { noremap = true, silent = true })
 end
 
+local function v_map(lhs, rhs)
+	vim.api.nvim_set_keymap("v", lhs, rhs, { noremap = true, silent = true })
+end
+
 local function setup_keymap()
 	-- Find files using Telescope command-line sugar.
 	-- n_map('<Leader>ff', '<cmd>Telescope find_files<CR>') -- search file by filename
-	n_map("<Leader>pp", "<cmd>Telescope find_files<CR>") -- search file by filename
-	n_map("<Leader>pa", "<cmd>Telescope find_files no_ignore=true hidden=true<CR>") -- search file by filename
+	n_map("<C-p>", "<cmd>Telescope find_files<CR>") -- control-p: search file by filename
+	v_map("<C-p>", "<cmd>Telescope find_files<CR>") -- control-p: search file by filename
+
+	-- n_map("<Leader>pp", "<cmd>Telescope find_files<CR>") -- search file by filename
+	n_map("<Leader>p", "<cmd>Telescope find_files no_ignore=true hidden=true<CR>") -- search file by filename
 	n_map("<Leader>fg", "<cmd>Telescope live_grep<CR>") -- search file by text/keyword inside of the file
 	n_map("<Leader>fb", "<cmd>Telescope buffers<CR>") -- list the opened file buffers
 	n_map("<Leader>f?", "<cmd>Telescope help_tags<CR>")
