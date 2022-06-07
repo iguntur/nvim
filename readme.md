@@ -2,6 +2,22 @@
 
 > My Neovim Editor Configurations
 
+## Getting Started
+
+### Install The Nvim
+
+```console
+$ git clone git@github.com:iguntur/nvim.git ~/.config/nvim
+```
+
+### Plugin Manager
+
+Setup and install [packer](https://github.com/wbthomason/packer.nvim) as the plugin manager.
+
+```console
+$ git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
+
 ## Built-in
 
 -   [ ] Plugin to support common programming languages
