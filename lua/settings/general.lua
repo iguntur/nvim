@@ -10,7 +10,7 @@ g.python3_host_prog = fn.expand("$HOME/.miniconda/envs/nvim/bin/python")
 g.base16colorspace = 256 -- Base 16 colors - access colors present in 256 colorspace
 
 -- Map blankline
-vim.g.indent_blankline_char = '┊'
+vim.g.indent_blankline_char = "┊"
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 -- vim.g.indent_blankline_buftype_exclude                = { 'terminal', 'nofile' }
 -- vim.g.indent_blankline_filetype_exclude               = { 'help', 'packer' }
@@ -19,10 +19,10 @@ vim.g.indent_blankline_show_trailing_blankline_indent = false
 -- Text encoding and editing
 --------------------------------------------------------------------------------
 opt.autoindent = true
-opt.backspace = { 'indent', 'eol', 'start' }
+opt.backspace = { "indent", "eol", "start" }
 opt.cindent = true
-opt.cino = ':0' -- (C Lang) No indent for case:/default:
-opt.encoding = 'utf-8'
+opt.cino = ":0" -- (C Lang) No indent for case:/default:
+opt.encoding = "utf-8"
 opt.expandtab = false -- convert tabs to spaces
 opt.shiftwidth = 4
 opt.smarttab = true
@@ -34,22 +34,22 @@ opt.wrap = false
 opt.linebreak = true
 opt.undofile = true -- enable persistent undo
 
-opt.clipboard:append('unnamedplus') -- Copy (yank) and paste with clipboard integration
-opt.shortmess:append('I') -- Disable Neovim welcome page
+opt.clipboard:append("unnamedplus") -- Copy (yank) and paste with clipboard integration
+opt.shortmess:append("I") -- Disable Neovim welcome page
 
 --------------------------------------------------------------------------------
 -- Interface
 --------------------------------------------------------------------------------
 cmd([[ syntax on ]])
 
-opt.background = 'dark'
-opt.colorcolumn = '110'
+opt.background = "dark"
+opt.colorcolumn = "110"
 opt.cursorline = true
 opt.laststatus = 2
 opt.list = true
 -- opt.listchars      = 'tab:┊ ,space: ,trail:·'
-opt.listchars = { tab = '▸ ', trail = '·' } -- eol = '↲'
-opt.mouse = 'a'
+opt.listchars = { tab = "▸ ", trail = "·" } -- eol = '↲'
+opt.mouse = "a"
 opt.number = true
 opt.numberwidth = 6
 opt.relativenumber = true
@@ -58,11 +58,11 @@ opt.scrolloff = 17
 opt.sidescrolloff = 17
 opt.title = true
 opt.wildmenu = true
-opt.wildmode = 'longest:full,full'
+opt.wildmode = "longest:full,full"
 -- opt.t_Co           = '256'
 -- opt.wildcharm      = 4
 opt.pumheight = 10 -- pop up menu height
-opt.completeopt = { 'menuone', 'noselect' }
+opt.completeopt = { "menuone", "noselect" }
 opt.termguicolors = true -- enable 24-bit RGB colors
 opt.splitbelow = true -- make all horizontal split to go below window
 opt.splitright = true -- make all vertical split to go to the right
