@@ -34,6 +34,40 @@ local function setup_keymap()
 	n_map("<Leader>fch", "<cmd>Telescope command_history<CR>")
 end
 
+local function open_mydotfiles()
+	local opts = {
+		prompt_title = "~ DOTFILES ~",
+		cwd = "$HOME/.dotfiles",
+	}
+
+	require("telescope.builtin").find_files(opts)
+end
+
+local function open_nvim_files()
+	local opts = {
+		prompt_title = "~ NVIM ~",
+		cwd = "$HOME/.config/nvim",
+	}
+
+	require("telescope.builtin").find_files(opts)
+end
+
+local function open_files_command()
+	-- search and open the file based on custom cwd
+	vim.api.nvim_create_user_command("MyDotfiles", open_mydotfiles, {
+		bang = true,
+		desc = "search and open dotfiles config",
+	})
+
+	vim.api.nvim_create_user_command("MyNvim", open_nvim_files, {
+		bang = true,
+		desc = "search and open nvim config",
+	})
+
+	n_map("<Leader>vd", "<cmd>MyDotfiles<CR>")
+	n_map("<Leader>vn", "<cmd>MyNvim<CR>")
+end
+
 local function telescope_setup()
 	local ok, telescope = pcall(require, "telescope")
 
@@ -101,6 +135,7 @@ M.setup = function(use)
 	telescope_setup()
 	load_extension()
 	setup_keymap()
+	open_files_command()
 end
 
 return M
