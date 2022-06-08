@@ -99,10 +99,11 @@ local function lsp_keymaps(bufnr)
 
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-	b_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-	b_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-	b_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-	-- b_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>') -- use telescope instead
+	-- b_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")     -- use telescope instead
+	-- b_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")    -- use telescope instead
+	-- b_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>") -- use telescope instead
+	-- b_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')     -- use telescope instead
+
 	b_keymap("n", "<leader>fx", "<cmd>lua vim.lsp.buf.formatting()<CR>")
 	b_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 

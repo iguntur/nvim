@@ -25,13 +25,28 @@ local function setup_keymap()
 	n_map("<Leader>fe", "<cmd>Telescope file_browser<CR>")
 
 	-- LSP
-	n_map("<Leader>fd", "<cmd>Telescope lsp_definitions<CR>")
-	n_map("<Leader>fi", "<cmd>Telescope lsp_implementations<CR>")
-	n_map("<Leader>fr", "<cmd>Telescope lsp_references<CR>")
-	n_map("<Leader>fs", "<cmd>Telescope lsp_workspace_symbols<CR>")
+	--  go to definition
+	n_map("fd", "<cmd>Telescope lsp_definitions<CR>")
+	n_map("gd", "<cmd>Telescope lsp_definitions<CR>")
+
+	--  go to implementation
+	n_map("fi", "<cmd>Telescope lsp_implementations<CR>")
+	n_map("gi", "<cmd>Telescope lsp_implementations<CR>")
+
+	--  go to references
+	n_map("fr", "<cmd>Telescope lsp_references<CR>")
+	n_map("gr", "<cmd>Telescope lsp_references<CR>")
+
+	--  go to document and workspace symbols
+	n_map("<Leader>fws", "<cmd>Telescope lsp_workspace_symbols<CR>")
+	n_map("<Leader>fds", "<cmd>Telescope lsp_document_symbols<CR>")
 
 	-- Commands
+	n_map("<M-p>", "<cmd>Telescope commands<CR>")
 	n_map("<Leader>fch", "<cmd>Telescope command_history<CR>")
+
+	-- search text in the current buffer
+	n_map("<Leader>fsc", "<cmd>Telescope current_buffer_fuzzy_find<CR>")
 end
 
 local function open_mydotfiles()
@@ -66,6 +81,7 @@ local function open_files_command()
 
 	n_map("<Leader>vd", "<cmd>MyDotfiles<CR>")
 	n_map("<Leader>vn", "<cmd>MyNvim<CR>")
+	n_map("<Leader>vg", "<cmd>Telescope git_status<CR>")
 end
 
 local function telescope_setup()
