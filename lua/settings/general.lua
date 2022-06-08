@@ -6,7 +6,7 @@ local opt = vim.opt
 --------------------------------------------------------------------------------
 -- Global Variables
 --------------------------------------------------------------------------------
-g.python3_host_prog = fn.expand('$HOME/.config/nvim/venv/bin/python3.9')
+g.python3_host_prog = fn.expand("$HOME/.miniconda/envs/nvim/bin/python")
 g.base16colorspace = 256 -- Base 16 colors - access colors present in 256 colorspace
 
 -- Map blankline
