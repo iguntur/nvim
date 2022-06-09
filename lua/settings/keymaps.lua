@@ -99,6 +99,7 @@ i_map("<M-s>", "<ESC>:w<CR><ESC>a", default_opts) -- allow writing in insert mod
 -- Close current buffer: (⌥ or alt) + w
 -- n_map('<M-w>', ':bw<ESC>', default_opts)
 n_map("<M-w>", ":BufferClose<CR>", default_opts)
+n_map("<M-W>", ":BufferClose!<CR>", default_opts)
 
 --------------------------------------------------------------------------------
 -- Navigate buffers
