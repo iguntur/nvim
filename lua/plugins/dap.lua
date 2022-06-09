@@ -1,3 +1,5 @@
+local safe_require = require("utils").safe_require
+
 local M = {}
 
 local default_opts = { noremap = true, silent = true }
@@ -8,12 +10,30 @@ local function kmap(mode, lhs, rhs, options)
 	keymap(mode, lhs, rhs, options)
 end
 
-local function setup_dap()
-	local ok, dap = pcall(require, "dap")
+local function setup_dapui(dap)
+	local event_name = "dapui_config"
 
-	if not ok then
-		return
-	end
+	safe_require("dapui", function(dapui)
+		dapui.setup()
+
+		dap.listeners.after.event_initialized[event_name] = function()
+			dapui.open()
+		end
+
+		dap.listeners.before.event_terminated[event_name] = function()
+			dapui.close()
+		end
+
+		dap.listeners.before.event_exited[event_name] = function()
+			dapui.close()
+		end
+	end)
+end
+
+local function setup_golang_dap(dap)
+	safe_require("dap-go", function(dapgo)
+		dapgo.setup()
+	end)
 
 	dap.adapters.go = function(callback, config)
 		local stdout = vim.loop.new_pipe(false)
@@ -73,34 +93,43 @@ local function setup_dap()
 	}
 end
 
-local function setup_dap_keymaps()
-	kmap("n", "<space>dd", "<cmd>DapToggleBreakpoint<CR>")
-	kmap("n", "<F5>", "<cmd>DapContinue<CR>")
-	kmap("n", "<F6>", "<cmd>DapStepInto<CR>")
-	kmap("n", "<F7>", "<cmd>DapStepOut<CR>")
-	kmap("n", "<F8>", "<cmd>DapStepOver<CR>")
-	kmap("n", "<F9>", "<cmd>DapTerminate<CR>")
+local function setup_dap()
+	safe_require("dap", function(dap)
+		setup_dapui(dap)
+		setup_golang_dap(dap)
+	end)
+
+	safe_require("nvim-dap-virtual-text", function(dapVT)
+		dapVT.setup()
+	end)
 end
 
-local function setup_dap_go()
-	local ok, dapgo = pcall(require, "dap-go")
+local function setup_dap_keymaps()
+	-- General dap keymaps
+	kmap("n", "<F1>", "<cmd>lua require('dap').step_over()<CR>")
+	kmap("n", "<F2>", "<cmd>lua require('dap').step_into()<CR>")
+	kmap("n", "<F3>", "<cmd>lua require('dap').step_out()<CR>")
+	kmap("n", "<F4>", "<cmd>lua require('dap').continue()<CR>")
+	kmap("n", "<F11>", "<cmd>lua require('dap').toggle_breakpoint()<CR>")
+	kmap("n", "<F12>", "<cmd>lua require('dap').terminate()<CR>")
 
-	if not ok then
-		return
-	end
-
-	dapgo.setup()
-
+	-- Go keymaps
 	kmap("n", "<Leader>td", "<cmd>lua require('dap-go').debug_test()<CR>")
 end
 
 M.setup = function(use)
-	use("mfussenegger/nvim-dap")
-	use("leoluz/nvim-dap-go")
+	use("mfussenegger/nvim-dap") -- the adapter protocol
+	use("theHamsta/nvim-dap-virtual-text") -- dap virtual text
+	use("leoluz/nvim-dap-go") -- the golang language adapter
+	use({ -- dap ui
+		"rcarriga/nvim-dap-ui",
+		requires = {
+			"mfussenegger/nvim-dap",
+		},
+	})
 
 	setup_dap()
 	setup_dap_keymaps()
-	setup_dap_go()
 end
 
 return M
