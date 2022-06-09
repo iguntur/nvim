@@ -37,16 +37,13 @@ local function setup_keymap()
 	n_map("fr", "<cmd>Telescope lsp_references<CR>")
 	n_map("gr", "<cmd>Telescope lsp_references<CR>")
 
-	--  go to document and workspace symbols
-	n_map("<Leader>fws", "<cmd>Telescope lsp_workspace_symbols<CR>")
-	n_map("<Leader>fds", "<cmd>Telescope lsp_document_symbols<CR>")
+	n_map("<Leader>fws", "<cmd>Telescope lsp_workspace_symbols<CR>") -- go to workspace symbols
+	n_map("<Leader>fds", "<cmd>Telescope lsp_document_symbols<CR>") -- go to document symbols
+	n_map("<Leader>fcs", "<cmd>Telescope current_buffer_fuzzy_find<CR>") -- search text in the current buffer
 
 	-- Commands
 	n_map("<M-p>", "<cmd>Telescope commands<CR>")
 	n_map("<Leader>fch", "<cmd>Telescope command_history<CR>")
-
-	-- search text in the current buffer
-	n_map("<Leader>fsc", "<cmd>Telescope current_buffer_fuzzy_find<CR>")
 end
 
 local function open_mydotfiles()
