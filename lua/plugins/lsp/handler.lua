@@ -125,7 +125,7 @@ local function lsp_keymaps(bufnr)
 	b_keymap("n", "go", "<cmd>Lspsaga show_line_diagnostics<CR>")
 	b_keymap("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 	b_keymap("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-	b_keymap("n", "gs", "<cmd>Lspsaga signature_help<CR>")
+	-- b_keymap("n", "gs", "<cmd>Lspsaga signature_help<CR>")
 
 	b_keymap("n", "<C-u>", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1, "<c-u>")<CR>', {})
 	b_keymap("n", "<C-d>", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1, "<c-d>")<CR>', {})
