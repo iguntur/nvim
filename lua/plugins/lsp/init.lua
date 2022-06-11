@@ -1,16 +1,41 @@
 local M = {}
 
 local servers = {
-	'bashls', -- shell script - sh
-	'clangd', -- c
-	'html', -- html
-	'intelephense', -- php
-	'jsonls', -- json
-	'pyright', -- python
-	'rust_analyzer', -- rust
-	'sumneko_lua', -- lua
-	'tsserver', -- javascript, typescript
+	"bashls", -- shell script - sh
+	"clangd", -- c
+	"cssls", -- CSS
+	"dartls", -- dart
+	"dockerls", -- deno
+	"emmet_ls", -- emmet
+	"eslint", -- javascript, typescript
+	"gopls", -- golang
+	"graphql", -- graphql
+	"html", -- html
+	"intelephense", -- php
+	"jdtls", -- java
+	"jsonls", -- json
+	"kotlin_language_server", -- kotlin
+	"lemminx", -- xml
+	"pyright", -- python
+	"rescriptls", -- rust
+	"rust_analyzer", -- rust
+	"sqls", -- SQL
+	"sumneko_lua", -- lua
+	"svelte", -- svelte
+	"tailwindcss", -- tailwind
+	"taplo", -- toml
+	"tsserver", -- javascript, typescript
+	"vimls", -- vim
+	"vuels", -- vue
+	"yamlls", -- yaml
+	"zk", -- markdown
+	-- "denols", -- deno
+	-- "ocamllsp", -- ocaml
+	-- "perlnavigator", -- perl
+	-- "prisma_ls", -- prisma
 }
+-- "hls", -- haskell
+-- 'cssmodules_ls', -- CSS
 
 local lsp_handler = require('plugins.lsp.handler')
 
