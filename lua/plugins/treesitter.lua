@@ -28,10 +28,78 @@ local function setup_treesitter()
 				-- colors = {}, -- table of hex strings
 				-- termcolors = {} -- table of colour name strings
 			},
-			-- refactor = {
-			-- 	-- highlight_definitions = { enable = true },
-			-- 	-- highlight_current_scope = { enable = true },
-			-- },
+			context_commentstring = {
+				enable = true,
+			},
+			refactor = {
+				-- highlight_definitions = { enable = true },
+				-- highlight_current_scope = { enable = true },
+				highlight_definitions = {
+					enable = true,
+					-- Set to false if you have an `updatetime` of ~100.
+					-- clear_on_cursor_move = true,
+				},
+				navigation = {
+					enable = true,
+					keymaps = {
+						goto_definition = "gnd",
+						list_definitions = "gnD",
+						list_definitions_toc = "gO",
+						goto_next_usage = "<a-*>",
+						goto_previous_usage = "<a-#>",
+					},
+				},
+				smart_rename = {
+					enable = true,
+					keymaps = {
+						smart_rename = "grr",
+					},
+				},
+			},
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+					keymaps = {
+						-- You can use the capture groups defined in textobjects.scm
+						["af"] = "@function.outer",
+						["if"] = "@function.inner",
+						["ac"] = "@class.outer",
+						["ic"] = "@class.inner",
+					},
+				},
+				swap = {
+					enable = true,
+					swap_next = {
+						["<leader>a"] = "@parameter.inner",
+					},
+					swap_previous = {
+						["<leader>A"] = "@parameter.inner",
+					},
+				},
+				textobjects = {
+					move = {
+						enable = true,
+						set_jumps = true, -- whether to set jumps in the jumplist
+						goto_next_start = {
+							["]m"] = "@function.outer",
+							["]]"] = "@class.outer",
+						},
+						goto_next_end = {
+							["]M"] = "@function.outer",
+							["]["] = "@class.outer",
+						},
+						goto_previous_start = {
+							["[m"] = "@function.outer",
+							["[["] = "@class.outer",
+						},
+						goto_previous_end = {
+							["[M"] = "@function.outer",
+							["[]"] = "@class.outer",
+						},
+					},
+				},
+			},
 		})
 	end)
 end
@@ -43,8 +111,11 @@ M.setup = function(use)
 		requires = {
 			"p00f/nvim-ts-rainbow",
 			"nvim-treesitter/nvim-treesitter-refactor",
+			"JoosepAlviste/nvim-ts-context-commentstring",
+			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 	})
+	use("mfussenegger/nvim-ts-hint-textobject")
 
 	setup_treesitter()
 end
