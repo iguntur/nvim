@@ -1,8 +1,9 @@
 # directory
 venv
 node_modules
-plugin
 
 # files
 *.old
 *.bak
+
+plugin/packer_compiled.lua
