@@ -1,5 +1,3 @@
-local safe_require = require("utils").safe_require
-
 local M = {}
 
 local default_opts = { noremap = true, silent = true }
@@ -13,7 +11,7 @@ end
 local function setup_dapui(dap)
 	local event_name = "dapui_config"
 
-	safe_require("dapui", function(dapui)
+	SafeRequire("dapui", function(dapui)
 		dapui.setup()
 
 		dap.listeners.after.event_initialized[event_name] = function()
@@ -31,7 +29,7 @@ local function setup_dapui(dap)
 end
 
 local function setup_golang_dap(dap)
-	safe_require("dap-go", function(dapgo)
+	SafeRequire("dap-go", function(dapgo)
 		dapgo.setup()
 	end)
 
@@ -94,12 +92,12 @@ local function setup_golang_dap(dap)
 end
 
 local function setup_dap()
-	safe_require("dap", function(dap)
+	SafeRequire("dap", function(dap)
 		setup_dapui(dap)
 		setup_golang_dap(dap)
 	end)
 
-	safe_require("nvim-dap-virtual-text", function(dapVT)
+	SafeRequire("nvim-dap-virtual-text", function(dapVT)
 		dapVT.setup()
 	end)
 end

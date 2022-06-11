@@ -1,43 +1,39 @@
 local M = {}
 
 local function setup_nls()
-	local ok, nls = pcall(require, 'null-ls')
+	SafeRequire("null-ls", function(nls)
+		local formatting = nls.builtins.formatting
+		-- local diagnostic = nls.builtins.diagnostic
 
-	if not ok then
-		return
-	end
+		-- sources
+		local sources = {
+			nls.builtins.code_actions.gitsigns,
 
-	local formatting = nls.builtins.formatting
-	-- local diagnostic = nls.builtins.diagnostic
+			-- formatting.stylua,
+			formatting.prettier.with({
+				prefer_local = "node_modules/.bin",
+			}),
 
-	-- sources
-	local sources = {
-		nls.builtins.code_actions.gitsigns,
+			-- nls.builtins.diagnostics.eslint,
+			-- nls.builtins.completion.spell,
+		}
 
-		formatting.stylua,
-		formatting.prettier.with({
-			prefer_local = 'node_modules/.bin',
-		}),
-
-		-- nls.builtins.diagnostics.eslint,
-		-- nls.builtins.completion.spell,
-	}
-
-	local on_attach = function(client)
-		-- format on save
-		if client.resolved_capabilities.document_formatting then
-			vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+		local on_attach = function(client)
+			-- format on save
+			if client.resolved_capabilities.document_formatting then
+				vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+			end
 		end
-	end
 
-	nls.setup({
-		sources = sources,
-		on_attach = on_attach,
-	})
+		nls.setup({
+			sources = sources,
+			on_attach = on_attach,
+		})
+	end)
 end
 
 M.setup = function(use)
-	use('jose-elias-alvarez/null-ls.nvim')
+	use("jose-elias-alvarez/null-ls.nvim")
 
 	setup_nls()
 end
