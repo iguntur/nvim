@@ -37,7 +37,7 @@ local servers = {
 -- "hls", -- haskell
 -- 'cssmodules_ls', -- CSS
 
-local lsp_handler = require('plugins.lsp.handler')
+local lsp_handler = require("plugins.lsp.handler")
 
 local lsp_opts = {
 	on_attach = lsp_handler.on_attach,
@@ -102,7 +102,7 @@ M.setup = function(use)
 	-- setup_language_server()
 	setup_lsp_installer()
 
-	require('plugins.lsp.handler').setup()
+	require("plugins.lsp.handler").setup()
 end
 
 return M
