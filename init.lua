@@ -1,5 +1,6 @@
 require("settings.general")
 require("settings.keymaps")
+require("global.function")
 
 -- Autocommand that reloads neovim whenever you save the init.lua file
 vim.cmd([[
@@ -25,10 +26,6 @@ packer.init({
 		end,
 	},
 })
-
-function D(args)
-	print(vim.inspect(args))
-end
 
 -- Plugins
 return packer.startup(function(use)
