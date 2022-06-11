@@ -104,12 +104,12 @@ end
 
 local function setup_dap_keymaps()
 	-- General dap keymaps
-	kmap("n", "<F1>", "<cmd>lua require('dap').step_over()<CR>")
-	kmap("n", "<F2>", "<cmd>lua require('dap').step_into()<CR>")
-	kmap("n", "<F3>", "<cmd>lua require('dap').step_out()<CR>")
-	kmap("n", "<F4>", "<cmd>lua require('dap').continue()<CR>")
-	kmap("n", "<F11>", "<cmd>lua require('dap').toggle_breakpoint()<CR>")
-	kmap("n", "<F12>", "<cmd>lua require('dap').terminate()<CR>")
+	kmap("n", "<space>ds", "<cmd>lua require('dap').step_over()<CR>")
+	kmap("n", "<space>di", "<cmd>lua require('dap').step_into()<CR>")
+	kmap("n", "<space>do", "<cmd>lua require('dap').step_out()<CR>")
+	kmap("n", "<space>dc", "<cmd>lua require('dap').continue()<CR>")
+	kmap("n", "<space>dd", "<cmd>lua require('dap').toggle_breakpoint()<CR>")
+	kmap("n", "<space>dx", "<cmd>lua require('dap').terminate()<CR>")
 
 	-- Go keymaps
 	kmap("n", "<Leader>td", "<cmd>lua require('dap-go').debug_test()<CR>")
