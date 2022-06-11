@@ -45,62 +45,91 @@ local lsp_opts = {
 }
 
 local function setup_lsp_installer()
-	local status_ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
+	SafeRequire("nvim-lsp-installer", function(lsp_installer)
+		-- lsp_installer.setup({
+		-- 	ensured_installed = servers
+		-- })
 
-	if not status_ok then
-		return
-	end
+		-- Register a handler that will be called for all installed servers.
+		-- Alternatively, you may also register handlers on specific server instances instead (see example below).
+		lsp_installer.on_server_ready(function(server)
+			-- do something ...
+			local opts = lsp_opts
 
-	-- Register a handler that will be called for all installed servers.
-	-- Alternatively, you may also register handlers on specific server instances instead (see example below).
-	lsp_installer.on_server_ready(function(server)
-		-- do something ...
-		local opts = lsp_opts
+			for _, lsp in ipairs(servers) do
+				if server.name == lsp then
+					-- vim.notify(server.name)
+					SafeRequire("plugins.lsp.settings." .. lsp, function(extend_opts)
+						opts = vim.tbl_deep_extend("force", extend_opts, opts)
+					end)
 
-		for _, lsp in ipairs(servers) do
-			if server.name == lsp then
-				local has_explicit_config, extend_opts = pcall(require, 'plugins.lsp.settings.' .. lsp)
+					-- local has_explicit_config, extend_opts = pcall(require, "plugins.lsp.settings." .. lsp)
 
-				if has_explicit_config then
-					opts = vim.tbl_deep_extend('force', extend_opts, opts)
+					-- if has_explicit_config then
+					-- 	opts = vim.tbl_deep_extend("force", extend_opts, opts)
+					-- end
 				end
 			end
-		end
 
-		-- This setup() function is exactly the same as lspconfig's setup function.
-		-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-		server:setup(opts)
+			-- This setup() function is exactly the same as lspconfig's setup function.
+			-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+			server:setup(opts)
+		end)
 	end)
 end
 
--- local function setup_language_server()
--- 	local ok, lsp_config = pcall(require, 'lspconfig')
+local function setup_lsp_config()
+	SafeRequire("lspconfig", function(lspconfig)
+		for _, lsp in ipairs(servers) do
+			local opts = lsp_opts
 
--- 	if not ok then
--- 		return
--- 	end
+			SafeRequire("plugins.lsp.settings." .. lsp, function(extend_opts)
+				opts = vim.tbl_deep_extend("force", extend_opts, opts)
+			end)
 
--- 	for _, lsp in ipairs(servers) do
--- 		local has_explicit_config, extend_opts = pcall(require, 'plugins.lsp.settings.' .. lsp)
+			-- local has_explicit_config, extend_opts = pcall(require, 'plugins.lsp.settings.' .. lsp)
 
--- 		local opts = lsp_opts
+			-- if has_explicit_config then
+			-- 	opts = vim.tbl_deep_extend('force', extend_opts, opts)
+			-- end
 
--- 		if has_explicit_config then
--- 			opts = vim.tbl_deep_extend('force', extend_opts, opts)
--- 		end
-
--- 		lsp_config[lsp].setup(opts)
--- 	end
--- end
+			lspconfig[lsp].setup(opts)
+		end
+	end)
+end
 
 M.setup = function(use)
-	use('neovim/nvim-lspconfig') -- enable LSP
-	use('williamboman/nvim-lsp-installer') -- simple to use language server installer
-	use('tamago324/nlsp-settings.nvim') -- language server settings defined in json for
-	use('tami5/lspsaga.nvim') -- nightly
+	use({ -- simple to use language server installer
+		"williamboman/nvim-lsp-installer",
+		-- config = function()
+		-- 	setup_lsp_installer()
+		-- 	SafeRequire("nvim-lsp-installer", function(lsp_installer)
+		-- 		-- @deprecated
+		-- 		-- lsp_installer.setup({
+		-- 		-- 	ensured_installed = servers
+		-- 		-- })
+		-- 	end)
+		-- end
+	})
 
-	-- setup_language_server()
+	use({
+		"neovim/nvim-lspconfig",
+		after = "nvim-lsp-installer",
+		-- config = function()
+		-- 	setup_lsp_config()
+
+		-- 	-- SafeRequire("lspconfig", function(lspconfig)
+		-- 	-- 	lspconfig.sumneko_lua.setup()
+		-- 	-- end)
+		-- end
+	})
+
+	-- enable LSP
+	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
+	use("tami5/lspsaga.nvim") -- nightly
+
 	setup_lsp_installer()
+	setup_lsp_config()
 
 	require("plugins.lsp.handler").setup()
 end
