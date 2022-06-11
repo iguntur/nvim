@@ -55,7 +55,7 @@ keymap("", "<Cmd-k>", "<Nop>", { silent = true })
 n_map("q:", "<Nop>", default_opts) -- disable unexpected macro
 
 -- Set space/del/backspace to Esc
-n_map("<space>", "<Esc>", default_opts)
+-- n_map("<space>", "<Esc>", default_opts)
 n_map("<Del>", "<Esc>", default_opts)
 n_map("<BS>", "<Esc>", default_opts)
 -- n_map('<C-space>', '<Esc>0', default_opts) -- Control+space
