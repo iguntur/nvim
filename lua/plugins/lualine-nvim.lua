@@ -2,11 +2,11 @@ local M = {}
 
 M.setup = function(use)
 	use({
-		'nvim-lualine/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
 
-	local ok, lualine = pcall(require, 'lualine')
+	local ok, lualine = pcall(require, "lualine")
 
 	if not ok then
 		return
@@ -15,7 +15,7 @@ M.setup = function(use)
 	lualine.setup({
 		options = {
 			icons_enabled = true,
-			theme = 'nightfox', -- 'auto'
+			theme = "nightfox", -- 'auto'
 			-- component_separators = { left = '?', right = '?'},
 			-- section_separators = { left = '?', right = '?'},
 			-- disabled_filetypes = {},

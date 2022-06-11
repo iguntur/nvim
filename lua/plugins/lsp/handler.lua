@@ -25,7 +25,7 @@ end
 local use_custom_lsp_saga_config = false
 
 local function setup_lspaga()
-	SafeRequire('lspsaga', function(lspsaga)
+	SafeRequire("lspsaga", function(lspsaga)
 		local config = {}
 
 		if use_custom_lsp_saga_config then

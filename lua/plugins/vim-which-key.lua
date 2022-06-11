@@ -4,9 +4,9 @@ M.setup = function(use)
 	-- use 'liuchengxu/vim-which-key' -- show vim keymap
 
 	use({
-		'folke/which-key.nvim',
+		"folke/which-key.nvim",
 		config = function()
-			local ok, which_key = pcall(require, 'which-key')
+			local ok, which_key = pcall(require, "which-key")
 
 			if not ok then
 				return

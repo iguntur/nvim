@@ -2,12 +2,12 @@ local M = {}
 
 M.setup = function(use)
 	use({
-		'folke/trouble.nvim',
+		"folke/trouble.nvim",
 		requires = {
-			'kyazdani42/nvim-web-devicons',
+			"kyazdani42/nvim-web-devicons",
 		},
 		config = function()
-			local ok, trouble = pcall(require, 'trouble')
+			local ok, trouble = pcall(require, "trouble")
 
 			if not ok then
 				return

@@ -6,9 +6,9 @@ M.setup = function(use)
 	-- use 'junegunn/limelight.vim' -- Hyperfocus-writing in Vim.
 	-- use 'junegunn/goyo.vim'      -- Distraction-free writing in Vim.
 	use({
-		'folke/twilight.nvim',
+		"folke/twilight.nvim",
 		config = function()
-			local ok, tw = pcall(require, 'twilight')
+			local ok, tw = pcall(require, "twilight")
 
 			if not ok then
 				return
@@ -23,9 +23,9 @@ M.setup = function(use)
 	})
 
 	use({
-		'folke/zen-mode.nvim',
+		"folke/zen-mode.nvim",
 		config = function()
-			local ok, zen_mode = pcall(require, 'zen-mode')
+			local ok, zen_mode = pcall(require, "zen-mode")
 
 			if not ok then
 				return
@@ -39,9 +39,9 @@ M.setup = function(use)
 		end,
 	})
 
-	keymap('n', '<leader>l', ':Twilight<CR><Esc>', { noremap = true, silent = true })
-	keymap('x', '<leader>l', ':Twilight<CR><Esc>', { noremap = true, silent = true })
-	keymap('n', '<leader>zm', ':ZenMode<CR><Esc>', { silent = true })
+	keymap("n", "<leader>l", ":Twilight<CR><Esc>", { noremap = true, silent = true })
+	keymap("x", "<leader>l", ":Twilight<CR><Esc>", { noremap = true, silent = true })
+	keymap("n", "<leader>zm", ":ZenMode<CR><Esc>", { silent = true })
 end
 
 return M
