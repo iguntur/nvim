@@ -133,6 +133,7 @@ local function load_extension()
 	local extensions = {
 		"fzf",
 		"file_browser", -- load this after fzf
+		"repo",
 	}
 
 	for _, ext in ipairs(extensions) do
@@ -144,6 +145,7 @@ M.setup = function(use)
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-file-browser.nvim")
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use("cljoly/telescope-repo.nvim")
 
 	telescope_setup()
 	load_extension()
