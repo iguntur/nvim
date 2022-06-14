@@ -26,15 +26,15 @@ local function setup_keymap()
 
 	-- LSP
 	--  go to definition
-	n_map("fd", "<cmd>Telescope lsp_definitions<CR>")
+	-- n_map("fd", "<cmd>Telescope lsp_definitions<CR>")
 	n_map("gd", "<cmd>Telescope lsp_definitions<CR>")
 
 	--  go to implementation
-	n_map("fi", "<cmd>Telescope lsp_implementations<CR>")
+	-- n_map("fi", "<cmd>Telescope lsp_implementations<CR>")
 	n_map("gi", "<cmd>Telescope lsp_implementations<CR>")
 
 	--  go to references
-	n_map("fr", "<cmd>Telescope lsp_references<CR>")
+	-- n_map("fr", "<cmd>Telescope lsp_references<CR>")
 	n_map("gr", "<cmd>Telescope lsp_references<CR>")
 
 	n_map("<Leader>fws", "<cmd>Telescope lsp_workspace_symbols<CR>") -- go to workspace symbols
