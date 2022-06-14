@@ -44,6 +44,9 @@ local function setup_keymap()
 	-- Commands
 	n_map("<M-p>", "<cmd>Telescope commands<CR>")
 	n_map("<Leader>fch", "<cmd>Telescope command_history<CR>")
+
+	-- Extensions
+	n_map("<Leader>gg", "<cmd>LazyGit<CR>")
 end
 
 local function open_mydotfiles()
@@ -134,6 +137,7 @@ local function load_extension()
 		"fzf",
 		"file_browser", -- load this after fzf
 		"repo",
+		"lazygit",
 	}
 
 	for _, ext in ipairs(extensions) do
@@ -142,10 +146,15 @@ local function load_extension()
 end
 
 M.setup = function(use)
-	use("nvim-telescope/telescope.nvim")
-	use("nvim-telescope/telescope-file-browser.nvim")
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-	use("cljoly/telescope-repo.nvim")
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = {
+			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+			{ "nvim-telescope/telescope-file-browser.nvim" },
+			{ "cljoly/telescope-repo.nvim" },
+			{ "kdheepak/lazygit.nvim" },
+		}
+	})
 
 	telescope_setup()
 	load_extension()
