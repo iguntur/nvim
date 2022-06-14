@@ -1,5 +1,12 @@
 local M = {}
 
+-- "jdtls", -- java
+-- "denols", -- deno
+-- "hls", -- haskell
+-- "ocamllsp", -- ocaml
+-- "perlnavigator", -- perl
+-- "prisma_ls", -- prisma
+-- 'cssmodules_ls', -- CSS
 local servers = {
 	"bashls", -- shell script - sh
 	"clangd", -- c
@@ -12,7 +19,6 @@ local servers = {
 	"graphql", -- graphql
 	"html", -- html
 	"intelephense", -- php
-	"jdtls", -- java
 	"jsonls", -- json
 	"kotlin_language_server", -- kotlin
 	"lemminx", -- xml
@@ -29,12 +35,6 @@ local servers = {
 	"vuels", -- vue
 	"yamlls", -- yaml
 	"zk", -- markdown
-	-- "denols", -- deno
-	-- "hls", -- haskell
-	-- "ocamllsp", -- ocaml
-	-- "perlnavigator", -- perl
-	-- "prisma_ls", -- prisma
-	-- 'cssmodules_ls', -- CSS
 }
 
 local lsp_handler = require("plugins.lsp.handler")
