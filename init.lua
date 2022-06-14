@@ -36,6 +36,10 @@ return packer.startup(function(use)
 	-- Plugins and Settings
 	require("plugins.fix-cursor-hold").setup(use) -- fix `CursorHold` performance and to fix lsp doc highlight
 
+	-- LSP
+	require("plugins.lsp").setup(use) -- Language Server Protocol (LSP)
+	require("plugins.treesitter").setup(use) -- treesitter
+
 	-- Appereances
 	require("plugins.icons").setup(use) -- ...
 	require("plugins.dashboard").setup(use) -- dashboard screen
@@ -70,10 +74,6 @@ return packer.startup(function(use)
 	require("plugins.vim-sneak").setup(use) -- jump to any location specified by two characters.
 	require("plugins.hop").setup(use) -- easy motion like - jump to any line word
 	require("plugins.fzf").setup(use) -- fzf
-
-	-- LSP
-	require("plugins.lsp").setup(use) -- Language Server Protocol (LSP)
-	require("plugins.treesitter").setup(use) -- treesitter
 
 	-- Debugging and Diagnostic
 	require("plugins.trouble").setup(use) -- diagnostic with folke trouble
