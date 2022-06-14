@@ -30,12 +30,12 @@ local servers = {
 	"yamlls", -- yaml
 	"zk", -- markdown
 	-- "denols", -- deno
+	-- "hls", -- haskell
 	-- "ocamllsp", -- ocaml
 	-- "perlnavigator", -- perl
 	-- "prisma_ls", -- prisma
+	-- 'cssmodules_ls', -- CSS
 }
--- "hls", -- haskell
--- 'cssmodules_ls', -- CSS
 
 local lsp_handler = require("plugins.lsp.handler")
 
