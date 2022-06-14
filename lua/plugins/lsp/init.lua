@@ -84,11 +84,18 @@ local function setup_lsp_config(isEnable)
 	end
 
 	SafeRequire("lspconfig", function(lspconfig)
+		vim.notify("lspconfig module loaded")
+
 		for _, lsp in ipairs(servers) do
 			local opts = lsp_opts
 
 			SafeRequire("plugins.lsp.settings." .. lsp, function(extend_opts)
 				opts = vim.tbl_deep_extend("force", extend_opts, opts)
+
+				if lsp == "sumneko_lua" then
+					vim.notify("load lsp sumneko_lua")
+					-- D(opts)
+				end
 			end)
 
 			-- local has_explicit_config, extend_opts = pcall(require, 'plugins.lsp.settings.' .. lsp)
@@ -118,7 +125,7 @@ M.setup = function(use)
 
 	use({
 		"neovim/nvim-lspconfig",
-		after = "nvim-lsp-installer",
+		-- after = "nvim-lsp-installer",
 		-- config = function()
 		-- 	setup_lsp_config()
 
