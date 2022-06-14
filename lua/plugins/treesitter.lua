@@ -11,6 +11,9 @@ end
 local function setup_treesitter()
 	SafeRequire("nvim-treesitter.configs", function(config)
 		config.setup({
+			autotag = { -- Use treesitter to autoclose and autorename html tag
+				enable = true,
+			},
 			ensure_installed = "all", -- A list of parser names, or "all"
 			sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 			ignore_install = { "" }, -- List of parsers to ignore installing
@@ -129,6 +132,7 @@ M.setup = function(use)
 		},
 	})
 	use("mfussenegger/nvim-ts-hint-textobject")
+	use('windwp/nvim-ts-autotag') -- Use treesitter to autoclose and autorename html tag
 
 	setup_treesitter()
 	setup_keymap()
