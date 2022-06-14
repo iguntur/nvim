@@ -78,7 +78,11 @@ local function setup_lsp_installer()
 	end)
 end
 
-local function setup_lsp_config()
+local function setup_lsp_config(isEnable)
+	if not isEnable then
+		return
+	end
+
 	SafeRequire("lspconfig", function(lspconfig)
 		for _, lsp in ipairs(servers) do
 			local opts = lsp_opts
@@ -129,7 +133,7 @@ M.setup = function(use)
 	use("tami5/lspsaga.nvim") -- nightly
 
 	setup_lsp_installer()
-	setup_lsp_config()
+	setup_lsp_config(false)
 
 	require("plugins.lsp.handler").setup()
 end
