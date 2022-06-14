@@ -1,5 +1,13 @@
 local M = {}
 
+local default_opts = { noremap = true, silent = true }
+local keymap = vim.api.nvim_set_keymap
+
+local function kmap(mode, lhs, rhs, options)
+	options = options or default_opts
+	keymap(mode, lhs, rhs, options)
+end
+
 local function setup_treesitter()
 	SafeRequire("nvim-treesitter.configs", function(config)
 		config.setup({
@@ -104,6 +112,11 @@ local function setup_treesitter()
 	end)
 end
 
+local function setup_keymap()
+	kmap("o", "m", ":<C-U>lua require('tsht').nodes()<CR>")
+	kmap("v", "m", ":lua require('tsht').nodes()<CR>")
+end
+
 M.setup = function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -118,6 +131,7 @@ M.setup = function(use)
 	use("mfussenegger/nvim-ts-hint-textobject")
 
 	setup_treesitter()
+	setup_keymap()
 end
 
 return M
