@@ -2,6 +2,10 @@ require("settings.general")
 require("settings.keymaps")
 require("global.function")
 
+SafeRequire("impatient", function()
+	-- nop
+end)
+
 -- Autocommand that reloads neovim whenever you save the init.lua file
 vim.cmd([[
 	augroup packer_user_config
@@ -29,6 +33,10 @@ packer.init({
 
 -- Plugins
 return packer.startup(function(use)
+	-- Is using a standard Neovim install, i.e. built from source or using a
+	-- provided appimage.
+	use("lewis6991/impatient.nvim")
+
 	use("wbthomason/packer.nvim") -- Packer can manage itself
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
