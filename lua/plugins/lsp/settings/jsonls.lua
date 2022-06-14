@@ -39,14 +39,14 @@ local schemas = {
 	},
 	{
 		description = "Bucklescript config",
-		url = "https://raw.githubusercontent.com/rescript-lang/rescript-compiler/8.2.0/docs/docson/build-schema.json",
+		url = "https://raw.githubusercontent.com/rescript-lang/rescript-compiler/master/docs/docson/build-schema.json",
 		fileMatch = {
 			"bsconfig.json",
 		},
 	},
 	{
 		description = "Prettier config",
-		url = "https://json.schemastore.org/prettierrc",
+		url = "https://json.schemastore.org/prettierrc.json",
 		fileMatch = {
 			".prettierrc",
 			".prettierrc.json",
@@ -62,7 +62,7 @@ local schemas = {
 	},
 	{
 		description = "Stylelint config",
-		url = "https://json.schemastore.org/stylelintrc",
+		url = "https://json.schemastore.org/stylelintrc.json",
 		fileMatch = {
 			".stylelintrc",
 			".stylelintrc.json",
@@ -100,7 +100,7 @@ local schemas = {
 	},
 	{
 		description = "AWS CloudFormation provides a common language for you to describe and provision all the infrastructure resources in your cloud environment.",
-		url = "https://raw.githubusercontent.com/awslabs/goformation/v5.2.9/schema/cloudformation.schema.json",
+		url = "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json",
 		fileMatch = {
 			"*.cf.json",
 			"cloudformation.json",
@@ -108,7 +108,7 @@ local schemas = {
 	},
 	{
 		description = "The AWS Serverless Application Model (AWS SAM, previously known as Project Flourish) extends AWS CloudFormation to provide a simplified way of defining the Amazon API Gateway APIs, AWS Lambda functions, and Amazon DynamoDB tables needed by your serverless application.",
-		url = "https://raw.githubusercontent.com/awslabs/goformation/v5.2.9/schema/sam.schema.json",
+		url = "https://raw.githubusercontent.com/awslabs/goformation/master/schema/sam.schema.json",
 		fileMatch = {
 			"serverless.template",
 			"*.sam.json",
@@ -162,6 +162,20 @@ local schemas = {
 			"*.vsconfig",
 		},
 	},
+	{
+		description = "Cypress configuration schema",
+		url = "https://raw.githubusercontent.com/cypress-io/cypress/develop/cli/schema/cypress.schema.json",
+		fileMatch = {
+			"cypress.json",
+		},
+	},
+	{
+		description = "PHP composer configuration",
+		url = "https://raw.githubusercontent.com/composer/composer/main/res/composer-schema.json",
+		fileMatch = {
+			"composer.json",
+		},
+	},
 }
 
 local function extend(tab1, tab2)
@@ -184,7 +198,11 @@ local options = {
 		commands = {
 			Format = {
 				function()
-					vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
+					vim.lsp.buf.range_formatting(
+						{},
+						{ 0, 0 },
+						{ vim.fn.line("$"), 0 }
+					)
 				end,
 			},
 		},
