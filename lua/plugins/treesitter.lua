@@ -132,7 +132,7 @@ M.setup = function(use)
 		},
 	})
 	use("mfussenegger/nvim-ts-hint-textobject")
-	use('windwp/nvim-ts-autotag') -- Use treesitter to autoclose and autorename html tag
+	use("windwp/nvim-ts-autotag") -- Use treesitter to autoclose and autorename html tag
 
 	setup_treesitter()
 	setup_keymap()
