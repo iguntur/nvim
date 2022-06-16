@@ -5,15 +5,11 @@ M.setup = function(use)
 	use("akinsho/toggleterm.nvim")
 
 	-- see: https://github.com/akinsho/toggleterm.nvim
-	local ok, term = pcall(require, "toggleterm")
+	SafeRequire("toggleterm", function(term)
+		term.setup()
 
-	if not ok then
-		return
-	end
-
-	term.setup()
-
-	keymap("n", "<C-t>", ":ToggleTerm direction=float<CR>", { noremap = true, silent = true })
+		keymap("n", "<leader>`", ":ToggleTerm direction=float<CR>", { noremap = true, silent = true })
+	end)
 end
 
 return M
