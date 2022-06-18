@@ -9,7 +9,6 @@ M.setup = function(use)
 		},
 	})
 
-
 	SafeRequire("nvim-tree", function(nvimTree)
 		nvimTree.setup({})
 

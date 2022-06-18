@@ -154,7 +154,7 @@ M.setup = function(use)
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 			{ "cljoly/telescope-repo.nvim" },
 			{ "kdheepak/lazygit.nvim" },
-		}
+		},
 	})
 
 	telescope_setup()
