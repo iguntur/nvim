@@ -40,6 +40,7 @@ local function setup_keymap()
 	n_map("<Leader>fws", "<cmd>Telescope lsp_workspace_symbols<CR>") -- go to workspace symbols
 	n_map("<Leader>fds", "<cmd>Telescope lsp_document_symbols<CR>") -- go to document symbols
 	n_map("<Leader>fcs", "<cmd>Telescope current_buffer_fuzzy_find<CR>") -- search text in the current buffer
+	n_map("<Leader>fdl", "<cmd>Telescope diagnostics<CR>") -- show diagnostics list
 
 	-- Commands
 	n_map("<M-p>", "<cmd>Telescope commands<CR>")
