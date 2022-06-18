@@ -50,11 +50,7 @@ M.setup = function(use)
 			opt = true,
 		},
 	})
-	use({ "feline-nvim/feline.nvim",
-		requires = {
-			{ "catppuccin/nvim", as = "catppuccin" }
-		}
-	})
+	use({ "feline-nvim/feline.nvim" })
 
 	-- SafeRequire("lualine", lualine_setup)
 	SafeRequire("feline", feline_setup)
