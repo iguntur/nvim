@@ -1,21 +1,10 @@
 local M = {}
 
-M.setup = function(use)
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-	})
-
-	local ok, lualine = pcall(require, "lualine")
-
-	if not ok then
-		return
-	end
-
+local function lualine_setup(lualine)
 	lualine.setup({
 		options = {
 			icons_enabled = true,
-			theme = "nightfox", -- 'auto'
+			theme = "catppuccin", -- 'auto'
 			-- component_separators = { left = '?', right = '?'},
 			-- section_separators = { left = '?', right = '?'},
 			-- disabled_filetypes = {},
@@ -40,6 +29,31 @@ M.setup = function(use)
 		-- tabline = {},
 		-- extensions = {}
 	})
+end
+
+local function feline_setup(feline)
+	local options = {}
+	local ok, components = pcall(require, "catppuccin.core.integrations.feline")
+
+	if ok then
+		options.components = components
+	end
+
+	feline.setup(options)
+end
+
+M.setup = function(use)
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = {
+			"kyazdani42/nvim-web-devicons",
+			opt = true,
+		},
+	})
+	use("feline-nvim/feline.nvim")
+
+	-- SafeRequire("lualine", lualine_setup)
+	SafeRequire("feline", feline_setup)
 end
 
 return M

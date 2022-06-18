@@ -17,8 +17,11 @@ M.setup = function(use)
 	-- use('glepnir/zephyr-nvim') -- zephyr
 	-- use('ray-x/aurora') -- aurora
 	use("RRethy/nvim-base16") -- base-16-<color-name>
+	use({ "catppuccin/nvim", as = "catppuccin" })
 
-	local colorscheme = "gruvbox"
+	-- local colorscheme = "gruvbox"
+	local colorscheme = "catppuccin"
+
 	local ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 
 	if not ok then
