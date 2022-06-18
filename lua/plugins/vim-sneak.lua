@@ -1,14 +1,26 @@
 local M = {}
-local keymap = vim.api.nvim_set_keymap
+
+-- local function sneak_setup()
+-- 	-- Settings
+-- 	-- vim.g["sneak#label"] = 1
+
+-- 	-- keymap("n", "<leader>s", "<Plug>Sneak_s", { silent = true }) -- jump forward
+-- 	-- keymap("n", "<leader>S", "<Plug>Sneak_S", { silent = true }) -- jump backward
+-- end
+
+local function lightspeed_setup(lightspeed)
+	local should_setup = false
+
+	if should_setup then
+		lightspeed.setup()
+	end
+end
 
 M.setup = function(use)
-	use("justinmk/vim-sneak") -- Jump to any location specified by two characters.
+	-- use("justinmk/vim-sneak") -- Jump to any location specified by two characters.
+	use("ggandor/lightspeed-nvim")
 
-	-- Settings
-	vim.g["sneak#label"] = 1
-
-	keymap("n", "<leader>s", "<Plug>Sneak_s", { silent = true }) -- jump forward
-	keymap("n", "<leader>S", "<Plug>Sneak_S", { silent = true }) -- jump backward
+	SafeRequire("lightspeed", lightspeed_setup)
 end
 
 return M
