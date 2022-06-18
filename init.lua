@@ -54,7 +54,7 @@ return packer.startup(function(use)
 	require("plugins.vim-notify").setup(use) -- fix `CursorHold` performance and to fix lsp doc highlight
 	require("plugins.colorschemes").setup(use) -- color schema
 	require("plugins.hyper-focus").setup(use) -- hyper focus-writing (ZenMode)
-	require("plugins.lualine-nvim").setup(use) -- status bar
+	require("plugins.status-line").setup(use) -- status bar
 	require("plugins.tab-bar").setup(use) -- buffer/file opened tab bar
 	require("plugins.vim-highlighted-yank").setup(use) -- highlight yank text object
 
