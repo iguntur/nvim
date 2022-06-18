@@ -10,7 +10,7 @@ g.python3_host_prog = fn.expand("$HOME/.miniconda/envs/nvim/bin/python")
 g.base16colorspace = 256 -- Base 16 colors - access colors present in 256 colorspace
 
 -- Map blankline
-vim.g.indent_blankline_char = "┊"
+vim.g.indent_blankline_char = "│" -- '|', '¦', '┆', '┊', `¦`, `┆`, `│`, `⎸`, or `▏`
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 -- vim.g.indent_blankline_buftype_exclude                = { 'terminal', 'nofile' }
 -- vim.g.indent_blankline_filetype_exclude               = { 'help', 'packer' }
@@ -48,7 +48,7 @@ opt.cursorline = true
 opt.laststatus = 2
 opt.list = true
 -- opt.listchars      = 'tab:┊ ,space: ,trail:·'
-opt.listchars = { tab = "▸ ", trail = "·" } -- eol = '↲'
+opt.listchars = { tab = "▸ ", trail = "·", eol = "↴" } -- eol = '↲'
 opt.mouse = "a"
 opt.number = true
 opt.numberwidth = 6
