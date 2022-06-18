@@ -6,9 +6,9 @@ end
 function SafeRequire(moduleName, callback)
 	local ok, m = pcall(require, moduleName)
 
-	if not ok then
-		return
+	if ok then
+		callback(m)
 	end
 
-	callback(m)
+	return ok, m
 end
