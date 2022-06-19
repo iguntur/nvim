@@ -18,7 +18,7 @@ end
 
 M.setup = function(use)
 	-- use("justinmk/vim-sneak") -- Jump to any location specified by two characters.
-	use("ggandor/lightspeed-nvim")
+	use("ggandor/lightspeed.nvim")
 
 	SafeRequire("lightspeed", lightspeed_setup)
 end
