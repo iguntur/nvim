@@ -16,10 +16,21 @@ local function lightspeed_setup(lightspeed)
 	end
 end
 
+local function quick_scope_setup()
+	-- unblevable/quick-scope
+	local should_setup = false
+
+	if should_setup then
+		vim.g.qs_highlight_on_keys = { "f", "F" } -- Trigger a highlight only when pressing f and F.
+	end
+end
+
 M.setup = function(use)
 	-- use("justinmk/vim-sneak") -- Jump to any location specified by two characters.
+	use("unblevable/quick-scope") -- Quick jump with f/F
 	use("ggandor/lightspeed.nvim")
 
+	quick_scope_setup()
 	SafeRequire("lightspeed", lightspeed_setup)
 end
 
