@@ -1,3 +1,5 @@
+local keymap = vim.api.nvim_set_keymap
+
 local M = {}
 
 -- local function sneak_setup()
@@ -25,13 +27,23 @@ local function quick_scope_setup()
 	end
 end
 
+local function hop_setup(hop)
+	-- you can configure Hop the way you like here; see :h hop-config
+	hop.setup({})
+
+	keymap("n", "<leader>jw", ":HopWord<CR>", { noremap = true, silent = true })
+	keymap("n", "<leader>jp", ":HopPattern<CR>", { noremap = true, silent = true })
+end
+
 M.setup = function(use)
 	-- use("justinmk/vim-sneak") -- Jump to any location specified by two characters.
 	use("unblevable/quick-scope") -- Quick jump with f/F
 	use("ggandor/lightspeed.nvim")
+	use("phaazon/hop.nvim")
 
 	quick_scope_setup()
 	SafeRequire("lightspeed", lightspeed_setup)
+	SafeRequire("hop", hop_setup)
 end
 
 return M

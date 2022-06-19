@@ -79,7 +79,6 @@ return packer.startup(function(use)
 	require("plugins.file-tree-explorer").setup(use) -- file explorer
 	require("plugins.telescope").setup(use) -- text, file, buffer or anything to search
 	require("plugins.jump-and-motion").setup(use) -- jump to any location specified by two characters.
-	require("plugins.hop").setup(use) -- easy motion like - jump to any line word
 	require("plugins.fzf").setup(use) -- fzf
 
 	-- Debugging and Diagnostic
