@@ -1,10 +1,7 @@
+pcall(require, "impatient")
+require("global.function")
 require("settings.general")
 require("settings.keymaps")
-require("global.function")
-
-SafeRequire("impatient", function()
-	-- nop
-end)
 
 -- Autocommand that reloads neovim whenever you save the init.lua file
 vim.cmd([[
