@@ -132,11 +132,11 @@ M.setup = function(use)
 			end,
 		},
 		sources = {
-			{ name = "nvim_lsp" },
 			{ name = "nvim_lua" },
-			{ name = "luasnip" },
-			{ name = "buffer" },
+			{ name = "nvim_lsp" },
 			{ name = "path" },
+			{ name = "luasnip" },
+			{ name = "buffer", keyword_length = 5 },
 		},
 		confirm_opts = {
 			behavior = cmp.ConfirmBehavior.Replace,
