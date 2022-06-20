@@ -1,5 +1,5 @@
 local M = {}
-local keymap = vim.api.nvim_set_keymap
+-- local keymap = vim.api.nvim_set_keymap
 
 M.setup = function(use)
 	use({
