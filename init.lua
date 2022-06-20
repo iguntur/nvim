@@ -56,7 +56,7 @@ return packer.startup(function(use)
 	require("plugins.vim-highlighted-yank").setup(use) -- highlight yank text object
 
 	-- Text Edit and Format
-	require("plugins.vim-commentary").setup(use) -- text comment
+	require("plugins.comment").setup(use) -- text comment
 	require("plugins.autopairs").setup(use) -- autopairs quotes, parens, brackets, etc
 	require("plugins.vim-surround").setup(use) -- quoting or parenthesizing made simple
 	require("plugins.completions").setup(use) -- the completion plugins
