@@ -13,7 +13,6 @@ M.setup = function(use)
 		keymap("v", "<C-_>", "gc<Esc>gv", { silent = true })
 		keymap("i", "<C-_>", "<Esc>gcc<Esc>", { silent = true })
 	end)
-
 end
 
 return M
