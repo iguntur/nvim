@@ -109,7 +109,10 @@ local function telescope_setup()
 				"--line-number",
 				"--column",
 				"--smart-case",
-				-- "--no-ignore",
+				"--no-ignore",
+				"--hidden",
+				"--ignore-file",
+				vim.fn.expand("$HOME") .. "/.rgignore",
 				-- "-u", -- alias for --unrestricted
 				-- "--trim" -- add this value
 			},
