@@ -60,6 +60,8 @@ local function open_my_project_files()
 			"--hidden",
 			"--ignore-file",
 			vim.env.HOME .. "/.rgignore",
+			"--sort",
+			"path",
 		}
 	}
 
@@ -77,6 +79,8 @@ local function open_mydotfiles()
 			"--hidden",
 			"--ignore-file",
 			vim.env.HOME .. "/.rgignore",
+			"--sort",
+			"path",
 		},
 	}
 
@@ -94,6 +98,8 @@ local function open_nvim_files()
 			"--hidden",
 			"--ignore-file",
 			vim.env.HOME .. "/.rgignore",
+			"--sort",
+			"path",
 		}
 	}
 
@@ -153,6 +159,8 @@ local function telescope_setup()
 				"--hidden",
 				"--ignore-file",
 				vim.env.HOME .. "/.rgignore",
+				"--sort",
+				"path",
 				-- "-u", -- alias for --unrestricted
 				-- "--trim" -- add this value
 			},
