@@ -11,11 +11,11 @@ end
 local function setup_keymap()
 	-- Find files using Telescope command-line sugar.
 	-- n_map('<Leader>ff', '<cmd>Telescope find_files<CR>') -- search file by filename
-	n_map("<C-p>", "<cmd>Telescope find_files<CR>") -- control-p: search file by filename
-	v_map("<C-p>", "<cmd>Telescope find_files<CR>") -- control-p: search file by filename
+	-- n_map("<C-p>", "<cmd>Telescope find_files<CR>") -- control-p: search file by filename
+	-- v_map("<C-p>", "<cmd>Telescope find_files<CR>") -- control-p: search file by filename
 
 	-- n_map("<Leader>pp", "<cmd>Telescope find_files<CR>") -- search file by filename
-	n_map("<Leader>p", "<cmd>Telescope find_files no_ignore=true hidden=true<CR>") -- search file by filename
+	-- n_map("<Leader>p", "<cmd>Telescope find_files no_ignore=true hidden=true<CR>") -- search file by filename
 	n_map("<Leader>fg", "<cmd>Telescope live_grep<CR>") -- search file by text/keyword inside of the file
 	n_map("<Leader>fb", "<cmd>Telescope buffers<CR>") -- list the opened file buffers
 	n_map("<Leader>f?", "<cmd>Telescope help_tags<CR>")
@@ -50,10 +50,34 @@ local function setup_keymap()
 	n_map("<Leader>gg", "<cmd>LazyGit<CR>")
 end
 
+local function open_my_project_files()
+	local opts = {
+		prompt_title = "~ FIND FILES ~",
+		find_command = {
+			"rg",
+			"--files",
+			"--no-ignore",
+			"--hidden",
+			"--ignore-file",
+			vim.env.HOME .. "/.rgignore",
+		}
+	}
+
+	require("telescope.builtin").find_files(opts)
+end
+
 local function open_mydotfiles()
 	local opts = {
 		prompt_title = "~ DOTFILES ~",
-		cwd = "$HOME/.dotfiles",
+		cwd = vim.env.HOME .. "/.dotfiles",
+		find_command = {
+			"rg",
+			"--files",
+			"--no-ignore",
+			"--hidden",
+			"--ignore-file",
+			vim.env.HOME .. "/.rgignore",
+		},
 	}
 
 	require("telescope.builtin").find_files(opts)
@@ -62,13 +86,26 @@ end
 local function open_nvim_files()
 	local opts = {
 		prompt_title = "~ NVIM ~",
-		cwd = "$HOME/.config/nvim",
+		cwd = vim.env.HOME .. "/.config/nvim",
+		find_command = {
+			"rg",
+			"--files",
+			"--no-ignore",
+			"--hidden",
+			"--ignore-file",
+			vim.env.HOME .. "/.rgignore",
+		}
 	}
 
 	require("telescope.builtin").find_files(opts)
 end
 
 local function open_files_command()
+	vim.api.nvim_create_user_command("MyProjectFiles", open_my_project_files, {
+		bang = true,
+		desc = "search and open files based on the project directory",
+	})
+
 	-- search and open the file based on custom cwd
 	vim.api.nvim_create_user_command("MyDotfiles", open_mydotfiles, {
 		bang = true,
@@ -79,6 +116,9 @@ local function open_files_command()
 		bang = true,
 		desc = "search and open nvim config",
 	})
+
+	n_map("<C-p>", "<cmd>MyProjectFiles<CR>") -- control-p: search file by filename
+	v_map("<C-p>", "<cmd>MyProjectFiles<CR>") -- control-p: search file by filename
 
 	n_map("<Leader>vd", "<cmd>MyDotfiles<CR>")
 	n_map("<Leader>vn", "<cmd>MyNvim<CR>")
@@ -112,7 +152,7 @@ local function telescope_setup()
 				"--no-ignore",
 				"--hidden",
 				"--ignore-file",
-				vim.fn.expand("$HOME") .. "/.rgignore",
+				vim.env.HOME .. "/.rgignore",
 				-- "-u", -- alias for --unrestricted
 				-- "--trim" -- add this value
 			},
