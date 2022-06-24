@@ -17,6 +17,8 @@ local function setup_keymap()
 	-- n_map("<Leader>pp", "<cmd>Telescope find_files<CR>") -- search file by filename
 	-- n_map("<Leader>p", "<cmd>Telescope find_files no_ignore=true hidden=true<CR>") -- search file by filename
 	n_map("<Leader>fg", "<cmd>Telescope live_grep<CR>") -- search file by text/keyword inside of the file
+	n_map("<C-g>", "<cmd>Telescope live_grep<CR>") -- search file by text/keyword inside of the file
+
 	n_map("<Leader>fb", "<cmd>Telescope buffers<CR>") -- list the opened file buffers
 	n_map("<Leader>f?", "<cmd>Telescope help_tags<CR>")
 
@@ -188,7 +190,7 @@ local function load_extension()
 	local extensions = {
 		"fzf",
 		"file_browser", -- load this after fzf
-		"repo",
+		-- "repo", -- unedeed
 		"lazygit",
 	}
 
@@ -203,7 +205,7 @@ M.setup = function(use)
 		requires = {
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 			{ "nvim-telescope/telescope-file-browser.nvim" },
-			{ "cljoly/telescope-repo.nvim" },
+			-- { "cljoly/telescope-repo.nvim" },
 			{ "kdheepak/lazygit.nvim" },
 		},
 	})
