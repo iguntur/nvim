@@ -10,6 +10,9 @@ end
 
 local function setup_treesitter(config)
 	config.setup({
+		autopairs = {
+			enable = true,
+		},
 		autotag = { -- Use treesitter to autoclose and autorename html tag
 			enable = true,
 		},
