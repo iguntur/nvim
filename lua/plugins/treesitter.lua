@@ -58,8 +58,8 @@ local function setup_treesitter(config)
 					goto_definition = "gnd",
 					list_definitions = "gnD",
 					list_definitions_toc = "gO",
-					goto_next_usage = "<a-*>",
-					goto_previous_usage = "<a-#>",
+					goto_next_usage = "<M-)>",
+					goto_previous_usage = "<M-(>",
 				},
 			},
 			smart_rename = {
