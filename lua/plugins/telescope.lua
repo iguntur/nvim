@@ -24,7 +24,7 @@ local function setup_keymap()
 
 	-- Extensions
 	-- Telescope file browser
-	n_map("<Leader>fe", "<cmd>Telescope file_browser<CR>")
+	n_map("<Leader>fe", "<cmd>Telescope file_browser path=%:p:h<CR>")
 
 	-- LSP
 	--  go to definition
@@ -108,29 +108,32 @@ local function open_nvim_files()
 	require("telescope.builtin").find_files(opts)
 end
 
+local function open_journals_files()
+	local opts = {
+		prompt_title = "~ JOURNALS ~",
+		cwd = vim.env.HOME .. "/journals",
+		find_command = {
+			"rg",
+			"--files",
+			"--no-ignore",
+			"--hidden",
+			"--ignore-file",
+			vim.env.HOME .. "/.rgignore",
+			"--sort",
+			"path",
+		},
+	}
+
+	require("telescope.builtin").find_files(opts)
+end
+
 local function open_files_command()
-	vim.api.nvim_create_user_command("MyProjectFiles", open_my_project_files, {
-		bang = true,
-		desc = "search and open files based on the project directory",
-	})
-
-	-- search and open the file based on custom cwd
-	vim.api.nvim_create_user_command("MyDotfiles", open_mydotfiles, {
-		bang = true,
-		desc = "search and open dotfiles config",
-	})
-
-	vim.api.nvim_create_user_command("MyNvim", open_nvim_files, {
-		bang = true,
-		desc = "search and open nvim config",
-	})
-
-	n_map("<C-p>", "<cmd>MyProjectFiles<CR>") -- control-p: search file by filename
-	v_map("<C-p>", "<cmd>MyProjectFiles<CR>") -- control-p: search file by filename
-
-	n_map("<Leader>vd", "<cmd>MyDotfiles<CR>")
-	n_map("<Leader>vn", "<cmd>MyNvim<CR>")
 	n_map("<Leader>vg", "<cmd>Telescope git_status<CR>")
+
+	vim.keymap.set("n", "<C-p>", open_my_project_files) -- control-p: search file by filename
+	vim.keymap.set("n", "<Leader>vd", open_mydotfiles)
+	vim.keymap.set("n", "<Leader>vn", open_nvim_files)
+	vim.keymap.set("n", "<Leader>vj", open_journals_files)
 end
 
 local function telescope_setup()
@@ -175,7 +178,9 @@ local function telescope_setup()
 		-- 	-- ...
 		-- },
 		-- extensions = {
-		-- 	-- ...
+		-- 	-- file_browser = {
+		-- 	-- 	-- path = vim.fn.expand("%:p:h"),
+		-- 	-- },
 		-- },
 	})
 end
