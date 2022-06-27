@@ -10,6 +10,9 @@ end
 
 local function setup_treesitter(config)
 	config.setup({
+		pairs = {
+			enable = true,
+		},
 		autopairs = {
 			enable = true,
 		},
@@ -132,6 +135,7 @@ M.setup = function(use)
 	})
 	use("mfussenegger/nvim-ts-hint-textobject")
 	use("windwp/nvim-ts-autotag") -- Use treesitter to autoclose and autorename html tag
+	use('theHamsta/nvim-treesitter-pairs')
 
 	SafeRequire("nvim-treesitter.configs", setup_treesitter)
 	setup_keymap()
