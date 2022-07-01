@@ -7,6 +7,10 @@ if not status_ok then
 end
 
 local function lsp_highlight_document(client)
+	if client == nil then
+		return
+	end
+
 	-- Set autocommands conditional on server_capabilities
 	if client.resolved_capabilities.document_highlight then
 		vim.api.nvim_exec(
@@ -22,69 +26,70 @@ local function lsp_highlight_document(client)
 	end
 end
 
-local use_custom_lsp_saga_config = false
+local function setup_lspaga(lspsaga)
+	local use_custom_lsp_saga_config = false
+	local config = {}
 
-local function setup_lspaga()
-	SafeRequire("lspsaga", function(lspsaga)
-		local config = {}
+	if use_custom_lsp_saga_config then
+		config = {
+			-- defaults ...
+			debug = false,
+			use_saga_diagnostic_sign = true,
+			-- diagnostic sign
+			error_sign = "?",
+			warn_sign = "?",
+			hint_sign = "?",
+			infor_sign = "?",
+			diagnostic_header_icon = " ?  ",
+			-- code action title icon
+			code_action_icon = "? ",
+			code_action_prompt = {
+				enable = true,
+				sign = true,
+				sign_priority = 40,
+				virtual_text = true,
+			},
+			finder_definition_icon = "?  ",
+			finder_reference_icon = "?  ",
+			max_preview_lines = 10,
+			finder_action_keys = {
+				open = "o",
+				vsplit = "s",
+				split = "i",
+				quit = "q",
+				scroll_down = "<C-f>",
+				scroll_up = "<C-b>",
+			},
+			code_action_keys = {
+				quit = "q",
+				exec = "<CR>",
+			},
+			rename_action_keys = {
+				quit = "<C-c>",
+				exec = "<CR>",
+			},
+			definition_preview_icon = "?  ",
+			border_style = "single",
+			rename_prompt_prefix = "?",
+			rename_output_qflist = {
+				enable = false,
+				auto_open_qflist = false,
+			},
+			server_filetype_map = {},
+			diagnostic_prefix_format = "%d. ",
+			diagnostic_message_format = "%m %c",
+			highlight_prefix = false,
+		}
+	end
 
-		if use_custom_lsp_saga_config then
-			config = {
-				-- defaults ...
-				debug = false,
-				use_saga_diagnostic_sign = true,
-				-- diagnostic sign
-				error_sign = "?",
-				warn_sign = "?",
-				hint_sign = "?",
-				infor_sign = "?",
-				diagnostic_header_icon = " ?  ",
-				-- code action title icon
-				code_action_icon = "? ",
-				code_action_prompt = {
-					enable = true,
-					sign = true,
-					sign_priority = 40,
-					virtual_text = true,
-				},
-				finder_definition_icon = "?  ",
-				finder_reference_icon = "?  ",
-				max_preview_lines = 10,
-				finder_action_keys = {
-					open = "o",
-					vsplit = "s",
-					split = "i",
-					quit = "q",
-					scroll_down = "<C-f>",
-					scroll_up = "<C-b>",
-				},
-				code_action_keys = {
-					quit = "q",
-					exec = "<CR>",
-				},
-				rename_action_keys = {
-					quit = "<C-c>",
-					exec = "<CR>",
-				},
-				definition_preview_icon = "?  ",
-				border_style = "single",
-				rename_prompt_prefix = "?",
-				rename_output_qflist = {
-					enable = false,
-					auto_open_qflist = false,
-				},
-				server_filetype_map = {},
-				diagnostic_prefix_format = "%d. ",
-				diagnostic_message_format = "%m %c",
-				highlight_prefix = false,
-			}
-		end
-
-		lspsaga.setup(config)
-	end)
+	lspsaga.setup(config)
 end
 
 local function lsp_keymaps(bufnr)
+	if bufnr == nil then
+		return
+	end
+
 	local default_opts = { noremap = true, silent = true }
 	local set_keymap = vim.api.nvim_buf_set_keymap
 
@@ -180,9 +185,10 @@ M.on_attach = function(client, bufnr)
 		client.resolved_capabilities.document_formatting = false
 	end
 
-	setup_lspaga()
-	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
+	lsp_keymaps(bufnr)
+
+	SafeRequire("lspsaga", setup_lspaga)
 end
 
 return M
