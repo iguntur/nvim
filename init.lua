@@ -41,10 +41,6 @@ return packer.startup(function(use)
 	-- Plugins and Settings
 	require("plugins.fix-cursor-hold").setup(use) -- fix `CursorHold` performance and to fix lsp doc highlight
 
-	-- LSP
-	require("plugins.lsp").setup(use) -- Language Server Protocol (LSP)
-	require("plugins.treesitter").setup(use) -- treesitter
-
 	-- Appereances
 	require("plugins.icons").setup(use) -- ...
 	require("plugins.dashboard").setup(use) -- dashboard screen
@@ -88,6 +84,10 @@ return packer.startup(function(use)
 
 	-- Terminal
 	require("plugins.terminal").setup(use) -- open terminal
+
+	-- LSP
+	require("plugins.lsp").setup(use) -- Language Server Protocol (LSP)
+	require("plugins.treesitter").setup(use) -- treesitter
 
 	-- require('plugins.ack').setup(use) -- text searching
 	-- require('plugins.syntax').setup(use) -- ...
