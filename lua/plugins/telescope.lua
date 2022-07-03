@@ -41,7 +41,10 @@ local function setup_keymap()
 
 	n_map("<Leader>fws", "<cmd>Telescope lsp_workspace_symbols<CR>") -- go to workspace symbols
 	n_map("<Leader>fds", "<cmd>Telescope lsp_document_symbols<CR>") -- go to document symbols
+
 	n_map("<Leader>fcs", "<cmd>Telescope current_buffer_fuzzy_find<CR>") -- search text in the current buffer
+	n_map("<M-g>", "<cmd>Telescope current_buffer_fuzzy_find<CR>") -- search text in the current buffer
+
 	n_map("<Leader>fdl", "<cmd>Telescope diagnostics<CR>") -- show diagnostics list
 
 	-- Commands
@@ -136,6 +139,13 @@ local function open_files_command()
 	vim.keymap.set("n", "<Leader>vj", open_journals_files)
 end
 
+local function harpoon_keymap_setup()
+	vim.keymap.set("n", "zm", function() require("harpoon.mark").add_file() end)
+	vim.keymap.set("n", "zs", function() require("harpoon.ui").toggle_quick_menu() end)
+	vim.keymap.set("n", "zj", function() require("harpoon.ui").nav_next() end)
+	vim.keymap.set("n", "zk", function() require("harpoon.ui").nav_prev() end)
+end
+
 local function telescope_setup()
 	local ok, telescope = pcall(require, "telescope")
 
@@ -197,6 +207,7 @@ local function load_extension()
 		"file_browser", -- load this after fzf
 		-- "repo", -- unedeed
 		"lazygit",
+		"harpoon",
 	}
 
 	for _, ext in ipairs(extensions) do
@@ -214,11 +225,13 @@ M.setup = function(use)
 			{ "kdheepak/lazygit.nvim" },
 		},
 	})
+	use("ThePrimeagen/harpoon")
 
 	telescope_setup()
 	load_extension()
 	setup_keymap()
 	open_files_command()
+	harpoon_keymap_setup()
 end
 
 return M
