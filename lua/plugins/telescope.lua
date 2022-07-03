@@ -157,11 +157,11 @@ local function telescope_setup()
 
 	telescope.setup({
 		defaults = {
-			mappings = {
-				i = {
-					["<Esc>"] = action.close,
-				},
-			},
+			-- mappings = {
+			-- 	i = {
+			-- 		["<Esc>"] = action.close,
+			-- 	},
+			-- },
 			vimgrep_arguments = {
 				"rg",
 				"--color=never",
