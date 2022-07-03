@@ -67,7 +67,7 @@ local function open_my_project_files()
 			vim.env.HOME .. "/.rgignore",
 			"--sort",
 			"path",
-		}
+		},
 	}
 
 	require("telescope.builtin").find_files(opts)
@@ -105,7 +105,7 @@ local function open_nvim_files()
 			vim.env.HOME .. "/.rgignore",
 			"--sort",
 			"path",
-		}
+		},
 	}
 
 	require("telescope.builtin").find_files(opts)
