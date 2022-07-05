@@ -50,6 +50,7 @@ local function setup_keymap()
 	-- Commands
 	n_map("<M-p>", "<cmd>Telescope commands<CR>")
 	n_map("<Leader>fch", "<cmd>Telescope command_history<CR>")
+	n_map("<Leader>km", "<cmd>Telescope keymaps<CR>")
 
 	-- Extensions
 	n_map("<Leader>gg", "<cmd>LazyGit<CR>")
