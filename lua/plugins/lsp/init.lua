@@ -37,76 +37,79 @@ local servers = {
 	"zk", -- markdown
 }
 
-local lsp_handler = require("plugins.lsp.handler")
+local function setup_lsp_installer(lsp_installer)
+	local lsp_handler = require("plugins.lsp.handler")
+	local lsp_opts = {
+		on_attach = lsp_handler.on_attach,
+		capabilities = lsp_handler.capabilities,
+	}
 
-local lsp_opts = {
-	on_attach = lsp_handler.on_attach,
-	capabilities = lsp_handler.capabilities,
-}
+	-- lsp_installer.setup({
+	-- 	ensured_installed = servers
+	-- })
 
-local function setup_lsp_installer()
-	SafeRequire("nvim-lsp-installer", function(lsp_installer)
-		-- lsp_installer.setup({
-		-- 	ensured_installed = servers
-		-- })
+	-- Register a handler that will be called for all installed servers.
+	-- Alternatively, you may also register handlers on specific server instances instead (see example below).
+	lsp_installer.on_server_ready(function(server)
+		-- do something ...
+		local opts = lsp_opts
 
-		-- Register a handler that will be called for all installed servers.
-		-- Alternatively, you may also register handlers on specific server instances instead (see example below).
-		lsp_installer.on_server_ready(function(server)
-			-- do something ...
-			local opts = lsp_opts
+		for _, lsp in ipairs(servers) do
+			if server.name == lsp then
+				-- vim.notify(server.name)
+				SafeRequire("plugins.lsp.settings." .. lsp, function(extend_opts)
+					opts = vim.tbl_deep_extend("force", extend_opts, opts)
+				end)
 
-			for _, lsp in ipairs(servers) do
-				if server.name == lsp then
-					-- vim.notify(server.name)
-					SafeRequire("plugins.lsp.settings." .. lsp, function(extend_opts)
-						opts = vim.tbl_deep_extend("force", extend_opts, opts)
-					end)
+				-- local has_explicit_config, extend_opts = pcall(require, "plugins.lsp.settings." .. lsp)
 
-					-- local has_explicit_config, extend_opts = pcall(require, "plugins.lsp.settings." .. lsp)
-
-					-- if has_explicit_config then
-					-- 	opts = vim.tbl_deep_extend("force", extend_opts, opts)
-					-- end
-				end
+				-- if has_explicit_config then
+				-- 	opts = vim.tbl_deep_extend("force", extend_opts, opts)
+				-- end
 			end
+		end
 
-			-- This setup() function is exactly the same as lspconfig's setup function.
-			-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-			server:setup(opts)
-		end)
+		-- This setup() function is exactly the same as lspconfig's setup function.
+		-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+		server:setup(opts)
 	end)
 end
 
-local function setup_lsp_config(isEnable)
+local function setup_lsp_config(lspconfig)
+	local isEnable = false
+
 	if not isEnable then
 		return
 	end
 
-	SafeRequire("lspconfig", function(lspconfig)
-		vim.notify("lspconfig module loaded")
+	local lsp_handler = require("plugins.lsp.handler")
+	local lsp_opts = {
+		on_attach = lsp_handler.on_attach,
+		capabilities = lsp_handler.capabilities,
+	}
 
-		for _, lsp in ipairs(servers) do
-			local opts = lsp_opts
+	vim.notify("lspconfig module loaded")
 
-			SafeRequire("plugins.lsp.settings." .. lsp, function(extend_opts)
-				opts = vim.tbl_deep_extend("force", extend_opts, opts)
+	for _, lsp in ipairs(servers) do
+		local opts = lsp_opts
 
-				if lsp == "sumneko_lua" then
-					vim.notify("load lsp sumneko_lua")
-					-- D(opts)
-				end
-			end)
+		SafeRequire("plugins.lsp.settings." .. lsp, function(extend_opts)
+			opts = vim.tbl_deep_extend("force", extend_opts, opts)
 
-			-- local has_explicit_config, extend_opts = pcall(require, 'plugins.lsp.settings.' .. lsp)
+			if lsp == "sumneko_lua" then
+				vim.notify("load lsp sumneko_lua")
+				-- D(opts)
+			end
+		end)
 
-			-- if has_explicit_config then
-			-- 	opts = vim.tbl_deep_extend('force', extend_opts, opts)
-			-- end
+		-- local has_explicit_config, extend_opts = pcall(require, 'plugins.lsp.settings.' .. lsp)
 
-			lspconfig[lsp].setup(opts)
-		end
-	end)
+		-- if has_explicit_config then
+		-- 	opts = vim.tbl_deep_extend('force', extend_opts, opts)
+		-- end
+
+		lspconfig[lsp].setup(opts)
+	end
 end
 
 M.setup = function(use)
@@ -139,8 +142,8 @@ M.setup = function(use)
 	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
 	use("tami5/lspsaga.nvim") -- nightly
 
-	setup_lsp_installer()
-	setup_lsp_config(false)
+	SafeRequire("nvim-lsp-installer", setup_lsp_installer)
+	SafeRequire("lspconfig", setup_lsp_config)
 
 	require("plugins.lsp.handler").setup()
 end
