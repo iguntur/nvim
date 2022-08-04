@@ -81,6 +81,7 @@ return packer.startup(function(use)
 
 	-- Utilities
 	require("plugins.vim-which-key").setup(use) -- show vim keymap
+	require("plugins.splitjoin").setup(use)
 
 	-- Terminal
 	require("plugins.terminal").setup(use) -- open terminal
