@@ -4,14 +4,15 @@ local keymap = vim.api.nvim_set_keymap
 local function nvim_tree_setup(nvimTree)
 	nvimTree.setup({
 		-- sort_by = "case_sensitive",
-		-- view = {
-		-- 	adaptive_size = true,
-		-- 	mappings = {
-		-- 		list = {
-		-- 			{ key = "u", action = "dir_up" },
-		-- 		},
-		-- 	},
-		-- },
+		view = {
+			adaptive_size = true,
+			hide_root_folder = true,
+			-- mappings = {
+			-- 	list = {
+			-- 		{ key = "u", action = "dir_up" },
+			-- 	},
+			-- },
+		},
 		renderer = {
 			-- add_trailing = false,
 			-- group_empty = false,
