@@ -76,6 +76,7 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.incsearch = true -- move cursor to search as you type
 opt.showmatch = true
+opt.wildignore:append({ "*/node_modules/*" })
 
 --------------------------------------------------------------------------------
 -- LSP Stuff
