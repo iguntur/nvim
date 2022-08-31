@@ -167,6 +167,9 @@ local function telescope_setup()
 	telescope.setup({
 		defaults = {
 			mappings = {
+				n = {
+					["<C-w>"] = action.close,
+				},
 				i = {
 					["<C-w>"] = action.close,
 				},
