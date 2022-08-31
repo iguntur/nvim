@@ -199,8 +199,20 @@ t_map("<C-k>", "<C-\\><C-N><C-w>k", default_opts)
 t_map("<C-l>", "<C-\\><C-N><C-w>l", default_opts)
 
 --------------------------------------------------------------------------------
--- ...
+-- Misc
 --------------------------------------------------------------------------------
+-- do not yank with x
+vim.keymap.set("n", "x", '"_x')
+
+-- Increment/decrement
+vim.keymap.set("n", "+", "<C-a>")
+vim.keymap.set("n", "-", "<C-x>")
+
+-- delete word from the end
+vim.keymap.set("n", "dw", 'vb"_d')
+
+-- select all
+vim.keymap.set("n", "<C-a>", "gg<S-v>G")
 
 --------------------------------------------------------------------------------
 -- ...
