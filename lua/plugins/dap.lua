@@ -3,6 +3,8 @@ local M = {}
 local default_opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
+local isDisable = true
+
 local function kmap(mode, lhs, rhs, options)
 	options = options or default_opts
 	keymap(mode, lhs, rhs, options)
@@ -29,6 +31,10 @@ local function setup_dapui(dap)
 end
 
 local function setup_golang_dap(dap)
+	if isDisable then
+		return
+	end
+
 	SafeRequire("dap-go", function(dapgo)
 		dapgo.setup()
 	end)
@@ -103,6 +109,9 @@ local function setup_dap()
 end
 
 local function setup_dap_keymaps()
+	if isDisable then
+		return
+	end
 	-- General dap keymaps
 	kmap("n", "<space>ds", "<cmd>lua require('dap').step_over()<CR>")
 	kmap("n", "<space>di", "<cmd>lua require('dap').step_into()<CR>")

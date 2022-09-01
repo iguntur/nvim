@@ -90,6 +90,9 @@ return packer.startup(function(use)
 	require("plugins.lsp").setup(use) -- Language Server Protocol (LSP)
 	require("plugins.treesitter").setup(use) -- treesitter
 
+	-- Language specified
+	require("plugins.go-rc").setup(use)
+
 	-- require('plugins.ack').setup(use) -- text searching
 	-- require('plugins.syntax').setup(use) -- ...
 	-- require('plugins.syntastic').setup(use) -- ...
