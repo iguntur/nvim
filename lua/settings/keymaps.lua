@@ -209,7 +209,7 @@ vim.keymap.set("n", "+", "<C-a>")
 vim.keymap.set("n", "-", "<C-x>")
 
 -- delete word from the end
-vim.keymap.set("n", "dw", 'vb"_d')
+vim.keymap.set("n", "dw", 'viw"_d')
 
 -- select all
 vim.keymap.set("n", "<C-a>", "gg<S-v>G")
