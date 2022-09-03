@@ -60,12 +60,6 @@ local function setup_lsp_installer(lsp_installer)
 				SafeRequire("plugins.lsp.settings." .. lsp, function(extend_opts)
 					opts = vim.tbl_deep_extend("force", extend_opts, opts)
 				end)
-
-				-- local has_explicit_config, extend_opts = pcall(require, "plugins.lsp.settings." .. lsp)
-
-				-- if has_explicit_config then
-				-- 	opts = vim.tbl_deep_extend("force", extend_opts, opts)
-				-- end
 			end
 		end
 
