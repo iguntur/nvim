@@ -88,8 +88,8 @@ i_map("<C-j>", "<Down>", default_opts)
 i_map("<C-k>", "<Up>", default_opts)
 i_map("<C-l>", "<Right>", default_opts)
 
-n_map("<M-;>", "9kzz", default_opts)
-n_map("<M-'>", "9jzz", default_opts)
+n_map("<M-'>", "9kzz", default_opts) -- up 9 lines
+n_map("<M-;>", "9jzz", default_opts) -- down 9 lines
 
 v_map("<M-;>", "9k", default_opts)
 v_map("<M-'>", "9j", default_opts)
