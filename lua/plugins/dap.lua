@@ -11,6 +11,11 @@ local function kmap(mode, lhs, rhs, options)
 end
 
 local function dapui_setup(dap, dapui)
+	-- dap ui handle by go.nvim
+	if isDisable then
+		return
+	end
+
 	local event_name = "dapui_config"
 
 	dapui.setup()
@@ -26,10 +31,6 @@ local function dapui_setup(dap, dapui)
 	dap.listeners.before.event_exited[event_name] = function()
 		dapui.close()
 	end
-
-	SafeRequire("nvim-dap-virtual-text", function(dapVT)
-		dapVT.setup()
-	end)
 end
 
 local function dap_go_setup(dap)
@@ -108,13 +109,14 @@ local function dap_go_setup(dap)
 end
 
 local function setup_dap_keymaps()
-	-- kmap("n", "<Leader>dd", "<cmd>GoBreakToggle<CR>")
-	-- kmap("n", "<Leader>dg", "<cmd>GoDebug<CR>")
-	-- kmap("n", "<Leader>dx", "<cmd>GoDbgStop<CR>")
+	kmap("n", "<F1>", "<cmd>GoBreakToggle<CR>")
+	kmap("n", "<F9>", "<cmd>GoDbgStop<CR>")
+	kmap("n", "<F11>", "<cmd>GoDbgContinue<CR>")
+	kmap("n", "<F12>", "<cmd>GoDebug<CR>")
 
-	-- if isDisable then
-	-- 	return
-	-- end
+	if isDisable then
+		return
+	end
 
 	-- General dap keymaps
 	kmap("n", "<F4>", "<cmd>lua require('dapui').toggle()<CR>")
@@ -147,8 +149,11 @@ M.setup = function(use)
 	SafeRequire("dap", function(dap)
 		SafeRequire("dapui", function(dapui)
 			dapui_setup(dap, dapui)
-
 			dap_go_setup(dap)
+		end)
+
+		SafeRequire("nvim-dap-virtual-text", function(dapVT)
+			dapVT.setup()
 		end)
 	end)
 
