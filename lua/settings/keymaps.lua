@@ -77,10 +77,10 @@ n_map("<M-Space>", "<Esc>2a<space><Esc>i", default_opts)
 -- Cursor movement
 --------------------------------------------------------------------------------
 -- Move cursor to the first character: (shift + h)
--- n_map('H', '^<ESC>', default_opts)
+n_map("H", "^<ESC>", default_opts)
 
 -- Move cursor to the last character: (shift + l)
--- n_map('L', '$<ESC>', default_opts)
+n_map("L", "$<ESC>", default_opts)
 
 -- Move cursor when insert mode: (control) + (h/j/k/l)
 i_map("<C-h>", "<Left>", default_opts)
@@ -88,8 +88,8 @@ i_map("<C-j>", "<Down>", default_opts)
 i_map("<C-k>", "<Up>", default_opts)
 i_map("<C-l>", "<Right>", default_opts)
 
-n_map("<M-'>", "9kzz", default_opts) -- up 9 lines
-n_map("<M-;>", "9jzz", default_opts) -- down 9 lines
+n_map("<C-k>", "9kzz", default_opts) -- up 9 lines
+n_map("<C-j>", "9jzz", default_opts) -- down 9 lines
 
 v_map("<M-;>", "9k", default_opts)
 v_map("<M-'>", "9j", default_opts)
@@ -162,37 +162,18 @@ v_map("<M-d>", '"_d<ESC>', default_opts)
 -- Window
 --------------------------------------------------------------------------------
 -- Window Navigation
-n_map("<C-h>", "<C-w>h", default_opts) -- move cursor to "left" window
-n_map("<C-j>", "<C-w>j", default_opts) -- move cursor to "bottom" window
-n_map("<C-k>", "<C-w>k", default_opts) -- move cursor to "top" window
-n_map("<C-l>", "<C-w>l", default_opts) -- move cursor to "right" window
+n_map("<C-Left>", "<C-w>h", default_opts) -- move cursor to "left" window
+n_map("<C-Down>", "<C-w>j", default_opts) -- move cursor to "bottom" window
+n_map("<C-Up>", "<C-w>k", default_opts) -- move cursor to "top" window
+n_map("<C-Right>", "<C-w>l", default_opts) -- move cursor to "right" window
 
 --------------------------------------------------------------------------------
 -- Resize window (Ctrl-Shift-<Arrow_Keys>)
 --------------------------------------------------------------------------------
--- " Up
-n_map("<C-S-Up>", ":resize +1<CR>", default_opts)
--- i_map('<C-S-Up>', ':resize +1<CR>', default_opts)
--- v_map('<C-S-Up>', ':resize +1<CR>', default_opts)
--- c_map('<C-S-Up>', ':resize +1<CR>', default_opts)
-
--- " Down
-n_map("<C-S-Down>", ":resize -1<CR>", default_opts)
--- i_map('<C-S-Down>', ':resize -1<CR>', default_opts)
--- v_map('<C-S-Down>', ':resize -1<CR>', default_opts)
--- c_map('<C-S-Down>', ':resize -1<CR>', default_opts)
-
--- " Left
-n_map("<C-S-Left>", ":vertical resize -1<CR>", default_opts)
--- i_map('<C-S-Left>', ':vertical resize -1<CR>', default_opts)
--- v_map('<C-S-Left>', ':vertical resize -1<CR>', default_opts)
--- c_map('<C-S-Left>', ':vertical resize -1<CR>', default_opts)
-
--- " Right
-n_map("<C-S-Right>", ":vertical resize +1<CR>", default_opts)
--- i_map('<C-S-Right>', ':vertical resize +1<CR>', default_opts)
--- v_map('<C-S-Right>', ':vertical resize +1<CR>', default_opts)
--- c_map('<C-S-Right>', ':vertical resize +1<CR>', default_opts)
+n_map("<C-S-Up>", ":resize +1<CR>", default_opts) -- " Up
+n_map("<C-S-Down>", ":resize -1<CR>", default_opts) -- " Down
+n_map("<C-S-Left>", ":vertical resize -1<CR>", default_opts) -- " Left
+n_map("<C-S-Right>", ":vertical resize +1<CR>", default_opts) -- " Right
 
 --------------------------------------------------------------------------------
 -- Terminal

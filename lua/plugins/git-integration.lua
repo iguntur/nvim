@@ -26,18 +26,18 @@ M.setup = function(use)
 
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
-
 				local function map(mode, l, r, opts)
 					opts = opts or {}
+
 					opts.buffer = bufnr
 					vim.keymap.set(mode, l, r, opts)
 				end
 
 				--
 				-- 	-- Navigation
-				map("n", "<M-.>", function()
+				map("n", "<M-,>", function()
 					if vim.wo.diff then
-						return "<M-.>"
+						return "<M-,>"
 					end
 					vim.schedule(function()
 						gs.next_hunk()
@@ -45,9 +45,9 @@ M.setup = function(use)
 					return "<Ignore>"
 				end, { expr = true })
 
-				map("n", "<M-,>", function()
+				map("n", "<M-.>", function()
 					if vim.wo.diff then
-						return "<M-,>"
+						return "<M-.>"
 					end
 					vim.schedule(function()
 						gs.prev_hunk()

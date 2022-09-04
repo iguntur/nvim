@@ -106,7 +106,7 @@ local function lsp_keymaps(bufnr)
 	-- b_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')     -- use telescope instead
 
 	b_keymap("n", "<leader>fx", "<cmd>lua vim.lsp.buf.formatting()<CR>")
-	b_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+	-- b_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 
 	-- b_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>') -- use Lspsaga
 	-- b_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>') -- use Lspsaga
