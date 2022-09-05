@@ -117,6 +117,10 @@ local function setup_treesitter(config)
 	})
 end
 
+local function setup_treesitter_context(treesitter_context)
+	treesitter_context.setup()
+end
+
 local function setup_keymap()
 	kmap("o", "m", ":<C-U>lua require('tsht').nodes()<CR>")
 	kmap("v", "m", ":lua require('tsht').nodes()<CR>")
@@ -136,8 +140,10 @@ M.setup = function(use)
 	use("mfussenegger/nvim-ts-hint-textobject")
 	use("windwp/nvim-ts-autotag") -- Use treesitter to autoclose and autorename html tag
 	use("theHamsta/nvim-treesitter-pairs")
+	use("nvim-treesitter/nvim-treesitter-context")
 
 	SafeRequire("nvim-treesitter.configs", setup_treesitter)
+	SafeRequire("treesitter-context", setup_treesitter_context)
 	setup_keymap()
 end
 
