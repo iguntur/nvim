@@ -70,9 +70,6 @@ return packer.startup(function(use)
 	require("plugins.jump-and-motion").setup(use) -- jump to any location specified by two characters.
 	require("plugins.fzf").setup(use) -- fzf
 
-	-- Language specified
-	require("plugins.go-rc").setup(use)
-
 	-- Debugging and Diagnostic
 	require("plugins.trouble").setup(use) -- diagnostic with folke trouble
 	require("plugins.dap").setup(use) -- debugger adapter protocola a.k.a nvim-dap
@@ -87,6 +84,9 @@ return packer.startup(function(use)
 	-- LSP
 	require("plugins.lsp").setup(use) -- Language Server Protocol (LSP)
 	require("plugins.treesitter").setup(use) -- treesitter
+
+	-- Language specified
+	require("plugins.go-rc").setup(use)
 
 	-- require('plugins.ack').setup(use) -- text searching
 	-- require('plugins.syntax').setup(use) -- ...
