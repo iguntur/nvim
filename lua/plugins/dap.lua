@@ -38,9 +38,9 @@ local function dap_go_setup(dap)
 		dapgo.setup()
 	end)
 
-	-- if isDisable then
-	-- 	return
-	-- end
+	if isDisable then
+		return
+	end
 
 	dap.adapters.go = function(callback, config)
 		local stdout = vim.loop.new_pipe(false)
