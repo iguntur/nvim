@@ -21,7 +21,7 @@ M.setup = function(use)
 
 	-- local colorscheme = "gruvbox"
 	-- local colorscheme = "catppuccin"
-	local colorscheme = "base16-ayu-mirage"
+	local colorscheme = "ayu-mirage"
 
 	SafeRequire("catppuccin", function(catppuccin)
 		vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
