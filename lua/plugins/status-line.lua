@@ -69,15 +69,16 @@ local function feline_setup(feline)
 	local filebar = components.active[3][3]
 
 	filebar.provider = function()
-		local filename = vim.fn.expand("%:f") -- t | f
+		local full_filepath = vim.fn.expand("%:f") -- t | f
+		local project_filepath = vim.fn.fnamemodify(full_filepath, ":p:~:.")
 		local extension = vim.fn.expand("%:e")
-		local icon = require("nvim-web-devicons").get_icon(filename, extension)
+		local icon = require("nvim-web-devicons").get_icon(project_filepath, extension)
 
 		if icon == nil then
 			icon = assets.file
 		end
 
-		return (show_modified and "%m" or "") .. " " .. icon .. " " .. filename .. " "
+		return (show_modified and "%m" or "") .. " " .. icon .. " " .. project_filepath .. " "
 	end
 
 	components.active[3][3] = filebar
