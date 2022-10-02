@@ -3,7 +3,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "*.go",
 	callback = function()
 		-- vim.lsp.buf.formatting_seq_sync()
-		vim.lsp.buf.formatting_sync(nil, 500)
+		-- vim.lsp.buf.formatting_sync(nil, 500)
+		vim.lsp.buf.format()
+		-- vim.lsp.format()
+
 		vim.cmd([[ write ]])
 	end,
 })

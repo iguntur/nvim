@@ -131,7 +131,7 @@ local function lsp_keymaps(bufnr)
 	b_keymap("n", "<C-u>", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1, "<c-u>")<CR>', {})
 	b_keymap("n", "<C-d>", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1, "<c-d>")<CR>', {})
 
-	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
 end
 
 -- TODO: backfill this to template
