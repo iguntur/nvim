@@ -40,7 +40,7 @@ local function setup_nls(nls)
 	-- add to your shared on_attach callback
 	local on_attach = function(client, bufnr)
 		-- format on save
-		-- if client.resolved_capabilities.document_formatting then
+		-- if client.server_capabilities.document_formatting then
 		-- 	vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
 		-- end
 		if client.supports_method("textDocument/formatting") then
