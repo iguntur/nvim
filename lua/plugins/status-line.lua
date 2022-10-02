@@ -102,6 +102,8 @@ M.setup = function(use)
 
 	-- SafeRequire("lualine", lualine_setup)
 	SafeRequire("feline", feline_setup)
+
+	vim.o.wbr = vim.o.stl -- move statusline on top
 end
 
 return M

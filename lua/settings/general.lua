@@ -68,6 +68,9 @@ opt.splitbelow = true -- make all horizontal split to go below window
 opt.splitright = true -- make all vertical split to go to the right
 opt.backup = false -- create backup file
 
+-- cmd([[ set winbar=%f ]])
+vim.o.ls = 0
+vim.o.ch = 0
 --------------------------------------------------------------------------------
 -- Search
 --------------------------------------------------------------------------------
