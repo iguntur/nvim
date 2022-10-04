@@ -32,8 +32,10 @@ local function lualine_setup(lualine)
 end
 
 local assets = {
-	left_separator = "",
-	right_separator = "",
+	-- left_separator = "",
+	-- right_separator = "",
+	left_separator = " ",
+	right_separator = " ",
 	bar = "█",
 	mode_icon = "",
 	dir = "  ",
@@ -64,7 +66,10 @@ local function feline_setup(feline)
 
 	local show_modified = false
 
-	--	ctp_feline.setup()
+	ctp_feline.setup({
+		assets = assets,
+	})
+
 	local components = ctp_feline.get()
 	local filebar = components.active[3][3]
 
