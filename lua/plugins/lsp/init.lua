@@ -7,6 +7,7 @@ local M = {}
 -- "perlnavigator", -- perl
 -- "prisma_ls", -- prisma
 -- 'cssmodules_ls', -- CSS
+-- "pyright", -- python
 local servers = {
 	"bashls", -- shell script - sh
 	"clangd", -- c
@@ -22,7 +23,7 @@ local servers = {
 	"jsonls", -- json
 	"kotlin_language_server", -- kotlin
 	"lemminx", -- xml
-	"pyright", -- python
+	"jedi_language_server", -- python
 	"rescriptls", -- rust
 	"rust_analyzer", -- rust
 	"sqls", -- SQL
