@@ -1,6 +1,4 @@
-local M = {}
-
-local function setup_nls(nls)
+local function setup_null_ls(nls)
 	-- sources
 	local sources = {
 		nls.builtins.code_actions.gitsigns,
@@ -61,10 +59,4 @@ local function setup_nls(nls)
 	})
 end
 
-M.setup = function(use)
-	use("jose-elias-alvarez/null-ls.nvim")
-
-	SafeRequire("null-ls", setup_nls)
-end
-
-return M
+SafeRequire("null-ls", setup_null_ls)

@@ -6,9 +6,10 @@ end
 function SafeRequire(moduleName, callback)
 	local ok, m = pcall(require, moduleName)
 
-	if ok then
-		callback(m)
+	-- TODO: notify module not installed
+	if not ok then
+		return
 	end
 
-	return ok, m
+	callback(m)
 end

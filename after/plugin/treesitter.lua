@@ -1,25 +1,28 @@
-local M = {}
-
-local default_opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
-
-local function kmap(mode, lhs, rhs, options)
-	options = options or default_opts
-	keymap(mode, lhs, rhs, options)
-end
+-- local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 local function setup_treesitter(config)
 	config.setup({
+		-- "theHamsta/nvim-treesitter-pairs"
 		pairs = {
 			enable = true,
 		},
+		-- "windwp/nvim-ts-autotag" Use treesitter to autoclose and autorename html tag
+		autotag = {
+			enable = true,
+		},
+
 		autopairs = {
 			enable = true,
 		},
-		autotag = { -- Use treesitter to autoclose and autorename html tag
-			enable = true,
+		auto_install = false,
+		ensure_installed = {
+			-- "all", -- A list of parser names, or "all"
+			"help", "c", "rust", "go",
+			"lua", "javascript", "typescript", "php",
+			"markdown", "json", "toml", "yaml",
+			"html"
 		},
-		ensure_installed = "all", -- A list of parser names, or "all"
 		sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 		ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
 		highlight = {
@@ -117,34 +120,14 @@ local function setup_treesitter(config)
 	})
 end
 
-local function setup_treesitter_context(treesitter_context)
-	treesitter_context.setup()
-end
-
 local function setup_keymap()
-	kmap("o", "m", ":<C-U>lua require('tsht').nodes()<CR>")
-	kmap("v", "m", ":lua require('tsht').nodes()<CR>")
+	-- "mfussenegger/nvim-ts-hint-textobject"
+	keymap("o", "m", ":<C-U>lua require('tsht').nodes()<CR>")
+	keymap("v", "m", ":lua require('tsht').nodes()<CR>")
 end
 
-M.setup = function(use)
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-		requires = {
-			"p00f/nvim-ts-rainbow",
-			"nvim-treesitter/nvim-treesitter-refactor",
-			"JoosepAlviste/nvim-ts-context-commentstring",
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
-	})
-	use("mfussenegger/nvim-ts-hint-textobject")
-	use("windwp/nvim-ts-autotag") -- Use treesitter to autoclose and autorename html tag
-	use("theHamsta/nvim-treesitter-pairs")
-	use("nvim-treesitter/nvim-treesitter-context")
-
-	SafeRequire("nvim-treesitter.configs", setup_treesitter)
-	SafeRequire("treesitter-context", setup_treesitter_context)
+SafeRequire("nvim-treesitter.configs", setup_treesitter)
+SafeRequire("treesitter-context", function(treesitter_context)
+	treesitter_context.setup()
 	setup_keymap()
-end
-
-return M
+end)
