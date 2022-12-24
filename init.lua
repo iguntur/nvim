@@ -79,6 +79,12 @@ return packer.startup(function(use)
 		requires = { "kyazdani42/nvim-web-devicons" }, -- icons
 	})
 	use({ "lukas-reineke/indent-blankline.nvim" })
+	use({
+		"kyazdani42/nvim-tree.lua",
+		requires = {
+			"kyazdani42/nvim-web-devicons", -- optional, for file icon
+		},
+	})
 
 	--
 	-- general, commons, utilities
@@ -87,6 +93,15 @@ return packer.startup(function(use)
 	use({ "folke/twilight.nvim" }) -- limelight like
 	use({ "folke/zen-mode.nvim" })
 	use({ "machakann/vim-highlightedyank" }) -- Make the yanked region apparent!
+
+	--
+	-- jump and motions
+	--
+	-- use("unblevable/quick-scope") -- Quick jump with f/F
+	-- use("ggandor/lightspeed.nvim")
+	use("ggandor/leap.nvim")
+	use("phaazon/hop.nvim")
+
 
 	--
 	-- editorconfig
@@ -98,6 +113,17 @@ return packer.startup(function(use)
 				"fugitive://.*", "scp://.*"
 			}
 		end
+	})
+
+	--
+	-- Git Integration
+	--
+	use("tpope/vim-fugitive") -- A Git wrapper so awesome
+	use({
+		"lewis6991/gitsigns.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
 	})
 
 	--
@@ -226,11 +252,56 @@ return packer.startup(function(use)
 		end
 	})
 
+	--
+	-- debugging and diagnostic
+	--
+	use({
+		"folke/trouble.nvim",
+		requires = {
+			"kyazdani42/nvim-web-devicons",
+		},
+		config = function()
+			SafeRequire("trouble", function(trouble)
+				trouble.setup()
+			end)
+		end,
+	})
 
 	--
 	-- misc
 	--
 	use({ "nathom/filetype.nvim" })
+	use({
+		"folke/which-key.nvim",
+		config = function()
+			SafeRequire("which-key", function(which_key)
+				which_key.setup()
+			end)
+
+		end,
+	})
+	use({
+		"AndrewRadev/splitjoin.vim"
+		-- split and join keymaps:
+		-- gS - to split a one-liner into multiple lines
+		-- gJ - (with the cursor on the first line of a block) to join a block into a single-line statement.
+	})
+
+	--
+	-- terminal
+	--
+	use({
+		"akinsho/toggleterm.nvim",
+		config = function()
+			-- see: https://github.com/akinsho/toggleterm.nvim
+			SafeRequire("toggleterm", function(term)
+				term.setup()
+
+				-- leader + backtick (`)
+				vim.keymap.set("n", "<leader>`", ":ToggleTerm direction=float<CR>")
+			end)
+		end
+	})
 
 	--
 	-- ...
