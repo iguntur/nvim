@@ -121,9 +121,9 @@ local function setup_treesitter(config)
 end
 
 local function setup_keymap()
-	-- "mfussenegger/nvim-ts-hint-textobject"
+	-- "mfussenegger/nvim-treehopper"
 	keymap("o", "m", ":<C-U>lua require('tsht').nodes()<CR>")
-	keymap("v", "m", ":lua require('tsht').nodes()<CR>")
+	keymap("x", "m", ":lua require('tsht').nodes()<CR>")
 end
 
 SafeRequire("nvim-treesitter.configs", setup_treesitter)

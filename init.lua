@@ -50,7 +50,7 @@ return packer.startup(function(use)
 			"p00f/nvim-ts-rainbow",
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			"theHamsta/nvim-treesitter-pairs",
-			"mfussenegger/nvim-ts-hint-textobject",
+			"mfussenegger/nvim-treehopper",
 			"windwp/nvim-ts-autotag",
 		},
 	})
