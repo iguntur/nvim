@@ -209,7 +209,13 @@ return packer.startup(function(use)
 	--
 	-- null ls
 	--
-	use({ "jose-elias-alvarez/null-ls.nvim" })
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		after = "lsp-zero",
+		requires = {
+			{ "jay-babu/mason-null-ls.nvim" },
+		},
+	})
 
 	--
 	-- completion and snippets

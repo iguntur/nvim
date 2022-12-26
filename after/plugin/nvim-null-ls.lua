@@ -60,3 +60,12 @@ local function setup_null_ls(nls)
 end
 
 SafeRequire("null-ls", setup_null_ls)
+SafeRequire("mason-null-ls", function(mason_null_ls)
+	mason_null_ls.setup({
+		ensure_installed = {
+			"jq",
+			"prettier",
+			"stylua",
+		}
+	})
+end)

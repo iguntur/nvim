@@ -32,7 +32,7 @@ local lsp_servers = {
 	"bashls", -- shell script - sh
 	"clangd", -- c, c++
 	"cssls", -- CSS language server
-	'cssmodules_ls', -- CSS modules
+	"cssmodules_ls", -- CSS modules
 	"denols", -- deno
 	"diagnosticls", -- Diagnostic language server integrate with linters
 	"dockerls", -- docker
@@ -80,7 +80,6 @@ local function on_attach(client, bufnr)
 	keymap("n", "<space>jk", "<cmd>Lspsaga diagnostic_jump_prev<CR>", options)
 	-- bind("n", "gs", "<cmd>Lspsaga signature_help<CR>", options)
 
-
 	SafeRequire("lspsaga.action", function(saga_action)
 		-- keymap("n", "<C-u>", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1, "<c-u>")<CR>', {})
 		-- keymap("n", "<C-d>", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1, "<c-d>")<CR>', {})
@@ -97,7 +96,7 @@ local function on_attach(client, bufnr)
 end
 
 local function setup_nvim_cmp(lsp)
-	local cmp = require('cmp')
+	local cmp = require("cmp")
 	local cmp_mappings = lsp.defaults.cmp_mappings({
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-j>"] = cmp.mapping.select_next_item(),
@@ -147,11 +146,11 @@ local function setup_nvim_cmp(lsp)
 				item.kind = string.format("%s", kind_icons[item.kind])
 
 				local menu_icon = {
-					nvim_lsp = 'λ',
-					nvim_lua = 'Π',
-					luasnip = '⋗',
-					buffer = 'Ω',
-					path = '🖫',
+					nvim_lsp = "λ",
+					nvim_lua = "Π",
+					luasnip = "⋗",
+					buffer = "Ω",
+					path = "🖫",
 				}
 
 				item.menu = menu_icon[entry.source.name]
@@ -165,11 +164,11 @@ local function setup_nvim_cmp(lsp)
 end
 
 local function lsp_vim_config()
-	vim.opt.signcolumn = 'yes' -- Reserve space for diagnostic icons
+	vim.opt.signcolumn = "yes" -- Reserve space for diagnostic icons
 
 	-- denols
 	vim.g.markdown_fenced_languages = {
-		"ts=typescript"
+		"ts=typescript",
 	}
 
 	vim.diagnostic.config({
@@ -194,7 +193,7 @@ end
 
 local function lsp_configure_server(lsp)
 	-- Lua
-	lsp.configure('sumneko_lua', {
+	lsp.configure("sumneko_lua", {
 		settings = {
 			Lua = {
 				diagnostics = {
@@ -228,7 +227,7 @@ local function lsp_configure_server(lsp)
 	end
 
 	local extended_schemas = extend(schemas, default_schemas)
-	lsp.configure('jsonls', {
+	lsp.configure("jsonls", {
 		settings = {
 			json = {
 				schemas = extended_schemas,
@@ -251,7 +250,7 @@ end
 -- end)
 
 SafeRequire("lsp-zero", function(lsp)
-	lsp.preset('recommended')
+	lsp.preset("recommended")
 
 	lsp.ensure_installed(lsp_servers)
 
