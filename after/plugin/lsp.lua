@@ -192,6 +192,60 @@ local function lsp_vim_config()
 	-- ...
 end
 
+local function lsp_configure_server(lsp)
+	-- Lua
+	lsp.configure('sumneko_lua', {
+		settings = {
+			Lua = {
+				diagnostics = {
+					globals = { "vim" },
+				},
+				workspace = {
+					library = {
+						[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+						[vim.fn.stdpath("config") .. "/lua"] = true,
+					},
+				},
+			},
+		},
+	})
+
+	-- JSON schema
+	local default_schemas = {}
+	local has_config_schema, jsonls_settings = pcall(require, "nlspsettings.jsonls")
+	if has_config_schema then
+		default_schemas = jsonls_settings.get_default_schemas()
+	end
+
+	local schemas = require("settings.json-schema")
+
+	local function extend(a, b)
+		for _, value in ipairs(b) do
+			table.insert(a, value)
+		end
+
+		return a
+	end
+
+	local extended_schemas = extend(schemas, default_schemas)
+	lsp.configure('jsonls', {
+		settings = {
+			json = {
+				schemas = extended_schemas,
+			},
+		},
+		setup = {
+			commands = {
+				Format = {
+					function()
+						vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
+					end,
+				},
+			},
+		},
+	})
+end
+
 -- SafeRequire("lspsaga", function(lspsaga)
 -- 	lspsaga.setup({  })
 -- end)
@@ -205,9 +259,9 @@ SafeRequire("lsp-zero", function(lsp)
 
 	-- lsp.nvim_workspace()
 
-	lsp.setup_nvim_cmp(
-		setup_nvim_cmp(lsp)
-	)
+	lsp.setup_nvim_cmp(setup_nvim_cmp(lsp))
+
+	lsp_configure_server(lsp)
 
 	lsp.setup()
 

@@ -6,12 +6,14 @@ require("settings.keymaps")
 
 -- initiate plugin
 -- Autocommand that reloads neovim whenever you save the init.lua file
-vim.cmd([[
-	augroup packer_user_config
-		autocmd!
-		autocmd BufWritePost ./init.lua source <afile> | PackerCompile
-	augroup end
-]])
+-- vim.cmd([[
+-- 	augroup packer_user_config
+-- 		autocmd!
+-- 		autocmd BufWritePost ./init.lua source <afile> | PackerCompile
+-- 	augroup end
+-- ]])-- Only required if you have packer configured as `opt`
+--
+-- vim.cmd([[packadd packer.nvim]])
 
 -- Use a protected call so we don't error out on first use
 local ok, packer = pcall(require, "packer")
@@ -102,7 +104,6 @@ return packer.startup(function(use)
 	use("ggandor/leap.nvim")
 	use("phaazon/hop.nvim")
 
-
 	--
 	-- editorconfig
 	--
@@ -110,9 +111,10 @@ return packer.startup(function(use)
 		"editorconfig/editorconfig-vim",
 		config = function()
 			vim.g.EditorConfig_exclude_patterns = {
-				"fugitive://.*", "scp://.*"
+				"fugitive://.*",
+				"scp://.*",
 			}
-		end
+		end,
 	})
 
 	--
@@ -179,28 +181,29 @@ return packer.startup(function(use)
 	-- LSP
 	--
 	use({
-		'VonHeikemen/lsp-zero.nvim',
+		"VonHeikemen/lsp-zero.nvim",
 		requires = {
 			-- LSP Support
-			{ 'neovim/nvim-lspconfig' },
-			{ 'williamboman/mason.nvim' },
-			{ 'williamboman/mason-lspconfig.nvim' },
+			{ "neovim/nvim-lspconfig" },
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
 
 			-- Autocompletion
-			{ 'hrsh7th/nvim-cmp' }, -- the completion plugin
-			{ 'hrsh7th/cmp-buffer' }, -- buffer completions
-			{ 'hrsh7th/cmp-path' }, -- path completions
-			{ 'saadparwaiz1/cmp_luasnip' }, -- snippet completions
-			{ 'hrsh7th/cmp-nvim-lsp' },
-			{ 'hrsh7th/cmp-nvim-lua' },
+			{ "hrsh7th/nvim-cmp" }, -- the completion plugin
+			{ "hrsh7th/cmp-buffer" }, -- buffer completions
+			{ "hrsh7th/cmp-path" }, -- path completions
+			{ "saadparwaiz1/cmp_luasnip" }, -- snippet completions
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lua" },
+			{ "tamago324/nlsp-settings.nvim" },
 
 			-- Snippets
-			{ 'L3MON4D3/LuaSnip' },
-			{ 'rafamadriz/friendly-snippets' },
+			{ "L3MON4D3/LuaSnip" },
+			{ "rafamadriz/friendly-snippets" },
 
 			-- LSP Saga
-			{ 'kkharji/lspsaga.nvim' } -- nightly
-		}
+			{ "kkharji/lspsaga.nvim" }, -- nightly
+		},
 	})
 
 	--
@@ -221,7 +224,7 @@ return packer.startup(function(use)
 		"mattn/emmet-vim",
 		config = function()
 			vim.g.user_emmet_leader_key = "<C-Z>"
-		end
+		end,
 	})
 
 	--
@@ -232,7 +235,7 @@ return packer.startup(function(use)
 		config = function()
 			vim.g.better_whitespace_enabled = 1
 			vim.g.strip_whitespace_on_save = 1
-		end
+		end,
 	})
 
 	--
@@ -249,7 +252,7 @@ return packer.startup(function(use)
 			-- vim.keymap.set("n", "<Esc><Right>", "<Plug>MoveCharRight<Esc>")
 			-- vim.keymap.set("v", "<C-M-h>", "<Plug>MoveCharLeft")
 			-- vim.keymap.set("v", "<C-M-l>", "<Plug>MoveCharRight")
-		end
+		end,
 	})
 
 	--
@@ -277,11 +280,10 @@ return packer.startup(function(use)
 			SafeRequire("which-key", function(which_key)
 				which_key.setup()
 			end)
-
 		end,
 	})
 	use({
-		"AndrewRadev/splitjoin.vim"
+		"AndrewRadev/splitjoin.vim",
 		-- split and join keymaps:
 		-- gS - to split a one-liner into multiple lines
 		-- gJ - (with the cursor on the first line of a block) to join a block into a single-line statement.
@@ -300,7 +302,7 @@ return packer.startup(function(use)
 				-- leader + backtick (`)
 				vim.keymap.set("n", "<leader>`", ":ToggleTerm direction=float<CR>")
 			end)
-		end
+		end,
 	})
 
 	--
