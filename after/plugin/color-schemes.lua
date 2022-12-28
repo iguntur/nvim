@@ -16,6 +16,10 @@ local function setup_colorscheme()
 		vim.notify("set to default colorscheme " .. default_colorscheme)
 		pcall(vim.cmd, "colorscheme " .. default_colorscheme)
 	end
+
+	-- background transparancy
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
 setup_colorscheme()
