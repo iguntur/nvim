@@ -33,6 +33,7 @@ opt.textwidth = 110
 opt.wrap = false
 opt.linebreak = true
 opt.undofile = true -- enable persistent undo
+opt.undodir = vim.fn.stdpath("config") .. "/.cache/undodir"
 
 opt.clipboard:append("unnamedplus") -- Copy (yank) and paste with clipboard integration
 opt.shortmess:append("I") -- Disable Neovim welcome page
