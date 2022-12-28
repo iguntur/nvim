@@ -67,7 +67,9 @@ local function on_attach(client, bufnr)
 	-- bind('n', 'Q', function() print('Hello') end, { buffer = bufnr, desc = 'Say hello' })
 	-- more code  ...
 
-	keymap("n", "<leader>fx", "<cmd>lua vim.lsp.buf.formatting()<CR>", options)
+	keymap("n", "<leader>fx", function()
+		vim.lsp.buf.format({})
+	end, options)
 	keymap("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", options)
 
 	-- Handle by Lspsaga
@@ -92,7 +94,7 @@ local function on_attach(client, bufnr)
 		end, {})
 	end)
 
-	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
+	-- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
 end
 
 local function setup_nvim_cmp(lsp)
@@ -253,6 +255,9 @@ SafeRequire("lsp-zero", function(lsp)
 	lsp.preset("recommended")
 
 	lsp.ensure_installed(lsp_servers)
+	lsp.set_preferences({
+		set_lsp_keymaps = false
+	})
 
 	lsp.on_attach(on_attach)
 

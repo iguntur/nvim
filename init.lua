@@ -211,10 +211,7 @@ return packer.startup(function(use)
 	--
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
-		after = "lsp-zero",
-		requires = {
-			{ "jay-babu/mason-null-ls.nvim" },
-		},
+		-- after = "lsp-zero",
 	})
 
 	--
@@ -310,6 +307,11 @@ return packer.startup(function(use)
 			end)
 		end,
 	})
+
+	--
+	-- undo tree
+	--
+	use({ "mbbill/undotree" })
 
 	--
 	-- ...
