@@ -18,10 +18,19 @@ local function setup_treesitter(config)
 		auto_install = false,
 		ensure_installed = {
 			-- "all", -- A list of parser names, or "all"
-			"help", "c", "rust", "go",
-			"lua", "javascript", "typescript", "php",
-			"markdown", "json", "toml", "yaml",
-			"html"
+			"help",
+			"c",
+			"rust",
+			"go",
+			"lua",
+			"javascript",
+			"typescript",
+			"php",
+			"markdown",
+			"json",
+			"toml",
+			"yaml",
+			"html",
 		},
 		sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 		ignore_install = { "phpdoc" }, -- List of parsers to ignore installing

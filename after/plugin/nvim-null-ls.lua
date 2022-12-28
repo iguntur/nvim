@@ -12,7 +12,7 @@ local function setup_null_ls(nls)
 		-- nls.builtins.completion.spell,
 	}
 
-	local lsp_formatting = function(bufnr)
+	local function lsp_formatting(bufnr)
 		if vim.version().minor == 7 then
 			-- vim.lsp.buf.formatting_sync()
 			vim.lsp.buf.formatting_seq_sync(nil, 1000, { "null-ls" })
@@ -36,11 +36,8 @@ local function setup_null_ls(nls)
 	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 	-- add to your shared on_attach callback
-	local on_attach = function(client, bufnr)
+	local function on_attach(client, bufnr)
 		-- format on save
-		-- if client.server_capabilities.document_formatting then
-		-- 	vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-		-- end
 		if client.supports_method("textDocument/formatting") then
 			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 			vim.api.nvim_create_autocmd("BufWritePre", {
@@ -66,6 +63,6 @@ SafeRequire("mason-null-ls", function(mason_null_ls)
 			"jq",
 			"prettier",
 			"stylua",
-		}
+		},
 	})
 end)
