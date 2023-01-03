@@ -51,6 +51,7 @@ local function load_extension(telescope)
 		-- "repo", -- unedeed
 		"lazygit",
 		"harpoon",
+		"git_worktree",
 	}
 
 	for _, ext in ipairs(extensions) do
@@ -75,7 +76,6 @@ local function open_my_project_files()
 
 	require("telescope.builtin").find_files(opts)
 end
-
 
 local function setup_keymap()
 	vim.keymap.set("n", "<C-g>", "<cmd>Telescope live_grep<CR>") -- search file by text/keyword inside of the file
@@ -116,7 +116,6 @@ local function setup_keymap()
 	-- Extensions
 	vim.keymap.set("n", "<Leader>gg", "<cmd>LazyGit<CR>")
 end
-
 
 local function open_mydotfiles()
 	local opts = {

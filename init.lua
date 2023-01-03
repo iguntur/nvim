@@ -127,6 +127,7 @@ return packer.startup(function(use)
 			"nvim-lua/plenary.nvim",
 		},
 	})
+	use({ "ThePrimeagen/git-worktree.nvim" })
 
 	--
 	-- easily change word casing with motions
