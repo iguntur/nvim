@@ -75,6 +75,7 @@ vim.o.ch = 0
 --------------------------------------------------------------------------------
 -- Search
 --------------------------------------------------------------------------------
+-- opt.guicursor = ""
 opt.hlsearch = true -- highlight search result
 opt.ignorecase = true
 opt.smartcase = true
