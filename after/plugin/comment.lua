@@ -1,8 +1,10 @@
 SafeRequire("Comment", function(comment)
 	comment.setup()
 
+	local options = { silent = true }
+
 	-- Keymaps: (Ctrl-/) commenting
-	vim.keymap.set("n", "<C-_>", "gcc<Esc>", { silent = true })
-	vim.keymap.set("v", "<C-_>", "gc<Esc>gv", { silent = true })
-	vim.keymap.set("i", "<C-_>", "<Esc>gcc<Esc>", { silent = true })
+	vim.api.nvim_set_keymap("n", "<C-_>", "gcc<Esc>", options)
+	vim.api.nvim_set_keymap("v", "<C-_>", "gc<Esc>gv", options)
+	vim.api.nvim_set_keymap("i", "<C-_>", "<Esc>gcc<Esc>", options)
 end)
