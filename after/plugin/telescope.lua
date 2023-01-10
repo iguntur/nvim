@@ -13,6 +13,7 @@ local function telescope_setup(telescope)
 			},
 			vimgrep_arguments = {
 				"rg",
+				"--follow",
 				"--color=never",
 				"--no-heading",
 				"--with-filename",
@@ -64,6 +65,7 @@ local function open_my_project_files()
 		prompt_title = "~ FIND FILES ~",
 		find_command = {
 			"rg",
+			"--follow",
 			"--files",
 			"--no-ignore",
 			"--hidden",
@@ -109,7 +111,7 @@ local function setup_keymap()
 	vim.keymap.set("n", "<Leader>fdl", "<cmd>Telescope diagnostics<CR>") -- show diagnostics list
 
 	-- Commands
-	vim.keymap.set("n", "<M-p>", "<cmd>Telescope commands<CR>")
+	vim.keymap.set("n", "<leader>tc", "<cmd>Telescope commands<CR>")
 	vim.keymap.set("n", "<Leader>fch", "<cmd>Telescope command_history<CR>")
 	vim.keymap.set("n", "<Leader>km", "<cmd>Telescope keymaps<CR>")
 
@@ -123,6 +125,7 @@ local function open_mydotfiles()
 		cwd = vim.env.HOME .. "/.dotfiles",
 		find_command = {
 			"rg",
+			"--follow",
 			"--files",
 			"--no-ignore",
 			"--hidden",
@@ -142,6 +145,7 @@ local function open_nvim_files()
 		cwd = vim.env.HOME .. "/.config/nvim",
 		find_command = {
 			"rg",
+			"--follow",
 			"--files",
 			"--no-ignore",
 			"--hidden",
@@ -161,6 +165,7 @@ local function open_journals_files()
 		cwd = vim.env.HOME .. "/journals",
 		find_command = {
 			"rg",
+			"--follow",
 			"--files",
 			"--no-ignore",
 			"--hidden",
