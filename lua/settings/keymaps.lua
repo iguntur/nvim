@@ -84,8 +84,8 @@ keymap("n", "<C-u>", "<C-u>zzzv0", options)
 
 keymap("n", "gg", "gg0", options)
 keymap("n", "G", "G0zz", options)
-keymap("n", "{", "{zz", options)
-keymap("n", "}", "}zz", options)
+keymap("n", "{", "{zz0", options)
+keymap("n", "}", "}zz0", options)
 
 keymap("n", "n", "nzzzv", options)
 keymap("n", "N", "Nzzzv", options)
@@ -94,9 +94,9 @@ keymap("n", "N", "Nzzzv", options)
 -- Buffer and File
 --------------------------------------------------------------------------------
 -- Write or saving file: (⌥ or alt) + s
-keymap("v", "<M-s>", "<ESC>:w<CR><ESC>", options)
-keymap("n", "<M-s>", ":w<CR><ESC>", options)
-keymap("i", "<M-s>", "<ESC>:w<CR><ESC>a", options) -- allow writing in insert mode
+keymap("v", "<M-s>", "<ESC><CMD>w<CR><ESC>", options)
+keymap("n", "<M-s>", "<CMD>w<CR><ESC>", options)
+keymap("i", "<M-s>", "<ESC><CMD>w<CR><ESC>a", options) -- allow writing in insert mode
 
 -- Close current buffer: (⌥ or alt) + w
 -- keymap("n", '<M-w>', ':bw<ESC>', options)
