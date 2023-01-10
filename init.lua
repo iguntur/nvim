@@ -95,6 +95,7 @@ return packer.startup(function(use)
 	use({ "folke/twilight.nvim" }) -- limelight like
 	use({ "folke/zen-mode.nvim" })
 	use({ "machakann/vim-highlightedyank" }) -- Make the yanked region apparent!
+	use({ "folke/neodev.nvim" })
 
 	--
 	-- jump and motions
