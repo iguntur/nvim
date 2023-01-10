@@ -76,6 +76,12 @@ return packer.startup(function(use)
 		"goolord/alpha-nvim",
 		requires = { "kyazdani42/nvim-web-devicons" }, -- icons
 	})
+	-- TODO: try bufferline instead. see https://github.com/akinsho/bufferline.nvim
+	-- use({
+	-- 	"akinsho/bufferline.nvim",
+	-- 	tag = "v3.*",
+	-- 	requires = "nvim-tree/nvim-web-devicons",
+	-- })
 	use({
 		"romgrk/barbar.nvim",
 		requires = { "kyazdani42/nvim-web-devicons" }, -- icons
@@ -314,6 +320,22 @@ return packer.startup(function(use)
 	-- undo tree
 	--
 	use({ "mbbill/undotree" })
+
+	--
+	-- misc
+	-- TODO: make this work
+	--
+	-- use({
+	-- 	"RRethy/vim-illuminate",
+	-- 	config = function()
+	-- 		SafeRequire("illuminate", function(illuminate)
+	-- 			illuminate.configure()
+	--
+	-- 			vim.keymap.set("n", "<M->>", illuminate.goto_next_reference, { desc = "Move to next reference" })
+	-- 			vim.keymap.set("n", "<M-<>", illuminate.goto_prev_reference, { desc = "Move to previous reference" })
+	-- 		end)
+	-- 	end,
+	-- })
 
 	--
 	-- ...
