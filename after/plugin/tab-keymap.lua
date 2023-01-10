@@ -33,6 +33,9 @@ keymap("n", "<A-0>", ":BufferLast<CR>", opts)
 -- Magic buffer-picking mode
 keymap("n", "<leader>bp", ":BufferPick<CR>", opts)
 
+-- Buffer pin (pin tab)
+keymap("n", "<leader>bP", ":BufferPin<CR>", opts)
+
 -- Sort automatically by...
 -- map('n', '<Space>bb', ':BufferOrderByBufferNumber<CR>', opts)
 -- map('n', '<Space>bd', ':BufferOrderByDirectory<CR>', opts)
