@@ -48,8 +48,13 @@ opt.colorcolumn = "110"
 opt.cursorline = true
 opt.laststatus = 2
 opt.list = true
--- opt.listchars      = 'tab:┊ ,space: ,trail:·'
-opt.listchars = { tab = "▸ ", trail = "·", eol = "↴" } -- eol = '↲'
+-- opt.listchars = { tab = "▸ ", trail = "·", eol = "↴" } -- eol = '↲'
+opt.listchars = {
+	tab = "▸ ",
+	trail = "·",
+	-- eol = "↴",
+	-- eol = '↲',
+}
 opt.mouse = "a"
 opt.number = true
 opt.numberwidth = 6
