@@ -11,8 +11,7 @@ require("settings.keymaps")
 -- 		autocmd!
 -- 		autocmd BufWritePost ./init.lua source <afile> | PackerCompile
 -- 	augroup end
--- ]])-- Only required if you have packer configured as `opt`
---
+-- ]])
 -- vim.cmd([[packadd packer.nvim]])
 
 -- Use a protected call so we don't error out on first use
@@ -362,6 +361,26 @@ return packer.startup(function(use)
 		module = "persistence",
 		config = function()
 			require("persistence").setup()
+		end,
+	})
+
+	--
+	-- numb
+	--
+	use({
+		"nacro90/numb.nvim",
+		config = function()
+			require("numb").setup()
+		end,
+	})
+
+	--
+	-- neoscroll
+	--
+	use({
+		"karb94/neoscroll.nvim",
+		config = function()
+			require("neoscroll").setup()
 		end,
 	})
 
