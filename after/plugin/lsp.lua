@@ -256,7 +256,7 @@ SafeRequire("lsp-zero", function(lsp)
 
 	lsp.ensure_installed(lsp_servers)
 	lsp.set_preferences({
-		set_lsp_keymaps = false
+		set_lsp_keymaps = false,
 	})
 
 	lsp.on_attach(on_attach)
