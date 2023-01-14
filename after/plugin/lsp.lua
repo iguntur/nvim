@@ -63,6 +63,8 @@ local function on_attach(client, bufnr)
 	local options = { buffer = bufnr, remap = false }
 	local keymap = vim.keymap.set
 
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
 	-- bind('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', options)
 	-- bind('n', 'Q', function() print('Hello') end, { buffer = bufnr, desc = 'Say hello' })
 	-- more code  ...
@@ -182,19 +184,21 @@ local function lsp_vim_config()
 		float = true,
 	})
 
-	-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	-- 	border = "rounded",
-	-- })
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+		border = "rounded",
+	})
 
-	-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	-- 	border = "rounded",
-	-- })
+	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+		border = "rounded",
+	})
 
 	-- ...
 end
 
 local function lsp_configure_server(lsp)
+	--
 	-- Lua
+	--
 	lsp.configure("sumneko_lua", {
 		settings = {
 			Lua = {
@@ -211,7 +215,9 @@ local function lsp_configure_server(lsp)
 		},
 	})
 
+	--
 	-- JSON schema
+	--
 	local default_schemas = {}
 	local has_config_schema, jsonls_settings = pcall(require, "nlspsettings.jsonls")
 	if has_config_schema then
