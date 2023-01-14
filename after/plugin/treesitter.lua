@@ -52,6 +52,7 @@ local function setup_treesitter(config)
 			"sql",
 			"svelte",
 			"toml",
+			"tsx",
 			"typescript",
 			"vim",
 			"vue",
