@@ -13,6 +13,7 @@ SafeRequire("filetype", function(ft)
 				-- Set the filetype of any full filename matching the regex to gitconfig
 				[".*git/config"] = "gitconfig", -- Included in the plugin
 				[".env.*"] = "sh",
+				["tsconfig*.json"] = "jsonc",
 			},
 		},
 	})
