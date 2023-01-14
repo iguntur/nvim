@@ -6,13 +6,14 @@ require("settings.keymaps")
 
 -- initiate plugin
 -- Autocommand that reloads neovim whenever you save the init.lua file
--- vim.cmd([[
--- 	augroup packer_user_config
--- 		autocmd!
--- 		autocmd BufWritePost ./init.lua source <afile> | PackerCompile
--- 	augroup end
--- ]])
--- vim.cmd([[packadd packer.nvim]])
+vim.cmd([[
+	augroup packer_user_config
+		autocmd!
+		autocmd BufWritePost ./init.lua source <afile> | PackerCompile
+	augroup end
+]])
+
+vim.cmd([[packadd packer.nvim]])
 
 -- Use a protected call so we don't error out on first use
 local ok, packer = pcall(require, "packer")
