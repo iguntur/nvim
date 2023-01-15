@@ -1,14 +1,17 @@
 local function telescope_setup(telescope)
 	local action = require("telescope.actions")
+	-- local trouble = require("trouble.providers.telescope")
 
 	telescope.setup({
 		defaults = {
 			mappings = {
 				n = {
 					["<C-w>"] = action.close,
+					-- ["<M-t>"] = trouble.open_with_trouble,
 				},
 				i = {
 					["<C-w>"] = action.close,
+					-- ["<M-t>"] = trouble.open_with_trouble,
 				},
 			},
 			vimgrep_arguments = {
