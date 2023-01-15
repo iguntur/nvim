@@ -33,7 +33,7 @@ local lsp_servers = {
 	"clangd", -- c, c++
 	"cssls", -- CSS language server
 	"cssmodules_ls", -- CSS modules
-	"denols", -- deno
+	-- "denols", -- deno
 	"diagnosticls", -- Diagnostic language server integrate with linters
 	"dockerls", -- docker
 	"emmet_ls", -- emmet
