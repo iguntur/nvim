@@ -251,6 +251,21 @@ local function lsp_configure_server(lsp)
 			},
 		},
 	})
+
+	--
+	-- typescript
+	--
+	-- local util = require("lspconfig").util
+	lsp.configure("tsserver", {
+		on_attach = function(client, bufnr)
+			client.server_capabilities.document_formatting = false
+			client.server_capabilities.document_range_formatting = false
+		end,
+		-- root_dir = function(fname)
+		-- 	return util.root_pattern("tsconfig.json")(fname)
+		-- 		or util.root_pattern("package.json", "jsconfig.json", ".git")(fname)
+		-- end,
+	})
 end
 
 -- SafeRequire("lspsaga", function(lspsaga)
