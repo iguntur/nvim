@@ -391,6 +391,13 @@ return packer.startup(function(use)
 		requires = { "mfussenegger/nvim-dap" },
 	})
 
+	use({
+		"ray-x/go.nvim",
+		config = function()
+			require("go").setup()
+		end,
+	})
+
 	--
 	-- ...
 	--
