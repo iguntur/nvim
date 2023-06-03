@@ -7,11 +7,7 @@ cleanup: ## Cleanup packer config
 	rm -rf ~/.local/share/nvim
 	rm -rf ~/.local/state/nvim
 
-prepare: cleanup ## Get and prepare packer plugin manager
-	git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-install: ## Install plugin using "PackerSync"
-	nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
-
+install: cleanup ## Get and prepare lazy plugin manager
+	git clone --filter=blob:none https://github.com/folke/lazy.nvim.git --branch=stable ~/.local/share/nvim/lazy/lazy.nvim
 
 .PHONY: help cleanup prepare install

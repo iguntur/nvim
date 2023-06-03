@@ -198,7 +198,7 @@ local function lsp_configure_server(lsp)
 	--
 	-- Lua
 	--
-	lsp.configure("sumneko_lua", {
+	lsp.configure("lua_ls", {
 		settings = {
 			Lua = {
 				diagnostics = {
