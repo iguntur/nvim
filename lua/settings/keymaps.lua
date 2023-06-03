@@ -21,6 +21,7 @@ keymap("", "gf", ":edit <cfile><CR>", options)
 
 -- Reload (source nvim.config): F5
 -- keymap("n", "<F5>", ":source $HOME/.config/nvim/init.lua<CR><Esc>", options)
+keymap("n", "<leader><leader>r", ":source %<CR><Esc>", options)
 
 -- Disable Arrow-keys
 for _, k in pairs({ "<Up>", "<Down>", "<Left>", "<Right>" }) do

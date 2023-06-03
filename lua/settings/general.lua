@@ -58,7 +58,6 @@ opt.listchars = {
 opt.mouse = "a"
 opt.number = true
 opt.numberwidth = 6
-opt.relativenumber = true
 opt.ruler = true
 opt.scrolloff = 10
 opt.sidescrolloff = 10
@@ -73,6 +72,8 @@ opt.termguicolors = true -- enable 24-bit RGB colors
 opt.splitbelow = true -- make all horizontal split to go below window
 opt.splitright = true -- make all vertical split to go to the right
 opt.backup = false -- create backup file
+opt.relativenumber = true
+opt.statuscolumn = "%s%=%l%= %=%r│%T"
 
 -- cmd([[ set winbar=%f ]])
 vim.o.ls = 0
@@ -86,7 +87,10 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.incsearch = true -- move cursor to search as you type
 opt.showmatch = true
-opt.wildignore:append({ "*/node_modules/*" })
+opt.wildignore:append({
+	"*/node_modules/*",
+	"*/vendor/*",
+})
 
 --------------------------------------------------------------------------------
 -- LSP Stuff
