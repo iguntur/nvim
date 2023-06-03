@@ -1,8 +1,8 @@
 -- local keymap = vim.api.nvim_set_keymap
 local keymap = vim.keymap.set
 
-local function setup_treesitter(config)
-	config.setup({
+local function setup_treesitter(ts)
+	ts.setup({
 		-- "theHamsta/nvim-treesitter-pairs"
 		pairs = {
 			enable = true,
@@ -30,7 +30,7 @@ local function setup_treesitter(config)
 			"go",
 			"gomod",
 			"graphql",
-			"help",
+			-- "help",
 			"html",
 			"http",
 			"javascript",
@@ -165,8 +165,10 @@ local function setup_keymap()
 	keymap("x", "m", ":lua require('tsht').nodes()<CR>")
 end
 
-SafeRequire("nvim-treesitter.configs", setup_treesitter)
-SafeRequire("treesitter-context", function(treesitter_context)
-	treesitter_context.setup()
+-- SafeRequire("nvim-treesitter.configs", setup_treesitter)
+return function()
+	local ts = require("nvim-treesitter.configs")
+
+	setup_treesitter(ts)
 	setup_keymap()
-end)
+end

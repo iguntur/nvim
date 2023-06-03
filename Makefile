@@ -3,15 +3,19 @@
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*? ## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-cleanup: ## Cleanup packer config
+backup: ## Backup nvim ~/.local (share, state)
+	cp -r ~/.local/share/nvim ~/.local/share/nvim.bak
+	cp -r ~/.local/state/nvim ~/.local/state/nvim.bak
+
+restore: ## Restore nvim ~/.local (share, state)
+	cp -r ~/.local/share/nvim.bak ~/.local/share/nvim
+	cp -r ~/.local/state/nvim.bak ~/.local/state/nvim
+
+cleanup: backup ## Cleanup packer config
 	rm -rf ~/.local/share/nvim
 	rm -rf ~/.local/state/nvim
 
-prepare: cleanup ## Get and prepare packer plugin manager
-	git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+install: cleanup ## Get and prepare lazy plugin manager
+	git clone --filter=blob:none https://github.com/folke/lazy.nvim.git --branch=stable ~/.local/share/nvim/lazy/lazy.nvim
 
-install: ## Install plugin using "PackerSync"
-	nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
-
-
-.PHONY: help cleanup prepare install
+.PHONY: help backup restore cleanup install
