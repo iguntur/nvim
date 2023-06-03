@@ -5,7 +5,7 @@ local function nvim_tree_setup(nvimTree)
 		-- sort_by = "case_sensitive",
 		view = {
 			adaptive_size = true,
-			hide_root_folder = true,
+			-- hide_root_folder = true, -- deprecated (use: renderer.root_folder_label)
 			-- mappings = {
 			-- 	list = {
 			-- 		{ key = "u", action = "dir_up" },
@@ -19,6 +19,7 @@ local function nvim_tree_setup(nvimTree)
 			-- full_name = false,
 			highlight_opened_files = "all", -- "none", "icon" "name" "all"
 			-- root_folder_modifier = ":~",
+			root_folder_label = false,
 			indent_markers = {
 				enable = true,
 			},

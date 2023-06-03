@@ -57,6 +57,13 @@ return packer.startup(function(use)
 		},
 	})
 
+	use({
+		"nvim-treesitter/playground",
+		requires = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+	})
+
 	--
 	-- colorscheme
 	--
@@ -72,7 +79,8 @@ return packer.startup(function(use)
 	-- appereances
 	--
 	use({ "feline-nvim/feline.nvim" })
-	use({ -- dashboard (welcome page)
+	use({
+		-- dashboard (welcome page)
 		"goolord/alpha-nvim",
 		requires = { "kyazdani42/nvim-web-devicons" }, -- icons
 	})
@@ -160,6 +168,7 @@ return packer.startup(function(use)
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 			-- { "cljoly/telescope-repo.nvim" },
 			{ "kdheepak/lazygit.nvim" },
+			{ "debugloop/telescope-undo.nvim" },
 		},
 	})
 
@@ -394,7 +403,13 @@ return packer.startup(function(use)
 	use({
 		"ray-x/go.nvim",
 		config = function()
-			require("go").setup()
+			-- require("go").setup()
+			require("go").setup({
+				-- goimport = "goimports", -- goimport command, can be gopls[default] or goimport
+				-- fillstruct = "gopls", -- can be nil (use fillstruct, slower) and gopls
+				-- gofmt = "gofmt", -- gofmt cmd,
+				tag_options = "", -- sets options sent to gomodifytags, i.e., json=omitempty
+			})
 		end,
 	})
 

@@ -30,7 +30,7 @@ local kind_icons = {
 
 local lsp_servers = {
 	"bashls", -- shell script - sh
-	"clangd", -- c, c++
+	-- "clangd", -- c, c++
 	"cssls", -- CSS language server
 	"cssmodules_ls", -- CSS modules
 	-- "denols", -- deno
@@ -50,7 +50,8 @@ local lsp_servers = {
 	"perlnavigator", -- perl
 	"pyright", -- python
 	"rust_analyzer", -- rust
-	"sumneko_lua", -- lua
+	-- "sumneko_lua", -- lua
+	"lua_ls", -- lua
 	"svelte", -- svelte
 	"tailwindcss", -- tailwind
 	"taplo", -- toml
@@ -127,7 +128,6 @@ local function setup_nvim_cmp(lsp)
 		-- key mapping
 		--
 		mapping = cmp_mappings,
-
 		--
 		-- sources
 		--
@@ -138,7 +138,6 @@ local function setup_nvim_cmp(lsp)
 			{ name = "luasnip" },
 			{ name = "buffer", keyword_length = 3 },
 		},
-
 		--
 		-- formatting
 		--
@@ -291,4 +290,11 @@ SafeRequire("lsp-zero", function(lsp)
 	lsp.setup()
 
 	lsp_vim_config()
+
+	-- load snippets from path/of/your/nvim/config/my-cool-snippets
+	-- require("luasnip.loaders.from_vscode").lazy_load({
+	-- 	paths = {
+	-- 		vim.fn.expand("$HOME/Library/Application Support/Code/User/snippets"),
+	-- 	},
+	-- })
 end)

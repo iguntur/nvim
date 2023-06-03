@@ -32,19 +32,35 @@ local function telescope_setup(telescope)
 				-- "-u", -- alias for --unrestricted
 				-- "--trim" -- add this value
 			},
+			-- layout_strategy = "vertical",
 			layout_config = {
 				prompt_position = "top",
+				-- vertical = {
+				-- 	width = 0.5,
+				-- },
 			},
 			sorting_strategy = "ascending",
 		},
 		-- pickers = {
 		-- 	-- ...
 		-- },
-		-- extensions = {
-		-- 	-- file_browser = {
-		-- 	-- 	-- path = vim.fn.expand("%:p:h"),
-		-- 	-- },
-		-- },
+		extensions = {
+			-- file_browser = {
+			-- 	-- path = vim.fn.expand("%:p:h"),
+			-- },
+			undo = {
+				-- side_by_side = false,
+				layout_strategy = "vertical",
+				-- use_custom_command = { "bash", "-c", "echo '$DIFF' | delta" }, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
+				-- mappings = {
+				-- 	i = {
+				-- 		["<cr>"] = require("telescope-undo.actions").yank_additions,
+				-- 		["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+				-- 		["<C-cr>"] = require("telescope-undo.actions").restore,
+				-- 	},
+				-- },
+			},
+		},
 	})
 end
 
@@ -56,6 +72,7 @@ local function load_extension(telescope)
 		"lazygit",
 		"harpoon",
 		"git_worktree",
+		"undo",
 	}
 
 	for _, ext in ipairs(extensions) do
@@ -101,6 +118,7 @@ local function setup_keymap()
 
 	-- Extensions
 	vim.keymap.set("n", "<Leader>gg", "<cmd>LazyGit<CR>")
+	vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<CR>")
 end
 
 local function open_my_project_files()
@@ -117,6 +135,7 @@ local function open_my_project_files()
 			"--sort",
 			"path",
 		},
+		-- layout_strategy = "vertical",
 	}
 
 	require("telescope.builtin").find_files(opts)

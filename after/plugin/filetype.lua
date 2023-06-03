@@ -14,6 +14,7 @@ SafeRequire("filetype", function(ft)
 				[".*git/config"] = "gitconfig", -- Included in the plugin
 				[".env.*"] = "sh",
 				["tsconfig*.json"] = "jsonc",
+				["Dockerfile.*"] = "dockerfile",
 			},
 		},
 	})
