@@ -65,10 +65,10 @@ require("lazy").setup({
 		},
 	},
 	{ "EdenEast/nightfox.nvim" }, -- nightfox, nordfox, dayfox, dawnfox and duskfox
-	{ "folke/tokyonight.nvim" },  -- tokyonight
+	{ "folke/tokyonight.nvim" }, -- tokyonight
 	{ "shaunsingh/moonlight.nvim" }, -- moonlight
-	{ "Shatur/neovim-ayu" },      -- ayu-<dark,light,mirage>
-	{ "RRethy/nvim-base16" },     -- base-16-<color-name>
+	{ "Shatur/neovim-ayu" }, -- ayu-<dark,light,mirage>
+	{ "RRethy/nvim-base16" }, -- base-16-<color-name>
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -91,7 +91,9 @@ require("lazy").setup({
 	-- },
 	{
 		"romgrk/barbar.nvim",
-		dependencies = { "kyazdani42/nvim-web-devicons" }, -- icons
+		dependencies = {
+			"kyazdani42/nvim-web-devicons",
+		}, -- icons
 	},
 	{ "lukas-reineke/indent-blankline.nvim" },
 	{
@@ -105,10 +107,16 @@ require("lazy").setup({
 	-- general, commons, utilities
 	--
 	{ "rcarriga/nvim-notify" },
-	{ "folke/twilight.nvim" },        -- limelight like
+	{ "folke/twilight.nvim" }, -- limelight like
 	{ "folke/zen-mode.nvim" },
 	{ "machakann/vim-highlightedyank" }, -- Make the yanked region apparent!
 	{ "folke/neodev.nvim" },
+	{
+		"nvim-pack/nvim-spectre", -- search and replace text
+		config = function()
+			require("spectre").setup()
+		end,
+	},
 
 	--
 	-- jump and motions
@@ -163,7 +171,7 @@ require("lazy").setup({
 		branch = "0.1.x",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-telescope/telescope-fzf-native.nvim",  build = "make" },
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 			-- { "cljoly/telescope-repo.nvim" },
 			{ "kdheepak/lazygit.nvim" },
