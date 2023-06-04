@@ -18,14 +18,14 @@
 -- 	end,
 -- })
 
-local format_group = vim.api.nvim_create_augroup("GoImport", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePost", {
-	group = format_group,
-	pattern = "*.go",
-	callback = function()
-		SafeRequire("go.format", function(go)
-			-- go.fmt() -- gofmt only
-			go.goimport() -- goimport + gofmt
-		end)
-	end,
-})
+-- local format_group = vim.api.nvim_create_augroup("GoImport", { clear = true })
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+-- 	group = format_group,
+-- 	pattern = "*.go",
+-- 	callback = function()
+-- 		SafeRequire("go.format", function(go)
+-- 			-- go.fmt() -- gofmt only
+-- 			go.goimport() -- goimport + gofmt
+-- 		end)
+-- 	end,
+-- })

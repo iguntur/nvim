@@ -1,4 +1,3 @@
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local function setup_null_ls(nls)
 	-- sources
 	local sources = {
@@ -9,11 +8,17 @@ local function setup_null_ls(nls)
 			prefer_local = "node_modules/.bin",
 		}),
 
+		nls.builtins.formatting.gofumpt,
+		-- nls.builtins.formatting.goimports,
+		nls.builtins.formatting.goimports_reviser,
+		nls.builtins.formatting.golines,
+
 		-- nls.builtins.diagnostics.eslint,
 		-- nls.builtins.completion.spell,
 	}
 
 	-- format on save
+	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 	local function on_attach(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
 			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -33,13 +38,23 @@ local function setup_null_ls(nls)
 		end
 	end
 
-	nls.setup({
+	-- nls.setup({
+	-- 	sources = sources,
+	-- 	on_attach = on_attach,
+	-- })
+
+	return {
 		sources = sources,
 		on_attach = on_attach,
-	})
+	}
 end
 
-SafeRequire("null-ls", setup_null_ls)
+return function()
+	local nls = require("null-ls")
+
+	return setup_null_ls(nls)
+end
+
 -- SafeRequire("mason-null-ls", function(mason_null_ls)
 -- 	mason_null_ls.setup({
 -- 		automatic_setup = false,

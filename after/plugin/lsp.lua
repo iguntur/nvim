@@ -195,6 +195,8 @@ local function lsp_vim_config()
 end
 
 local function lsp_configure_server(lsp)
+	local util = require("lspconfig.util")
+
 	--
 	-- Lua
 	--
@@ -264,6 +266,24 @@ local function lsp_configure_server(lsp)
 		-- 	return util.root_pattern("tsconfig.json")(fname)
 		-- 		or util.root_pattern("package.json", "jsconfig.json", ".git")(fname)
 		-- end,
+	})
+
+	--
+	-- go
+	--
+	lsp.configure("gopls", {
+		cmd = { "gopls" },
+		filetypes = { "go", "gomod", "gowork", "gotmpl" },
+		root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+		settings = {
+			gopls = {
+				completeUnimported = true,
+				usePlaceholders = true,
+				analyses = {
+					unusedparams = true,
+				},
+			},
+		},
 	})
 end
 

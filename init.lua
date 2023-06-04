@@ -213,9 +213,6 @@ require("lazy").setup({
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
 
-			-- null ls
-			{ "jose-elias-alvarez/null-ls.nvim" },
-
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" }, -- the completion plugin
 			{ "hrsh7th/cmp-buffer" }, -- buffer completions
@@ -232,6 +229,14 @@ require("lazy").setup({
 			-- LSP Saga
 			{ "kkharji/lspsaga.nvim" }, -- nightly
 		},
+	},
+
+	--
+	-- null ls
+	--
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		opts = require("config.null_ls"),
 	},
 
 	--
