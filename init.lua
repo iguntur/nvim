@@ -222,10 +222,6 @@ require("lazy").setup({
 			{ "hrsh7th/cmp-nvim-lua" },
 			{ "tamago324/nlsp-settings.nvim" },
 
-			-- Snippets
-			{ "L3MON4D3/LuaSnip" },
-			{ "rafamadriz/friendly-snippets" },
-
 			-- LSP Saga
 			{ "kkharji/lspsaga.nvim" }, -- nightly
 		},
@@ -243,7 +239,11 @@ require("lazy").setup({
 	-- completion and snippets
 	--
 	-- { "hrsh7th/cmp-cmdline" }, -- command line completions
-	-- { "SirVer/ultisnips" }, -- python snippets
+	-- { "SirVer/ultisnips" },
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets" },
+	},
 
 	--
 	-- emmet
@@ -312,6 +312,7 @@ require("lazy").setup({
 	},
 	{
 		"AndrewRadev/splitjoin.vim",
+		version = "^1.0.0",
 		-- split and join keymaps:
 		-- gS - to split a one-liner into multiple lines
 		-- gJ - (with the cursor on the first line of a block) to join a block into a single-line statement.
@@ -320,18 +321,18 @@ require("lazy").setup({
 	--
 	-- terminal
 	--
-	{
-		"akinsho/toggleterm.nvim",
-		config = function(plugin)
-			-- see: https://github.com/akinsho/toggleterm.nvim
-			SafeRequire("toggleterm", function(term)
-				term.setup()
-
-				-- leader + backtick (`)
-				vim.keymap.set("n", "<leader>`", ":ToggleTerm direction=float<CR>")
-			end)
-		end,
-	},
+	-- {
+	-- 	"akinsho/toggleterm.nvim",
+	-- 	config = function(plugin)
+	-- 		-- see: https://github.com/akinsho/toggleterm.nvim
+	-- 		SafeRequire("toggleterm", function(term)
+	-- 			term.setup()
+	--
+	-- 			-- leader + backtick (`)
+	-- 			vim.keymap.set("n", "<leader>`", ":ToggleTerm direction=float<CR>")
+	-- 		end)
+	-- 	end,
+	-- },
 
 	--
 	-- undo tree
@@ -417,6 +418,8 @@ require("lazy").setup({
 				-- gofmt = "gofmt", -- gofmt cmd,
 				tag_options = "", -- sets options sent to gomodifytags, i.e., json=omitempty
 			})
+
+			vim.keymap.set("n", "<leader>er", "<cmd>GoIfErr<CR>")
 		end,
 	},
 
