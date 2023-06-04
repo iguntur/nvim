@@ -91,6 +91,7 @@ require("lazy").setup({
 	-- },
 	{
 		"romgrk/barbar.nvim",
+		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 		dependencies = {
 			"kyazdani42/nvim-web-devicons",
 		}, -- icons
@@ -167,8 +168,7 @@ require("lazy").setup({
 	--
 	{
 		"nvim-telescope/telescope.nvim",
-		-- version = "0.1.0",
-		branch = "0.1.x",
+		version = "0.1.1",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },

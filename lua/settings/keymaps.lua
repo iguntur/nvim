@@ -77,8 +77,8 @@ keymap("i", "<C-l>", "<Right>", options)
 keymap("n", "<C-k>", "9kzz0", options) -- up 9 lines
 keymap("n", "<C-j>", "9jzz0", options) -- down 9 lines
 
-keymap("v", "<M-;>", "9k", options) -- select in visual mode
-keymap("v", "<M-'>", "9j", options) -- select in visual mode
+keymap("v", "<M-;>", "9k", options)    -- select in visual mode
+keymap("v", "<M-'>", "9j", options)    -- select in visual mode
 
 keymap("n", "<C-d>", "<C-d>zzzv0", options)
 keymap("n", "<C-u>", "<C-u>zzzv0", options)
@@ -110,7 +110,7 @@ keymap("n", "<M-W>", ":BufferClose!<CR>", options)
 -- keymap("n", '<TAB>', ':bnext<CR>', options) -- tab
 -- keymap("n", '<S-TAB>', ':bprevious<CR>', options) -- shift+tab
 keymap("n", "<TAB>", ":bprevious<CR>", options) -- tab
-keymap("n", "<S-TAB>", ":bnext<CR>", options) -- shift+tab
+keymap("n", "<S-TAB>", ":bnext<CR>", options)   -- shift+tab
 
 --------------------------------------------------------------------------------
 -- Indentation
@@ -160,17 +160,17 @@ keymap("v", "<M-d>", '"_d<ESC>', options)
 -- Window
 --------------------------------------------------------------------------------
 -- Window Navigation
-keymap("n", "<C-Left>", "<C-w>h", options) -- move cursor to "left" window
-keymap("n", "<C-Down>", "<C-w>j", options) -- move cursor to "bottom" window
-keymap("n", "<C-Up>", "<C-w>k", options) -- move cursor to "top" window
+keymap("n", "<C-Left>", "<C-w>h", options)  -- move cursor to "left" window
+keymap("n", "<C-Down>", "<C-w>j", options)  -- move cursor to "bottom" window
+keymap("n", "<C-Up>", "<C-w>k", options)    -- move cursor to "top" window
 keymap("n", "<C-Right>", "<C-w>l", options) -- move cursor to "right" window
 
 --------------------------------------------------------------------------------
 -- Resize window (Ctrl-Shift-<Arrow_Keys>)
 --------------------------------------------------------------------------------
-keymap("n", "<C-S-Up>", ":resize +1<CR>", options) -- " Up
-keymap("n", "<C-S-Down>", ":resize -1<CR>", options) -- " Down
-keymap("n", "<C-S-Left>", ":vertical resize -1<CR>", options) -- " Left
+keymap("n", "<C-S-Up>", ":resize +1<CR>", options)             -- " Up
+keymap("n", "<C-S-Down>", ":resize -1<CR>", options)           -- " Down
+keymap("n", "<C-S-Left>", ":vertical resize -1<CR>", options)  -- " Left
 keymap("n", "<C-S-Right>", ":vertical resize +1<CR>", options) -- " Right
 
 --------------------------------------------------------------------------------
