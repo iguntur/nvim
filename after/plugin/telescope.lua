@@ -73,6 +73,7 @@ local function load_extension(telescope)
 		"harpoon",
 		"git_worktree",
 		"undo",
+		"textcase",
 	}
 
 	for _, ext in ipairs(extensions) do
@@ -93,11 +94,11 @@ local function setup_keymap()
 	--
 	-- LSP
 	--
-	vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>")             -- go to definition
-	vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>")        -- go to type definitions
-	vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>")         -- go to implementation
-	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>")              -- go to references
-	vim.keymap.set("n", "<Leader>fdl", "<cmd>Telescope diagnostics<CR>")        -- show diagnostics list
+	vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>") -- go to definition
+	vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>") -- go to type definitions
+	vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>") -- go to implementation
+	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>") -- go to references
+	vim.keymap.set("n", "<Leader>fdl", "<cmd>Telescope diagnostics<CR>") -- show diagnostics list
 	vim.keymap.set("n", "<Leader>fws", "<cmd>Telescope lsp_workspace_symbols<CR>") -- go to workspace symbols
 	vim.keymap.set("n", "<Leader>fds", "<cmd>Telescope lsp_document_symbols<CR>") -- go to document symbols
 
@@ -105,7 +106,7 @@ local function setup_keymap()
 	-- searching
 	--
 	vim.keymap.set("n", "<Leader>fcs", "<cmd>Telescope current_buffer_fuzzy_find<CR>") -- search text in the current buffer
-	vim.keymap.set("n", "<M-g>", "<cmd>Telescope current_buffer_fuzzy_find<CR>")    -- search text in the current buffer
+	vim.keymap.set("n", "<M-g>", "<cmd>Telescope current_buffer_fuzzy_find<CR>") -- search text in the current buffer
 
 	--
 	-- Commands
@@ -208,6 +209,11 @@ local function open_files_command()
 	vim.keymap.set("n", "<Leader>vd", open_mydotfiles)
 	vim.keymap.set("n", "<Leader>vn", open_nvim_files)
 	vim.keymap.set("n", "<Leader>vj", open_journals_files)
+
+	vim.keymap.set("n", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
+	vim.keymap.set("v", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
+	vim.keymap.set("n", "gaa", "<cmd>TextCaseOpenTelescopeQuickChange<CR>", { desc = "Telescope Quick Change" })
+	vim.keymap.set("n", "gai", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
 end
 
 SafeRequire("telescope", function(telescope)

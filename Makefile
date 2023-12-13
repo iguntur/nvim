@@ -4,8 +4,8 @@ help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*? ## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 backup: ## Backup nvim ~/.local (share, state)
-	cp -r ~/.local/share/nvim ~/.local/share/nvim.bak
-	cp -r ~/.local/state/nvim ~/.local/state/nvim.bak
+	# cp -r ~/.local/share/nvim ~/.local/share/nvim.bak
+	# cp -r ~/.local/state/nvim ~/.local/state/nvim.bak
 
 restore: ## Restore nvim ~/.local (share, state)
 	cp -r ~/.local/share/nvim.bak ~/.local/share/nvim

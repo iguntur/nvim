@@ -29,38 +29,39 @@ local kind_icons = {
 }
 
 local lsp_servers = {
-	"bashls", -- shell script - sh
+	"bashls",                       -- shell script - sh
+	"cssls",                        -- CSS language server
+	"cssmodules_ls",                -- CSS modules
+	"diagnosticls",                 -- Diagnostic language server integrate with linters
+	"docker_compose_language_service", -- docker compose
+	"dockerls",                     -- docker
+	"emmet_ls",                     -- emmet
+	"eslint",                       -- javascript and typescript linter
+	"golangci_lint_ls",             -- Combination of both lint server and client
+	"gopls",                        -- golang
+	"grammarly",                    -- grammarly-languageserver (keywords: markdown, text)
+	"graphql",                      -- graphql
+	"html",                         -- html
+	"jsonls",                       -- json
+	"lua_ls",                       -- lua
+	"pylsp",                        -- python (options: "jedi_language_server")
+	"rust_analyzer",                -- rust
+	"svelte",                       -- svelte
+	"tailwindcss",                  -- tailwind
+	"taplo",                        -- toml
+	"tsserver",                     -- javascript, typescript
+	"vimls",                        -- vim
+	"yamlls",                       -- yaml
 	-- "clangd", -- c, c++
-	"cssls", -- CSS language server
-	"cssmodules_ls", -- CSS modules
-	-- "denols", -- deno
-	"diagnosticls", -- Diagnostic language server integrate with linters
-	"dockerls", -- docker
-	"emmet_ls", -- emmet
-	"eslint", -- javascript and typescript linter
-	"golangci_lint_ls", -- Combination of both lint server and client
-	"gopls", -- golang
-	"graphql", -- graphql
-	"html", -- html
-	"intelephense", -- php
-	"pyright", -- python (options: "jedi_language_server")
-	"jsonls", -- json
-	"marksman", -- markdown
-	"ocamllsp", -- ocaml
-	"perlnavigator", -- perl
-	"pyright", -- python
-	"rust_analyzer", -- rust
-	-- "sumneko_lua", -- lua
-	"lua_ls", -- lua
-	"svelte", -- svelte
-	"tailwindcss", -- tailwind
-	"taplo", -- toml
-	"tsserver", -- javascript, typescript
-	"vimls", -- vim
-	"yamlls", -- yaml
+	-- "intelephense", -- php
+	-- "marksman", -- markdown
+	-- "ocamllsp", -- ocaml
+	-- "perlnavigator", -- perl
+	-- "rescriptls", -- rescript
+	-- -- "denols", -- deno
 }
 
-local function on_attach(client, bufnr)
+local function lsp_on_attach(client, bufnr)
 	local options = { buffer = bufnr, remap = false }
 	local keymap = vim.keymap.set
 
@@ -136,7 +137,7 @@ local function setup_nvim_cmp(lsp)
 			{ name = "nvim_lsp" },
 			{ name = "path" },
 			{ name = "luasnip" },
-			{ name = "buffer", keyword_length = 3 },
+			{ name = "buffer",  keyword_length = 3 },
 		},
 		--
 		-- formatting
@@ -163,7 +164,8 @@ local function setup_nvim_cmp(lsp)
 		},
 	}
 
-	return config
+	cmp.setup(config)
+	-- return config
 end
 
 local function lsp_vim_config()
@@ -279,9 +281,9 @@ local function lsp_configure_server(lsp)
 			gopls = {
 				completeUnimported = true,
 				usePlaceholders = true,
-				analyses = {
-					unusedparams = true,
-				},
+				-- analyses = {
+				-- 	unusedparams = true,
+				-- },
 			},
 		},
 	})
@@ -292,29 +294,42 @@ end
 -- end)
 
 SafeRequire("lsp-zero", function(lsp)
-	lsp.preset("recommended")
+	-- lsp.preset("recommended")
+	-- lsp.ensure_installed(lsp_servers)
+	-- lsp.set_preferences({
+	-- 	set_lsp_keymaps = false,
+	-- })
 
-	lsp.ensure_installed(lsp_servers)
-	lsp.set_preferences({
-		set_lsp_keymaps = false,
-	})
+	lsp.on_attach(function(client, bufnr)
+		lsp.default_keymaps({
+			buffer = bufnr,
+			preserve_mappings = false,
+		})
 
-	lsp.on_attach(on_attach)
-
-	-- lsp.nvim_workspace()
-
-	lsp.setup_nvim_cmp(setup_nvim_cmp(lsp))
+		lsp_on_attach(client, bufnr)
+	end)
 
 	lsp_configure_server(lsp)
 
-	lsp.setup()
+	SafeRequire("mason", function(mason)
+		mason.setup()
+
+		SafeRequire("mason-lspconfig", function(mod)
+			mod.setup({
+				ensure_installed = lsp_servers,
+				handlers = {
+					lsp.default_setup,
+				},
+			})
+		end)
+	end)
+
+	-- lsp.nvim_workspace()
+
+	-- lsp.setup_nvim_cmp(setup_nvim_cmp(lsp))
+	setup_nvim_cmp(lsp)
+
+	-- lsp.setup()
 
 	lsp_vim_config()
-
-	-- load snippets from path/of/your/nvim/config/my-cool-snippets
-	-- require("luasnip.loaders.from_vscode").lazy_load({
-	-- 	paths = {
-	-- 		vim.fn.expand("$HOME/Library/Application Support/Code/User/snippets"),
-	-- 	},
-	-- })
 end)

@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-pcall(require, "impatient")
+vim.loader.enable()
 
 require("global.function")
 require("settings.general")
@@ -19,7 +19,6 @@ require("settings.keymaps")
 
 -- Plugins
 require("lazy").setup({
-	{ "lewis6991/impatient.nvim" },
 	{ "nvim-lua/popup.nvim" }, -- An implementation of the Popup API from vim in Neovim
 	{ "nvim-lua/plenary.nvim" }, -- Useful lua functions used in lots of plugins
 
@@ -32,11 +31,11 @@ require("lazy").setup({
 		dependencies = {
 			{ "nvim-treesitter/nvim-treesitter-refactor" },
 			{ "nvim-treesitter/nvim-treesitter-textobjects" },
-			{ "p00f/nvim-ts-rainbow" },
-			{ "JoosepAlviste/nvim-ts-context-commentstring" },
 			{ "theHamsta/nvim-treesitter-pairs" },
 			{ "mfussenegger/nvim-treehopper" },
 			{ "windwp/nvim-ts-autotag" },
+			{ "JoosepAlviste/nvim-ts-context-commentstring" },
+			-- { "p00f/nvim-ts-rainbow" },
 		},
 		config = require("config.treesitter"),
 	},
@@ -65,10 +64,10 @@ require("lazy").setup({
 		},
 	},
 	{ "EdenEast/nightfox.nvim" }, -- nightfox, nordfox, dayfox, dawnfox and duskfox
-	{ "folke/tokyonight.nvim" }, -- tokyonight
+	{ "folke/tokyonight.nvim" },  -- tokyonight
 	{ "shaunsingh/moonlight.nvim" }, -- moonlight
-	{ "Shatur/neovim-ayu" }, -- ayu-<dark,light,mirage>
-	{ "RRethy/nvim-base16" }, -- base-16-<color-name>
+	{ "Shatur/neovim-ayu" },      -- ayu-<dark,light,mirage>
+	{ "RRethy/nvim-base16" },     -- base-16-<color-name>
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -81,8 +80,11 @@ require("lazy").setup({
 	{
 		-- dashboard (welcome page)
 		"goolord/alpha-nvim",
-		dependencies = { "kyazdani42/nvim-web-devicons" }, -- icons
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
 	},
+
 	-- TODO: try bufferline instead. see https://github.com/akinsho/bufferline.nvim
 	-- {
 	-- 	"akinsho/bufferline.nvim",
@@ -92,15 +94,27 @@ require("lazy").setup({
 	{
 		"romgrk/barbar.nvim",
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
+		init = function()
+			vim.g.barbar_auto_setup = false
+		end,
+		config = function()
+			require("barbar").setup()
+		end,
 		dependencies = {
-			"kyazdani42/nvim-web-devicons",
-		}, -- icons
+			"lewis6991/gitsigns.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
 	},
-	{ "lukas-reineke/indent-blankline.nvim" },
 	{
-		"kyazdani42/nvim-tree.lua",
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {},
+		config = require("config.indent-blankline"),
+	},
+	{
+		"nvim-tree/nvim-tree.lua",
 		dependencies = {
-			"kyazdani42/nvim-web-devicons", -- optional, for file icon
+			"nvim-tree/nvim-web-devicons",
 		},
 	},
 
@@ -110,7 +124,6 @@ require("lazy").setup({
 	{ "rcarriga/nvim-notify" },
 	{ "folke/twilight.nvim" }, -- limelight like
 	{ "folke/zen-mode.nvim" },
-	{ "machakann/vim-highlightedyank" }, -- Make the yanked region apparent!
 	{ "folke/neodev.nvim" },
 	{
 		"nvim-pack/nvim-spectre", -- search and replace text
@@ -168,10 +181,9 @@ require("lazy").setup({
 	--
 	{
 		"nvim-telescope/telescope.nvim",
-		version = "0.1.1",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+			{ "nvim-telescope/telescope-fzf-native.nvim",  build = "make" },
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 			-- { "cljoly/telescope-repo.nvim" },
 			{ "kdheepak/lazygit.nvim" },
@@ -188,7 +200,12 @@ require("lazy").setup({
 	-- commenting
 	--
 	-- { "tpope/vim-commentary" },
-	{ "numToStr/Comment.nvim" },
+	{
+		"numToStr/Comment.nvim",
+		opts = {},
+		lazy = false,
+		config = require("config.comment"),
+	},
 
 	--
 	-- auto-pairs
@@ -206,20 +223,25 @@ require("lazy").setup({
 	-- LSP
 	--
 	{
+		"williamboman/mason.nvim",
+		dependencies = {
+			{ "williamboman/mason-lspconfig.nvim" },
+		},
+	},
+	{
 		"VonHeikemen/lsp-zero.nvim",
+		branch = "v3.x",
 		dependencies = {
 			-- LSP Support
 			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
 
 			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" }, -- the completion plugin
 			{ "hrsh7th/cmp-buffer" }, -- buffer completions
-			{ "hrsh7th/cmp-path" }, -- path completions
-			{ "saadparwaiz1/cmp_luasnip" }, -- snippet completions
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-nvim-lua" },
+			{ "hrsh7th/cmp-path" }, -- path completions
+			{ "hrsh7th/nvim-cmp" }, -- the completion plugin
+			{ "saadparwaiz1/cmp_luasnip" }, -- snippet completions
 			{ "tamago324/nlsp-settings.nvim" },
 
 			-- LSP Saga
@@ -242,7 +264,10 @@ require("lazy").setup({
 	-- { "SirVer/ultisnips" },
 	{
 		"L3MON4D3/LuaSnip",
-		dependencies = { "rafamadriz/friendly-snippets" },
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+		},
+		config = require("config.luasnip"),
 	},
 
 	--
@@ -289,7 +314,7 @@ require("lazy").setup({
 	{
 		"folke/trouble.nvim",
 		dependencies = {
-			"kyazdani42/nvim-web-devicons",
+			"nvim-tree/nvim-web-devicons",
 		},
 		config = function(plugin)
 			SafeRequire("trouble", function(trouble)
@@ -376,10 +401,13 @@ require("lazy").setup({
 	{
 		"folke/persistence.nvim",
 		event = "BufReadPre", -- this will only start session saving when an actual file was opened
-		module = "persistence",
-		config = function(plugin)
-			require("persistence").setup()
-		end,
+		opts = {
+			-- add any custom options here
+		},
+	},
+
+	{
+		"johmsalas/text-case.nvim",
 	},
 
 	--

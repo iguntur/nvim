@@ -21,7 +21,7 @@ vim.g.indent_blankline_show_trailing_blankline_indent = false
 opt.autoindent = true
 opt.backspace = { "indent", "eol", "start" }
 opt.cindent = true
-opt.cino = ":0" -- (C Lang) No indent for case:/default:
+opt.cino = ":0"       -- (C Lang) No indent for case:/default:
 opt.encoding = "utf-8"
 opt.expandtab = false -- convert tabs to spaces
 opt.shiftwidth = 4
@@ -36,7 +36,7 @@ opt.undofile = true -- enable persistent undo
 opt.undodir = vim.fn.stdpath("config") .. "/.cache/undodir"
 
 opt.clipboard:append("unnamedplus") -- Copy (yank) and paste with clipboard integration
-opt.shortmess:append("I") -- Disable Neovim welcome page
+opt.shortmess:append("I")           -- Disable Neovim welcome page
 
 --------------------------------------------------------------------------------
 -- Interface
@@ -66,12 +66,12 @@ opt.wildmenu = true
 opt.wildmode = "longest:full,full"
 -- opt.t_Co           = '256'
 -- opt.wildcharm      = 4
-opt.pumheight = 10 -- pop up menu height
+opt.pumheight = 10       -- pop up menu height
 opt.completeopt = { "menuone", "noselect" }
 opt.termguicolors = true -- enable 24-bit RGB colors
-opt.splitbelow = true -- make all horizontal split to go below window
-opt.splitright = true -- make all vertical split to go to the right
-opt.backup = false -- create backup file
+opt.splitbelow = true    -- make all horizontal split to go below window
+opt.splitright = true    -- make all vertical split to go to the right
+opt.backup = false       -- create backup file
 opt.relativenumber = true
 opt.statuscolumn = "%s%=%l%= %=%r│%T"
 
@@ -96,3 +96,10 @@ opt.wildignore:append({
 -- LSP Stuff
 --------------------------------------------------------------------------------
 cmd([[ set tagfunc=v:lua.vim.lsp.tagfunc ]])
+
+vim.cmd([[
+	augroup highlight_on_yank
+		autocmd!
+		autocmd TextYankPost * lua vim.highlight.on_yank()
+	augroup END
+]])

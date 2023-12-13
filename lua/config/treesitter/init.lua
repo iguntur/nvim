@@ -1,3 +1,5 @@
+vim.g.skip_ts_context_commentstring_module = true
+
 -- local keymap = vim.api.nvim_set_keymap
 local keymap = vim.keymap.set
 
@@ -18,48 +20,53 @@ local function setup_treesitter(ts)
 		ensure_installed = {
 			"bash",
 			"c",
-			"comment",
 			"cpp",
 			"css",
 			"diff",
 			"dockerfile",
+			"git_config",
 			"git_rebase",
 			"gitattributes",
 			"gitcommit",
 			"gitignore",
 			"go",
 			"gomod",
+			"gosum",
 			"graphql",
-			-- "help",
 			"html",
-			"http",
+			"ini",
 			"javascript",
 			"jsdoc",
 			"json",
 			"json5",
 			"jsonc",
 			"lua",
+			"luadoc",
 			"make",
 			"markdown",
+			"mermaid",
 			"nix",
 			"ocaml",
 			"ocaml_interface",
 			"php",
 			"python",
 			"rust",
-			"scss",
 			"sql",
-			"svelte",
 			"toml",
-			"tsx",
-			"typescript",
-			"vim",
-			"vue",
+			-- "tsx",
+			-- "typescript",
 			"yaml",
-			"zig",
 			-- "all", -- A list of parser names, or "all"
+			-- "comment",
+			-- "help",
+			-- "http",
 			-- "phpdoc",
+			-- "scss",
 			-- "solidity",
+			-- "svelte",
+			-- "vim",
+			-- "vue",
+			-- "zig",
 		},
 		sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 		ignore_install = {}, -- List of parsers to ignore installing
@@ -78,17 +85,14 @@ local function setup_treesitter(ts)
 				-- "yaml",
 			},
 		},
-		rainbow = {
-			enable = true,
-			-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-			extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-			max_file_lines = nil, -- Do not enable for files with more than n lines, int
-			-- colors = {}, -- table of hex strings
-			-- termcolors = {} -- table of colour name strings
-		},
-		context_commentstring = {
-			enable = true,
-		},
+		-- rainbow = {
+		-- 	enable = true,
+		-- 	-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+		-- 	extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+		-- 	max_file_lines = nil, -- Do not enable for files with more than n lines, int
+		-- 	-- colors = {}, -- table of hex strings
+		-- 	-- termcolors = {} -- table of colour name strings
+		-- },
 		refactor = {
 			-- highlight_definitions = { enable = true },
 			-- highlight_current_scope = { enable = true },
@@ -171,4 +175,10 @@ return function()
 
 	setup_treesitter(ts)
 	setup_keymap()
+
+	SafeRequire("ts_context_commentstring", function(mod)
+		mod.setup({
+			enable_autocmd = false,
+		})
+	end)
 end

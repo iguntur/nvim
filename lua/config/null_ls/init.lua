@@ -1,20 +1,39 @@
-local function setup_null_ls(nls)
+local function setup_null_ls(null_ls)
 	-- sources
 	local sources = {
-		nls.builtins.code_actions.gitsigns,
+		--
+		-- code actions
+		--
+		null_ls.builtins.code_actions.gitsigns,
+		-- null_ls.builtins.code_actions.gomodifytags,
+		-- null_ls.builtins.code_actions.refactoring,
 
-		nls.builtins.formatting.stylua,
-		nls.builtins.formatting.prettier.with({
+		--
+		-- formatting
+		--
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.prettier.with({
 			prefer_local = "node_modules/.bin",
+			-- extra_filetypes = { "toml" },
+		}),
+		null_ls.builtins.formatting.taplo,
+		-- null_ls.builtins.formatting.goimports,
+		null_ls.builtins.formatting.gofumpt,
+		null_ls.builtins.formatting.goimports_reviser,
+		null_ls.builtins.formatting.golines.with({
+			extra_args = { "-m", 300 },
 		}),
 
-		nls.builtins.formatting.gofumpt,
-		-- nls.builtins.formatting.goimports,
-		nls.builtins.formatting.goimports_reviser,
-		nls.builtins.formatting.golines,
-
+		--
+		-- misc
+		--
 		-- nls.builtins.diagnostics.eslint,
+
+		--
+		-- completion
+		--
 		-- nls.builtins.completion.spell,
+		-- null_ls.builtins.completion.luasnip,
 	}
 
 	-- format on save
