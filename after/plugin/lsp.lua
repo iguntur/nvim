@@ -294,7 +294,7 @@ end
 -- end)
 
 SafeRequire("lsp-zero", function(lsp)
-	-- lsp.preset("recommended")
+	lsp.preset("recommended")
 	-- lsp.ensure_installed(lsp_servers)
 	-- lsp.set_preferences({
 	-- 	set_lsp_keymaps = false,

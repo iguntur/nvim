@@ -10,8 +10,8 @@ g.python3_host_prog = fn.expand("$HOME/.miniconda/envs/nvim/bin/python")
 g.base16colorspace = 256 -- Base 16 colors - access colors present in 256 colorspace
 
 -- Map blankline
-vim.g.indent_blankline_char = "│" -- '|', '¦', '┆', '┊', `¦`, `┆`, `│`, `⎸`, or `▏`
-vim.g.indent_blankline_show_trailing_blankline_indent = false
+-- vim.g.indent_blankline_char = "│" -- '|', '¦', '┆', '┊', `¦`, `┆`, `│`, `⎸`, or `▏`
+-- vim.g.indent_blankline_show_trailing_blankline_indent = false
 -- vim.g.indent_blankline_buftype_exclude                = { 'terminal', 'nofile' }
 -- vim.g.indent_blankline_filetype_exclude               = { 'help', 'packer' }
 
