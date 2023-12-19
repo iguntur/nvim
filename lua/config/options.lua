@@ -1,19 +1,8 @@
-local g = vim.g
-local fn = vim.fn
-local cmd = vim.cmd
 local opt = vim.opt
 
---------------------------------------------------------------------------------
--- Global Variables
---------------------------------------------------------------------------------
-g.python3_host_prog = fn.expand("$HOME/.miniconda/envs/nvim/bin/python")
-g.base16colorspace = 256 -- Base 16 colors - access colors present in 256 colorspace
-
--- Map blankline
--- vim.g.indent_blankline_char = "│" -- '|', '¦', '┆', '┊', `¦`, `┆`, `│`, `⎸`, or `▏`
--- vim.g.indent_blankline_show_trailing_blankline_indent = false
--- vim.g.indent_blankline_buftype_exclude                = { 'terminal', 'nofile' }
--- vim.g.indent_blankline_filetype_exclude               = { 'help', 'packer' }
+-- Set Leader to a comma - <leader>
+vim.g.mapleader = ","
+vim.g.maplocalleader = "\\"
 
 --------------------------------------------------------------------------------
 -- Text encoding and editing
@@ -21,7 +10,7 @@ g.base16colorspace = 256 -- Base 16 colors - access colors present in 256 colors
 opt.autoindent = true
 opt.backspace = { "indent", "eol", "start" }
 opt.cindent = true
-opt.cino = ":0"       -- (C Lang) No indent for case:/default:
+opt.cino = ":0" -- (C Lang) No indent for case:/default:
 opt.encoding = "utf-8"
 opt.expandtab = false -- convert tabs to spaces
 opt.shiftwidth = 4
@@ -36,13 +25,11 @@ opt.undofile = true -- enable persistent undo
 opt.undodir = vim.fn.stdpath("config") .. "/.cache/undodir"
 
 opt.clipboard:append("unnamedplus") -- Copy (yank) and paste with clipboard integration
-opt.shortmess:append("I")           -- Disable Neovim welcome page
+opt.shortmess:append("I") -- Disable Neovim welcome page
 
 --------------------------------------------------------------------------------
 -- Interface
 --------------------------------------------------------------------------------
-cmd([[ syntax on ]])
-
 opt.background = "dark"
 opt.colorcolumn = "110"
 opt.cursorline = true
@@ -50,10 +37,10 @@ opt.laststatus = 2
 opt.list = true
 -- opt.listchars = { tab = "▸ ", trail = "·", eol = "↴" } -- eol = '↲'
 opt.listchars = {
-	tab = "▸ ",
-	trail = "·",
-	-- eol = "↴",
-	-- eol = '↲',
+    tab = "▸ ",
+    trail = "·",
+    -- eol = "↴",
+    -- eol = '↲',
 }
 opt.mouse = "a"
 opt.number = true
@@ -66,18 +53,18 @@ opt.wildmenu = true
 opt.wildmode = "longest:full,full"
 -- opt.t_Co           = '256'
 -- opt.wildcharm      = 4
-opt.pumheight = 10       -- pop up menu height
-opt.completeopt = { "menuone", "noselect" }
+opt.pumheight = 10 -- pop up menu height
+opt.completeopt = { "menu", "menuone", "noselect" }
 opt.termguicolors = true -- enable 24-bit RGB colors
-opt.splitbelow = true    -- make all horizontal split to go below window
-opt.splitright = true    -- make all vertical split to go to the right
-opt.backup = false       -- create backup file
+opt.splitbelow = true -- make all horizontal split to go below window
+opt.splitright = true -- make all vertical split to go to the right
+opt.backup = false -- create backup file
 opt.relativenumber = true
 opt.statuscolumn = "%s%=%l%= %=%r│%T"
 
--- cmd([[ set winbar=%f ]])
-vim.o.ls = 0
-vim.o.ch = 0
+-- vim.cmd([[ set winbar=%f ]])
+-- vim.o.ls = 0
+-- vim.o.ch = 0
 --------------------------------------------------------------------------------
 -- Search
 --------------------------------------------------------------------------------
@@ -88,18 +75,18 @@ opt.smartcase = true
 opt.incsearch = true -- move cursor to search as you type
 opt.showmatch = true
 opt.wildignore:append({
-	"*/node_modules/*",
-	"*/vendor/*",
+    "*/node_modules/*",
+    "*/vendor/*",
 })
 
 --------------------------------------------------------------------------------
 -- LSP Stuff
 --------------------------------------------------------------------------------
-cmd([[ set tagfunc=v:lua.vim.lsp.tagfunc ]])
+-- vim.cmd([[ set tagfunc=v:lua.vim.lsp.tagfunc ]])
 
-vim.cmd([[
-	augroup highlight_on_yank
-		autocmd!
-		autocmd TextYankPost * lua vim.highlight.on_yank()
-	augroup END
-]])
+-- vim.cmd([[
+-- 	augroup highlight_on_yank
+-- 		autocmd!
+-- 		autocmd TextYankPost * lua vim.highlight.on_yank()
+-- 	augroup END
+-- ]])
