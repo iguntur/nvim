@@ -36,6 +36,9 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.typescript" },
         { import = "lazyvim.plugins.extras.lang.yaml" },
 
+        -- lsp
+        { import = "lazyvim.plugins.extras.lsp.none-ls" },
+
         -- util
         { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
         -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
