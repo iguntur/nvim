@@ -2,7 +2,17 @@ return {
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "catppuccin-mocha",
+            -- colorscheme = "solarized-osaka",
+            colorscheme = "tokyonight",
+        },
+    },
+
+    {
+        "folke/tokyonight.nvim",
+        opts = {
+            style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+            -- light_style = "day", -- The theme is used when the background is set to light
+            transparent = true, -- Enable this to disable setting the background color
         },
     },
 
@@ -19,6 +29,15 @@ return {
             transparent_background = true, -- disables setting the background color.
             show_end_of_buffer = true, -- shows the '~' characters after the end of buffers
             term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
+        },
+    },
+
+    {
+        "craftzdog/solarized-osaka.nvim",
+        lazy = true,
+        priority = 1000,
+        opts = {
+            transparent = true,
         },
     },
 
