@@ -82,13 +82,34 @@ return {
     -- join and split text line
     --
     {
-        "AndrewRadev/splitjoin.vim",
-        lazy = true,
-        version = "^1.0.0",
-        -- split and join keymaps:
-        -- gS - to split a one-liner into multiple lines
-        -- gJ - (with the cursor on the first line of a block) to join a block into a single-line statement.
+        "Wansmer/treesj",
+        opts = {
+            max_join_length = 800,
+        },
+        keys = {
+            {
+                "<space>m",
+                function()
+                    require("treesj").toggle()
+                end,
+                desc = "Split and join code block (toggle)",
+            },
+            {
+                "<space>M",
+                function()
+                    require("treesj").toggle({ split = { recursive = true } })
+                end,
+                desc = "Split and join code block recursively (toggle)",
+            },
+        },
     },
+    -- {
+    --     "AndrewRadev/splitjoin.vim",
+    --     version = "^1.0.0",
+    --     -- split and join keymaps:
+    --     -- gS - to split a one-liner into multiple lines
+    --     -- gJ - (with the cursor on the first line of a block) to join a block into a single-line statement.
+    -- },
 
     --
     -- numb: realtime go to linenumber
