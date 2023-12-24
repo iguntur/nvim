@@ -23,22 +23,18 @@ local options = { silent = true, noremap = true }
 
 -- Disable Arrow-keys
 for _, k in pairs({ "<Up>", "<Down>", "<Left>", "<Right>" }) do
-    keymap.set("n", k, "<Nop>", options)
-    keymap.set("v", k, "<Nop>", options)
+    keymap.set({ "n", "v" }, k, "<Nop>", options)
 end
 
--- Disable terminal clear scren (Cmd+k)
--- keymap.set("", "<Cmd>k", "<Nop>", options)
-keymap.set("", "<Cmd-k>", "<Nop>", options)
-
-keymap.set("n", "q:", "<Nop>", options) -- disable unexpected macro
-keymap.set("n", "Q", "<Nop>", options)
+-- Disable keys
+local disable_keys = { "Q", "<Cmd-k>" }
+for _, k in pairs(disable_keys) do
+    keymap.set({ "n", "v" }, k, "<Nop>", options)
+end
 
 -- Set space/del/backspace to Esc
--- keymap.set("n", "<space>", "<Esc>", options)
 keymap.set("n", "<Del>", "<Esc>", options)
 keymap.set("n", "<BS>", "<Esc>", options)
--- keymap.set("n", '<C-space>', '<Esc>0', options) -- Control+space
 
 -- Clear the highlight search
 keymap.set("n", "<Esc>", ":nohlsearch<CR><Esc>", options)
@@ -132,14 +128,35 @@ keymap.set("n", "<M-C-K>", '<S-o><ESC>"_cc<ESC>', options)
 keymap.set("n", "<M-NL>", 'o<ESC>"_cc<ESC>', options)
 
 --------------------------------------------------------------------------------
+-- Copy Paste - register to system clipboard
+--------------------------------------------------------------------------------
+keymap.set("n", "<leader>y", '"+yy', { silent = true, noremap = true, desc = "Copy into system clipboard" })
+keymap.set("v", "<leader>y", '"+y', { silent = true, noremap = true, desc = "Copy into system clipboard" })
+keymap.set("n", "<leader>Y", '"+Y', { silent = true, noremap = true, desc = "Copy into system clipboard" })
+
+--------------------------------------------------------------------------------
 -- Duplicate Line(s)
 --------------------------------------------------------------------------------
 -- Duplicate Line Up: Alt+Shift+k
-keymap.set("n", "<M-K>", '<ESC>^<ESC>"0yy "0P<ESC>', options)
-keymap.set("v", "<M-K>", "<NOP>", options)
+keymap.set("n", "<M-K>", function()
+    local cursor = vim.fn.getpos(".") -- current cursor position
+
+    vim.cmd("t.")
+    vim.fn.setpos(".", cursor)
+end, options)
 
 -- Duplicate Line Down: Alt+Shift+j
-keymap.set("n", "<M-J>", '<ESC>^<ESC>"0yy "0p<ESC>', options)
+-- Duplicate Line Down: Alt+Shift+j
+keymap.set("n", "<M-J>", function()
+    local cursor = vim.fn.getpos(".") -- current cursor position
+    local lineNumber = cursor[2]
+    local column = cursor[3]
+
+    vim.cmd("t.")
+    vim.fn.setpos(".", { 0, lineNumber + 1, column, 0 })
+end, options)
+
+keymap.set("v", "<M-K>", "<NOP>", options)
 keymap.set("v", "<M-J>", "<NOP>", options)
 
 --------------------------------------------------------------------------------
