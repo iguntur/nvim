@@ -201,7 +201,7 @@ keymap.set("v", "<M-d>", '"_d<ESC>', options)
 --------------------------------------------------------------------------------
 -- Jump tmux session
 --------------------------------------------------------------------------------
--- keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", options)
+keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sess<CR>", options)
 
 --------------------------------------------------------------------------------
 -- Misc
