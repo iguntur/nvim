@@ -25,6 +25,9 @@ return {
         opts = {
             pairs = { -- "theHamsta/nvim-treesitter-pairs"
                 enable = true,
+                enable_rename = true,
+                enable_close = true,
+                enable_close_on_slash = true,
             },
             autotag = { -- "windwp/nvim-ts-autotag" Use treesitter to autoclose and autorename html tag
                 enable = true,
