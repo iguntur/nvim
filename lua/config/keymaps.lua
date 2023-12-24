@@ -219,6 +219,12 @@ keymap.set("n", "dw", 'viw"_d', options)
 -- select all
 keymap.set("n", "<C-a>", "gg<S-v>G", options)
 
+keymap.set(
+    "n",
+    "<leader>X",
+    "<cmd>!chmod +x %<CR>",
+    { silent = true, noremap = true, desc = "Set the current file into executable" }
+)
 --------------------------------------------------------------------------------
 -- ...
 --------------------------------------------------------------------------------
