@@ -225,6 +225,8 @@ keymap.set(
     "<cmd>!chmod +x %<CR>",
     { silent = true, noremap = true, desc = "Set the current file into executable" }
 )
+
+keymap.set("n", "<leader>;", "<cmd>so %<CR>", { silent = true, noremap = true, desc = "Reload nvim.config" })
 --------------------------------------------------------------------------------
 -- ...
 --------------------------------------------------------------------------------
