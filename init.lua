@@ -64,10 +64,10 @@ require("lazy").setup({
 		},
 	},
 	{ "EdenEast/nightfox.nvim" }, -- nightfox, nordfox, dayfox, dawnfox and duskfox
-	{ "folke/tokyonight.nvim" },  -- tokyonight
+	{ "folke/tokyonight.nvim" }, -- tokyonight
 	{ "shaunsingh/moonlight.nvim" }, -- moonlight
-	{ "Shatur/neovim-ayu" },      -- ayu-<dark,light,mirage>
-	{ "RRethy/nvim-base16" },     -- base-16-<color-name>
+	{ "Shatur/neovim-ayu" }, -- ayu-<dark,light,mirage>
+	{ "RRethy/nvim-base16" }, -- base-16-<color-name>
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -183,7 +183,7 @@ require("lazy").setup({
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-telescope/telescope-fzf-native.nvim",  build = "make" },
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 			-- { "cljoly/telescope-repo.nvim" },
 			{ "kdheepak/lazygit.nvim" },
