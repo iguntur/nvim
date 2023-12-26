@@ -29,7 +29,7 @@ return {
             {
                 "<leader>gws",
                 function()
-                    vim.cmd("silent !tmux neww gw-switch")
+                    vim.cmd("silent !tmux neww -t 0 gw-switch")
                 end,
                 desc = "Switch to a worktree branch",
             },
