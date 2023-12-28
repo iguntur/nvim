@@ -128,9 +128,15 @@ keymap.set("n", "<M-C-K>", '<S-o><ESC>"_cc<ESC>', options)
 keymap.set("n", "<M-NL>", 'o<ESC>"_cc<ESC>', options)
 
 --------------------------------------------------------------------------------
+-- Copy Paste - register to default editor clipboard
+--------------------------------------------------------------------------------
+keymap.set("n", "y", '"yy', { silent = true, noremap = true, desc = "Copy into default editor clipboard" })
+keymap.set("n", "p", '"yp', { silent = true, noremap = true, desc = "Paste from default editor clipboard" })
+
+--------------------------------------------------------------------------------
 -- Copy Paste - register to system clipboard
 --------------------------------------------------------------------------------
-keymap.set("n", "<leader>y", '"+yy', { silent = true, noremap = true, desc = "Copy into system clipboard" })
+keymap.set("n", "<leader>y", '"+y', { silent = true, noremap = true, desc = "Copy into system clipboard" })
 keymap.set("v", "<leader>y", '"+y', { silent = true, noremap = true, desc = "Copy into system clipboard" })
 keymap.set("n", "<leader>Y", '"+Y', { silent = true, noremap = true, desc = "Copy into system clipboard" })
 
