@@ -19,6 +19,11 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.coding.codeium" },
         -- { import = "lazyvim.plugins.extras.coding.copilot" },
 
+        -- editor
+        { import = "lazyvim.plugins.extras.editor.aerial" },
+        -- { import = "lazyvim.plugins.extras.editor.navic" },
+        -- { import = "lazyvim.plugins.extras.editor.symbols-outline" },
+
         -- formatting
         { import = "lazyvim.plugins.extras.formatting.prettier" },
 
@@ -42,6 +47,9 @@ require("lazy").setup({
         -- util
         { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
         -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
+
+        -- test
+        { import = "lazyvim.plugins.extras.test.core" },
 
         -- import/override with your plugins
         { import = "plugins" },

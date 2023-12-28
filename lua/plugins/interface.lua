@@ -110,4 +110,50 @@ return {
     --         -- symbol = "█",
     --     },
     -- },
+
+    --
+    -- status line
+    --
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = function(_, opts)
+            local config = {
+                theme = "auto",
+            }
+
+            opts.options = vim.tbl_extend("force", opts.options or {}, config)
+        end,
+    },
+
+    -- {
+    --     "utilyre/barbecue.nvim",
+    --     name = "barbecue",
+    --     version = "*",
+    --     dependencies = {
+    --         "SmiteshP/nvim-navic",
+    --         "nvim-tree/nvim-web-devicons", -- optional dependency
+    --     },
+    --     opts = {
+    --         -- configurations go here
+    --     },
+    -- },
+
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            {
+                "SmiteshP/nvim-navbuddy",
+                dependencies = {
+                    "SmiteshP/nvim-navic",
+                    "MunifTanjim/nui.nvim",
+                },
+                opts = {
+                    lsp = {
+                        auto_attach = true,
+                    },
+                },
+            },
+        },
+    },
 }
