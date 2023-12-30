@@ -130,8 +130,9 @@ keymap.set("n", "<M-NL>", 'o<ESC>"_cc<ESC>', options)
 --------------------------------------------------------------------------------
 -- Copy Paste - register to default editor clipboard
 --------------------------------------------------------------------------------
-keymap.set("n", "y", '"yy', { silent = true, noremap = true, desc = "Copy into default editor clipboard" })
-keymap.set("n", "p", '"yp', { silent = true, noremap = true, desc = "Paste from default editor clipboard" })
+keymap.set({ "n", "v" }, "y", '"ay', { silent = true, noremap = true, desc = "Copy into default editor clipboard" })
+keymap.set({ "n", "v" }, "p", '"ap', { silent = true, noremap = true, desc = "Paste from default editor clipboard" })
+keymap.set({ "n", "v" }, "P", '"aP', { silent = true, noremap = true, desc = "Paste from default editor clipboard" })
 
 --------------------------------------------------------------------------------
 -- Copy Paste - register to system clipboard
