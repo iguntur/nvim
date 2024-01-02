@@ -134,6 +134,9 @@ keymap.set({ "n", "v" }, "y", '"ay', { silent = true, noremap = true, desc = "Co
 keymap.set({ "n", "v" }, "p", '"ap', { silent = true, noremap = true, desc = "Paste from default editor clipboard" })
 keymap.set({ "n", "v" }, "P", '"aP', { silent = true, noremap = true, desc = "Paste from default editor clipboard" })
 
+keymap.set({ "n", "v" }, "d", '"ad', { silent = true, noremap = true, desc = "Copy into default editor clipboard" })
+keymap.set({ "n", "v" }, "D", '"aD', { silent = true, noremap = true, desc = "Copy into default editor clipboard" })
+
 --------------------------------------------------------------------------------
 -- Copy Paste - register to system clipboard
 --------------------------------------------------------------------------------
