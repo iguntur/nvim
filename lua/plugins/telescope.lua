@@ -129,6 +129,11 @@ return {
                 remap = true,
                 desc = "Telescope file browser",
             },
+            {
+                "<leader>fg",
+                "<CMD>Telescope git_status<CR>",
+                desc = "Telescope git status",
+            },
         },
     },
 }
