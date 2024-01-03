@@ -66,16 +66,22 @@ keymap.set("n", "L", "$<ESC>", options)
 -- keymap.set("i", "<C-l>", "<Right>", options)
 
 --------------------------------------------------------------------------------
+-- Scroll
+--------------------------------------------------------------------------------
+keymap.set("n", "j", "gj<esc>zzzv", options)
+keymap.set("n", "k", "gk<esc>zzzv", options)
+
+--------------------------------------------------------------------------------
 -- Jump line
 --------------------------------------------------------------------------------
 -- keymap.set("n", "<C-k>", "9kzz0", options) -- up 9 lines
 -- keymap.set("n", "<C-j>", "9jzz0", options) -- down 9 lines
 
-keymap.set("v", "<M-;>", "9k", options) -- select in visual mode
-keymap.set("v", "<M-'>", "9j", options) -- select in visual mode
+keymap.set("v", "<M-'>", "9k", options) -- select in visual mode
+keymap.set("v", "<M-;>", "9j", options) -- select in visual mode
 
-keymap.set("n", "<C-d>", "<C-d>zzzv0", options)
-keymap.set("n", "<C-u>", "<C-u>zzzv0", options)
+-- keymap.set("n", "<C-d>", "<C-d>zzzv0", options)
+-- keymap.set("n", "<C-u>", "<C-u>zzzv0", options)
 
 keymap.set("n", "gg", "gg0", options)
 keymap.set("n", "G", "G0zz", options)

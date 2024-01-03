@@ -54,25 +54,32 @@ return {
     --
     {
         "karb94/neoscroll.nvim",
-        opts = {
-            -- known issues: <C-u>, <C-d>, <C-b>, <C-f> mess up macros (issue). see: https://github.com/karb94/neoscroll.nvim/issues/9
-            mappings = { "<C-y>", "<C-e>", "zt", "zz", "zb" },
-        },
+        -- opts = {
+        --     -- known issues: <C-u>, <C-d>, <C-b>, <C-f> mess up macros (issue). see: https://github.com/karb94/neoscroll.nvim/issues/9
+        --     mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+        -- },
+        config = function()
+            require("neoscroll").setup({})
+        end,
         keys = {
             {
-                "<C-j>",
+                "<C-n>",
                 function()
                     require("neoscroll").scroll(10, true, 250)
+                    vim.cmd("normal! zzzv")
                 end,
                 mode = { "n", "x" },
+                remap = true,
                 silent = true,
             },
             {
-                "<C-k>",
+                "<C-m>",
                 function()
                     require("neoscroll").scroll(-10, true, 250)
+                    vim.cmd("normal! zzzv")
                 end,
                 mode = { "n", "x" },
+                remap = true,
                 silent = true,
             },
         },
