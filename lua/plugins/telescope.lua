@@ -65,6 +65,26 @@ local function live_grep_project()
     require("telescope.builtin").live_grep(opts)
 end
 
+local function open_journals_files()
+    local opts = {
+        prompt_title = "~ JOURNALS ~",
+        cwd = vim.env.HOME .. "/journals",
+        find_command = {
+            "rg",
+            "--follow",
+            "--files",
+            "--no-ignore",
+            "--hidden",
+            "--ignore-file",
+            vim.env.HOME .. "/.rgignore",
+            "--sort",
+            "path",
+        },
+    }
+
+    require("telescope.builtin").find_files(opts)
+end
+
 return {
     --
     -- telescope default options
@@ -163,6 +183,13 @@ return {
                 "<leader>fg",
                 "<CMD>Telescope git_status<CR>",
                 desc = "Telescope git status",
+            },
+            {
+                "<leader>fj",
+                function()
+                    open_journals_files()
+                end,
+                desc = "Search Journal",
             },
         },
     },
