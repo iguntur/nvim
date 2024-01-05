@@ -118,11 +118,18 @@ return {
             local defaults = {
                 -- path_display = { "smart" }, -- smart,truncate,shorten. default: truncate
                 vimgrep_arguments = vimgrep_arguments,
-                layout_strategy = "bottom_pane", -- vertical, horizontal, flex, bottom_pane
+                -- layout_strategy = "bottom_pane", -- vertical, horizontal, flex, bottom_pane
+                sorting_strategy = "ascending",
                 layout_config = {
                     prompt_position = "top",
+                    horizontal = {
+                        width = 500,
+                        height = 500,
+                    },
+                    bottom_pane = {
+                        height = 100,
+                    },
                 },
-                sorting_strategy = "ascending",
             }
 
             --
