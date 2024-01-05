@@ -61,7 +61,7 @@ return {
         "nvim-treesitter/nvim-treesitter-context",
         keys = {
             {
-                "[0",
+                "[x",
                 function()
                     require("treesitter-context").go_to_context()
                 end,
