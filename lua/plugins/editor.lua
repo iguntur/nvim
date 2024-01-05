@@ -127,4 +127,22 @@ return {
         "nacro90/numb.nvim",
         opts = {},
     },
+
+    --
+    -- filetype
+    --
+    {
+        "nathom/filetype.nvim",
+        opts = {
+            overrides = {
+                complex = {
+                    -- Set the filetype of any full filename matching the regex to gitconfig
+                    [".*git/config"] = "gitconfig", -- Included in the plugin
+                    [".env.*"] = "sh",
+                    ["tsconfig*.json"] = "jsonc",
+                    ["Dockerfile.*"] = "dockerfile",
+                },
+            },
+        },
+    },
 }
