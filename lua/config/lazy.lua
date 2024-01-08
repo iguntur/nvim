@@ -75,7 +75,11 @@ require("lazy").setup({
             "habamax",
         },
     },
-
+    change_detection = {
+        -- automatically check for config file changes and reload the ui
+        enabled = true,
+        notify = false, -- get a notification when changes are found
+    },
     checker = { enabled = true }, -- automatically check for plugin updates
     performance = {
         rtp = {
