@@ -76,18 +76,4 @@ return {
             "nvim-treesitter/nvim-treesitter",
         },
     },
-
-    {
-        "otel_tracing",
-        dev = true,
-        -- opts = {},
-        keys = {
-            {
-                "<space>d",
-                ":luafile ~/.config/nvim/dev/otel_tracing/lua/init.lua<CR>",
-                silent = true,
-                noremap = true,
-            },
-        },
-    },
 }
