@@ -1,3 +1,5 @@
+local LazyUtil = require("lazyvim.util")
+
 return {
     --
     -- comment
@@ -180,5 +182,56 @@ return {
                 -- },
             },
         },
+    },
+
+    --
+    -- bookmarks
+    --
+    {
+        "tomasky/bookmarks.nvim",
+        dependencies = {
+            { "nvim-telescope/telescope.nvim" },
+        },
+        event = "VimEnter",
+        config = function()
+            local bm = require("bookmarks")
+
+            bm.setup({
+                -- sign_priority = 8,  --set bookmark sign priority to cover other sign
+                save_file = vim.fn.expand("$HOME/.config/nvim/.cache/bookmarks"), -- bookmarks save file path
+                on_attach = function(bufnr)
+                    local bm = require("bookmarks")
+
+                    vim.keymap.set("n", "mm", bm.bookmark_toggle, {
+                        silent = true,
+                        desc = "Add or remove bookmark at current line",
+                    })
+                    vim.keymap.set("n", "mi", bm.bookmark_ann, {
+                        silent = true,
+                        desc = "Add or edit mark annotation at current line",
+                    })
+                    vim.keymap.set("n", "mc", bm.bookmark_clean, {
+                        silent = true,
+                        desc = "Clean all marks in current buffer",
+                    })
+                    vim.keymap.set("n", "mn", bm.bookmark_next, {
+                        silent = true,
+                        desc = "Jump to next mark in current buffer",
+                    })
+                    vim.keymap.set("n", "mp", bm.bookmark_prev, {
+                        silent = true,
+                        desc = "Jump to previous mark in current buffer",
+                    })
+                    vim.keymap.set("n", "ml", require("telescope").extensions.bookmarks.list, {
+                        silent = true,
+                        desc = "Show marked files in bookmark lists",
+                    })
+                end,
+            })
+
+            LazyUtil.on_load("telescope.nvim", function()
+                require("telescope").load_extension("bookmarks")
+            end)
+        end,
     },
 }
