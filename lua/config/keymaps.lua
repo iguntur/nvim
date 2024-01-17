@@ -243,6 +243,17 @@ keymap.set(
 )
 
 keymap.set("n", "<leader>;", "<cmd>so %<CR>", { silent = true, noremap = true, desc = "Reload nvim.config" })
+keymap.set(
+    "n",
+    "<space>x",
+    "<cmd>put=system(getline('.'))<CR>",
+    { silent = true, noremap = true, desc = "Execute current line and put the results below" }
+)
+
 --------------------------------------------------------------------------------
 -- ...
 --------------------------------------------------------------------------------
+keymap.set("n", "<space>et", function()
+    vim.cmd("silent! %s/\\(.*\\)=.*/\\1={{ .ENV.\\1 }}/g")
+    vim.cmd("silent! sort u")
+end, { silent = true, noremap = true, desc = "Convert .env.template for eFishery" })

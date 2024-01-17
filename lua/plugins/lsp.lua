@@ -13,6 +13,7 @@ return {
                 --
                 nls.builtins.diagnostics.fish,
                 -- nls.builtins.diagnostics.eslint,
+                -- nls.builtins.diagnostics.markdownlint,
 
                 --
                 -- code actions

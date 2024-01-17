@@ -143,6 +143,7 @@ return {
                     [".env.*"] = "sh",
                     ["tsconfig*.json"] = "jsonc",
                     ["Dockerfile.*"] = "dockerfile",
+                    -- ["*.sql"] = "sql",
                 },
             },
         },
@@ -153,35 +154,43 @@ return {
     --
     {
         "laytan/cloak.nvim",
-        opts = {
-            enabled = true,
-            cloak_character = "*",
-            -- The applied highlight group (colors) on the cloaking, see `:h highlight`.
-            highlight_group = "Comment",
-            patterns = {
-                {
-                    -- Match any file starting with '.env'.
-                    -- This can be a table to match multiple file patterns.
-                    file_pattern = {
-                        ".env*",
-                        -- "*.toml",
+        config = function()
+            require("cloak").setup({
+                enabled = true,
+                cloak_character = "*",
+                -- The applied highlight group (colors) on the cloaking, see `:h highlight`.
+                highlight_group = "Comment",
+                patterns = {
+                    {
+                        -- Match any file starting with '.env'.
+                        -- This can be a table to match multiple file patterns.
+                        file_pattern = {
+                            ".env*",
+                            "*.env*",
+                            -- "*.toml",
+                        },
+                        cloak_pattern = "=.+",
                     },
-                    cloak_pattern = "=.+",
+                    -- {
+                    --     file_pattern = {
+                    --         "*.yaml",
+                    --     },
+                    --     -- Match an equals sign and any character after it.
+                    --     -- This can also be a table of patterns to cloak,
+                    --     -- example: cloak_pattern = { ':.+', '-.+' } for yaml files.
+                    --     cloak_pattern = {
+                    --         ":.+",
+                    --         "-.+",
+                    --     },
+                    -- },
                 },
-                -- {
-                --     file_pattern = {
-                --         "*.yaml",
-                --     },
-                --     -- Match an equals sign and any character after it.
-                --     -- This can also be a table of patterns to cloak,
-                --     -- example: cloak_pattern = { ':.+', '-.+' } for yaml files.
-                --     cloak_pattern = {
-                --         ":.+",
-                --         "-.+",
-                --     },
-                -- },
-            },
-        },
+            })
+
+            vim.keymap.set("n", "<space>ee", "<cmd>CloakToggle<cr>", {
+                silent = true,
+                desc = "Toggle cloak env secret",
+            })
+        end,
     },
 
     --
@@ -232,6 +241,48 @@ return {
             LazyUtil.on_load("telescope.nvim", function()
                 require("telescope").load_extension("bookmarks")
             end)
+        end,
+    },
+
+    --
+    -- change case
+    --
+    {
+        "johmsalas/text-case.nvim",
+        dependencies = {
+            { "nvim-telescope/telescope.nvim" },
+        },
+        config = function()
+            require("textcase").setup()
+
+            LazyUtil.on_load("telescope.nvim", function()
+                require("telescope").load_extension("textcase")
+            end)
+
+            vim.keymap.set(
+                "n",
+                "ga.",
+                "<cmd>TextCaseOpenTelescope<CR>",
+                { silent = true, noremap = true, desc = "TextCase Open" }
+            )
+            vim.keymap.set(
+                "v",
+                "ga.",
+                "<cmd>TextCaseOpenTelescope<CR>",
+                { silent = true, noremap = true, desc = "TextCase Open" }
+            )
+            vim.keymap.set(
+                "n",
+                "gaa",
+                "<cmd>TextCaseOpenTelescopeQuickChange<CR>",
+                { silent = true, noremap = true, desc = "Telescope Quick Change" }
+            )
+            vim.keymap.set(
+                "n",
+                "gai",
+                "<cmd>TextCaseOpenTelescopeLSPChange<CR>",
+                { silent = true, noremap = true, desc = "Telescope LSP Change" }
+            )
         end,
     },
 }
