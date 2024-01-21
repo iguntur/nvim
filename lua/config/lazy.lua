@@ -51,6 +51,9 @@ require("lazy").setup({
         -- test
         { import = "lazyvim.plugins.extras.test.core" },
 
+        -- dap
+        { import = "lazyvim.plugins.extras.dap.core" },
+
         -- import/override with your plugins
         { import = "plugins" },
     },
