@@ -250,6 +250,14 @@ keymap.set(
     { silent = true, noremap = true, desc = "Execute current line and put the results below" }
 )
 
+-- replace word under cursor across entire buffer
+keymap.set(
+    "n",
+    "<leader>rw",
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { silent = true, noremap = true, desc = "Replace word under cursor in entire buffer" }
+)
+
 --------------------------------------------------------------------------------
 -- ...
 --------------------------------------------------------------------------------
