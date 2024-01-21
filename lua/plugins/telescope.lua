@@ -3,7 +3,7 @@ local LazyUtil = require("lazyvim.util")
 
 local function find_cwd_files()
     local opts = {
-        prompt_title = "~ FIND FILES ~",
+        prompt_title = " Find Files",
         cwd = vim.fn.getcwd(),
         find_command = {
             "rg",
@@ -23,7 +23,7 @@ end
 
 local function find_project_root_files()
     local opts = {
-        prompt_title = "~ PROJECT FILES ~",
+        prompt_title = " Project Files",
         cwd = util.find_dir_up({ ".git", "Makefile", "go.work", ".nvmrc", "go.mod", "package.json" }),
         find_command = {
             "rg",
@@ -43,7 +43,7 @@ end
 
 local function live_grep_project()
     local opts = {
-        prompt_title = "~ LIVE GREP PROJECT FILES ~",
+        prompt_title = " Live Grep Project Files",
         cwd = util.find_dir_up({ ".git", "Makefile", "go.work", ".nvmrc", "go.mod", "package.json" }),
         vimgrep_arguments = {
             "rg",
@@ -67,7 +67,7 @@ end
 
 local function open_journals_files()
     local opts = {
-        prompt_title = "~ JOURNALS ~",
+        prompt_title = "󱨋 Journals",
         cwd = vim.env.HOME .. "/journals",
         find_command = {
             "rg",
