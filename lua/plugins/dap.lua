@@ -1,3 +1,45 @@
+local actions_state = require("telescope.actions.state")
+local actions = require("telescope.actions")
+local util = require("util")
+
+local function find_package_main_files(cb)
+    local cwd = util.find_dir_up({ "go.mod", "go.sum", ".git", "Makefile", "go.work" })
+    local opts = {
+        prompt_title = " select the main program - (" .. cwd .. ")",
+        cwd = cwd,
+        find_command = { "rg", "--follow", "--no-ignore", "--files-with-matches", "package main" },
+        layout_strategy = "vertical", -- vertical, horizontal, flex, bottom_pane
+        sorting_strategy = "ascending",
+        layout_config = {
+            prompt_position = "top",
+            vertical = {
+                width = 0.5,
+                height = 0.5,
+            },
+        },
+        attach_mappings = function(_, map)
+            map({ "n", "i" }, "<cr>", function(prompt_bufnr)
+                actions.close(prompt_bufnr)
+                local entries = actions_state.get_selected_entry()
+                local main_file = entries[1]
+                cb(main_file)
+            end)
+
+            return true
+        end,
+    }
+
+    require("telescope.builtin").find_files(opts)
+end
+
+local function get_package_main_filepath()
+    return coroutine.create(function(dap_run_cmd)
+        find_package_main_files(function(main_file)
+            coroutine.resume(dap_run_cmd, main_file)
+        end)
+    end)
+end
+
 return {
     {
         "Weissle/persistent-breakpoints.nvim",
@@ -77,9 +119,16 @@ return {
             local go_configs = {
                 {
                     type = "go",
-                    name = "[1] Launch: Run program from the main.go and debug",
+                    name = "[1] Launch: run program from the main.go and debug",
                     request = "launch",
                     program = "${workspaceFolder}",
+                    -- buildFlags = "",
+                },
+                {
+                    type = "go",
+                    name = "[2] Launch: search the main.go and debug",
+                    request = "launch",
+                    program = get_package_main_filepath,
                     -- buildFlags = "",
                 },
 
