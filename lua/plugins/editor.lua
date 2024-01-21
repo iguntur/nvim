@@ -285,4 +285,18 @@ return {
             )
         end,
     },
+
+    --
+    -- maximize window
+    --
+    {
+        "declancm/maximize.nvim",
+        config = function()
+            require("maximize").setup({ default_keymaps = false })
+
+            vim.keymap.set("n", "<leader>z", function()
+                require("maximize").toggle()
+            end, { silent = true, desc = "Toggle Maximize" })
+        end,
+    },
 }
