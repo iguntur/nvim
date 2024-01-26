@@ -218,6 +218,13 @@ keymap.set("v", "<M-d>", '"_d<ESC>', options)
 -- Jump tmux session
 --------------------------------------------------------------------------------
 keymap.set("n", "<C-f>", "<cmd>silent !tmux neww -n '󰇘 ' -t 0 tmux-select-project<CR>", options)
+keymap.set("n", "<C-g>", "<cmd>silent !tmux neww -n '󰇘 ' -t 0 lazygit<CR>", options)
+keymap.set(
+    "n",
+    "<leader>gg",
+    "<cmd>silent !tmux neww -n '󰇘 ' -t 0 lazygit<CR>",
+    { silent = true, noremap = true, desc = "Open lazygit" }
+)
 
 --------------------------------------------------------------------------------
 -- Misc
