@@ -121,7 +121,7 @@ return {
                     type = "go",
                     name = "[1] Launch: run program from the main.go and debug",
                     request = "launch",
-                    program = "${workspaceFolder}",
+                    program = "${workspaceFolder}/main.go",
                     -- buildFlags = "",
                 },
                 {
