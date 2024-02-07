@@ -165,8 +165,9 @@ return {
                         -- Match any file starting with '.env'.
                         -- This can be a table to match multiple file patterns.
                         file_pattern = {
-                            ".env*",
-                            "*.env*",
+                            ".env",
+                            ".env.*",
+                            ".*.env",
                             -- "*.toml",
                         },
                         cloak_pattern = "=.+",
