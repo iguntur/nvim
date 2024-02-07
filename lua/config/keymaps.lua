@@ -198,12 +198,12 @@ keymap.set("v", "<M-d>", '"_d<ESC>', options)
 -- keymap.set("n", "<C-Right>", "<C-w>l", options) -- move cursor to "right" window
 
 --------------------------------------------------------------------------------
--- Resize window (Ctrl-Shift-<Arrow_Keys>)
+-- Resize window (Ctrl-<Arrow_Keys>)
 --------------------------------------------------------------------------------
--- keymap.set("n", "<C-S-Up>", ":resize +1<CR>", options) -- " Up
--- keymap.set("n", "<C-S-Down>", ":resize -1<CR>", options) -- " Down
--- keymap.set("n", "<C-S-Left>", ":vertical resize -1<CR>", options) -- " Left
--- keymap.set("n", "<C-S-Right>", ":vertical resize +1<CR>", options) -- " Right
+keymap.set("n", "<C-Up>", ":resize +5<CR>", options) -- " Up
+keymap.set("n", "<C-Down>", ":resize -5<CR>", options) -- " Down
+keymap.set("n", "<C-Left>", ":vertical resize -5<CR>", options) -- " Left
+keymap.set("n", "<C-Right>", ":vertical resize +5<CR>", options) -- " Right
 
 --------------------------------------------------------------------------------
 -- Terminal
