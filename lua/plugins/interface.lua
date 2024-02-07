@@ -41,8 +41,12 @@ return {
         },
     },
 
+    --
+    -- bufferline: tab like
+    --
     {
         "akinsho/bufferline.nvim",
+        enabled = false,
         keys = {
             { "<M-]>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
             { "<M-[>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },

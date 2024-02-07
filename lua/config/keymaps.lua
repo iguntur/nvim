@@ -92,28 +92,6 @@ keymap.set("n", "n", "nzzzv", options)
 keymap.set("n", "N", "Nzzzv", options)
 
 --------------------------------------------------------------------------------
--- Buffer and File
---------------------------------------------------------------------------------
--- keymap.set("n", "<M-]>", "<CMD>bnext<CR>", {})
--- keymap.set("n", "<M-[>", "<CMD>bprevious<CR>", {})
-
--- Write or saving file: (⌥ or alt) + s
-keymap.set("v", "<M-s>", "<ESC><CMD>w<CR><ESC>", options)
-keymap.set("n", "<M-s>", "<CMD>w<CR><ESC>", options)
-keymap.set("i", "<M-s>", "<ESC><CMD>w<CR><ESC>a", options) -- allow writing in insert mode
-
--- Close current buffer: (⌥ or alt) + w
--- keymap.set("n", '<M-w>', ':bw<ESC>', options)
-keymap.set("n", "<M-w>", ":bdelete<CR>", options)
-keymap.set("n", "<M-W>", ":bdelete!<CR>", options)
-
---------------------------------------------------------------------------------
--- Navigate buffers
---------------------------------------------------------------------------------
-keymap.set("n", "<TAB>", ":bnext<CR>", options) -- tab
-keymap.set("n", "<S-TAB>", ":bprevious<CR>", options) -- shift+tab
-
---------------------------------------------------------------------------------
 -- Indentation
 --------------------------------------------------------------------------------
 -- indent to the right: Shift + >
@@ -187,6 +165,36 @@ keymap.set("v", "<M-d>", '"_d<ESC>', options)
 --------------------------------------------------------------------------------
 -- Sort Lines Natural (Asc): space+s
 -- keymap.set("v", '<space>s', ':\'<,\'>!sort -f<CR><ESC>', options)
+
+--------------------------------------------------------------------------------
+-- Buffer and File
+--------------------------------------------------------------------------------
+keymap.set("n", "<M-]>", ":bnext<CR>", { silent = true, noremap = true, desc = "Next buffer" })
+keymap.set("n", "<M-[>", ":bprevious<CR>", { silent = true, noremap = true, desc = "Previous buffer" })
+
+-- Write or saving file: (⌥ or alt) + s
+keymap.set("v", "<M-s>", "<ESC><CMD>w<CR><ESC>", options)
+keymap.set("n", "<M-s>", "<CMD>w<CR><ESC>", options)
+keymap.set("i", "<M-s>", "<ESC><CMD>w<CR><ESC>a", options) -- allow writing in insert mode
+
+-- Close current buffer: (⌥ or alt) + w
+-- keymap.set("n", '<M-w>', ':bw<ESC>', options)
+keymap.set("n", "<M-w>", ":bdelete<CR>", options)
+keymap.set("n", "<M-W>", ":bdelete!<CR>", options)
+
+--------------------------------------------------------------------------------
+-- Tab
+--------------------------------------------------------------------------------
+keymap.set("n", "<leader><tab><tab>", ":tabnew<CR>", { silent = true, noremap = true, desc = "Create a new tab" })
+keymap.set("n", "<leader><tab>d", ":tabclose<CR>", { silent = true, noremap = true, desc = "Close tab" })
+keymap.set("n", "<leader><tab>f", ":tabfirst<CR>", { silent = true, noremap = true, desc = "Jump to the first tab" })
+keymap.set("n", "<leader><tab>l", ":tablast<CR>", { silent = true, noremap = true, desc = "Jump to the last tab" })
+
+-- Navigate tab
+keymap.set("n", "<tab>", ":tabnext<CR>", { silent = true, noremap = true, desc = "Move to next tab" }) -- tab
+keymap.set("n", "<S-tab>", ":tabprevious<CR>", { silent = true, noremap = true, desc = "Move to previous tab" }) -- shift+tab
+keymap.set("n", "<leader><tab>]", ":tabnext<CR>", { silent = true, noremap = true, desc = "Move to next tab" })
+keymap.set("n", "<leader><tab>[", ":tabprevious<CR>", { silent = true, noremap = true, desc = "Move to previous tab" })
 
 --------------------------------------------------------------------------------
 -- Window
