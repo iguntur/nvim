@@ -140,10 +140,11 @@ return {
                 complex = {
                     -- Set the filetype of any full filename matching the regex to gitconfig
                     [".*git/config"] = "gitconfig", -- Included in the plugin
+                    [".env"] = "sh",
                     [".env.*"] = "sh",
+                    [".*.env.*"] = "sh",
                     ["tsconfig*.json"] = "jsonc",
                     ["Dockerfile.*"] = "dockerfile",
-                    -- ["*.sql"] = "sql",
                 },
             },
         },
