@@ -202,6 +202,23 @@ return {
     },
 
     --
+    -- telescopt with LSP
+    --
+    {
+        "nvim-telescope/telescope.nvim",
+        optional = true,
+        keys = {
+            {
+                "gi",
+                function()
+                    require("telescope.builtin").lsp_implementations({ reuse_win = true })
+                end,
+                desc = "Go To Implementation",
+            },
+        },
+    },
+
+    --
     -- telescope file browser
     --
     {
