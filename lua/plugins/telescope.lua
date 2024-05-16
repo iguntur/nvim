@@ -3,7 +3,7 @@ local LazyUtil = require("lazyvim.util")
 
 local function find_cwd_files()
     local opts = {
-        prompt_title = " Find Files",
+        prompt_title = " Find Files (CWD)",
         cwd = vim.fn.getcwd(),
         find_command = {
             "rg",
@@ -19,6 +19,30 @@ local function find_cwd_files()
     }
 
     require("telescope.builtin").find_files(opts)
+end
+
+local function live_grep_cwd_files()
+    local opts = {
+        prompt_title = " Live Grep Files (CWD)",
+        cwd = vim.fn.getcwd(),
+        vimgrep_arguments = {
+            "rg",
+            "--follow",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--hidden",
+            "--ignore-file",
+            vim.env.HOME .. "/.rgignore",
+            "--glob",
+            "!**/.git/*",
+        },
+    }
+
+    require("telescope.builtin").live_grep(opts)
 end
 
 local function find_project_root_files()
@@ -94,6 +118,8 @@ return {
         optional = true,
         opts = function(_, opts)
             local telescopeConfig = require("telescope.config")
+            local actions = require("telescope.actions")
+            local action_layout = require("telescope.actions.layout")
 
             -- Clone the default Telescope configuration
             local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
@@ -130,6 +156,27 @@ return {
                         height = 100,
                     },
                 },
+                mappings = {
+                    n = {
+                        ["<M-p>"] = action_layout.toggle_preview,
+                    },
+                    i = {
+                        ["<M-p>"] = action_layout.toggle_preview,
+                    },
+                },
+            }
+
+            --
+            -- pickers
+            --
+            local pickersOptions = {
+                buffers = {
+                    mappings = {
+                        -- delete/remove buffer from list
+                        n = { ["<c-w>"] = actions.delete_buffer },
+                        i = { ["<c-w>"] = actions.delete_buffer },
+                    },
+                },
             }
 
             --
@@ -146,17 +193,27 @@ return {
             }
 
             opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, defaults)
+            opts.pickers = vim.tbl_deep_extend("force", opts.pickers or {}, pickersOptions)
             opts.extensions = vim.tbl_deep_extend("force", opts.extensions or {}, extensions)
         end,
         keys = {
             {
                 "<leader>/",
                 function()
+                    live_grep_cwd_files()
+                end,
+                remap = true,
+                silent = true,
+                desc = "Telescope live grep (cwd)",
+            },
+            {
+                "<leader>?",
+                function()
                     live_grep_project()
                 end,
                 remap = true,
                 silent = true,
-                desc = "Telescope live grep",
+                desc = "Telescope live grep (project directory)",
             },
             {
                 "<C-p>",
@@ -174,13 +231,6 @@ return {
             },
             {
                 "<leader>fF",
-                function()
-                    find_project_root_files()
-                end,
-                desc = "Find files (project directory)",
-            },
-            {
-                "<leader>fp",
                 function()
                     find_project_root_files()
                 end,
