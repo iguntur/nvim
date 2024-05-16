@@ -168,6 +168,7 @@ return {
                         file_pattern = {
                             ".env",
                             ".env.*",
+                            "*.env",
                             ".*.env",
                             -- "*.toml",
                         },
@@ -294,11 +295,33 @@ return {
     {
         "declancm/maximize.nvim",
         config = function()
-            require("maximize").setup({ default_keymaps = false })
+            require("maximize").setup({
+                plugins = {
+                    aerial = { enable = true }, -- enable aerial.nvim integration
+                    dapui = { enable = true }, -- enable nvim-dap-ui integration
+                    tree = { enable = false }, -- enable nvim-tree.lua integration
+                },
+            })
 
             vim.keymap.set("n", "<leader>z", function()
                 require("maximize").toggle()
             end, { silent = true, desc = "Toggle Maximize" })
         end,
+    },
+
+    --
+    -- Nvim Context VT: end of context line or scope
+    --
+    {
+        "andersevenrud/nvim_context_vt",
+        opts = {
+            -- Enable by default. You can disable and use :NvimContextVtToggle to maually enable.
+            -- Default: true
+            enabled = true,
+
+            -- Override default virtual text prefix
+            -- Default: '-->'
+            prefix = "",
+        },
     },
 }
