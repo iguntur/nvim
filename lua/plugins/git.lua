@@ -7,6 +7,14 @@ return {
     },
 
     --
+    --
+    --
+    {
+        "sindrets/diffview.nvim",
+        opts = {},
+    },
+
+    --
     -- Git worktree
     --
     {
