@@ -103,7 +103,7 @@ return {
                     prefer_local = "node_modules/.bin",
                     -- extra_filetypes = { "toml" },
                 }),
-                nls.builtins.formatting.taplo,
+                -- nls.builtins.formatting.taplo,
                 nls.builtins.formatting.gofumpt,
                 -- nls.builtins.formatting.goimports,
                 nls.builtins.formatting.goimports_reviser,
