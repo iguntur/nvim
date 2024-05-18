@@ -44,6 +44,9 @@ require("lazy").setup({
         -- lsp
         { import = "lazyvim.plugins.extras.lsp.none-ls" },
 
+        -- UI
+        { import = "lazyvim.plugins.extras.ui.treesitter-context" },
+
         -- util
         { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
         -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
