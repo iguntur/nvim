@@ -50,6 +50,10 @@ keymap.set("v", "p", '"_dP', options) -- keep the "yank" value
 -- keymap.set("n", "<M-Space>", "<Esc>2a<space><Esc>i", options)
 keymap.set({ "n", "i" }, "<M-Space>", "<Esc>2a<space><Esc>i", options)
 
+-- comments (Ctrl + /)
+keymap.set({ "n", "i" }, "<c-_>", "<Esc>gcc<Esc>", { silent = true, remap = true })
+keymap.set("v", "<c-_>", "gc<Esc>", { silent = true, remap = true })
+
 --------------------------------------------------------------------------------
 -- Cursor movement
 --------------------------------------------------------------------------------

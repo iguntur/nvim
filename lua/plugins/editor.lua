@@ -2,22 +2,6 @@ local LazyUtil = require("lazyvim.util")
 
 return {
     --
-    -- comment
-    --
-    {
-        "numToStr/Comment.nvim",
-        opts = {
-            pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-        },
-        lazy = false,
-        keys = {
-            { "<C-_>", "gcc<Esc>", mode = { "n" }, desc = "Comment line", remap = true },
-            { "<C-_>", "gc<Esc>gv", mode = { "v" }, desc = "Comment line", remap = true },
-            { "<C-_>", "<Esc>gcc<Esc>", mode = { "i" }, desc = "Comment line", remap = true },
-        },
-    },
-
-    --
     -- buffer remove
     --
     {
