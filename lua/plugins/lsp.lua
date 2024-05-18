@@ -12,12 +12,13 @@ return {
             { "williamboman/mason-lspconfig.nvim" },
         },
         opts = {
+            -- provide the inlay hints.
+            -- inlay_hints = {
+            --     enabled = true,
+            -- },
+
             -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
             -- Be aware that you also will need to properly configure your LSP server to
-            -- provide the inlay hints.
-            inlay_hints = {
-                enabled = true,
-            },
             servers = {
                 lua_ls = {
                     -- mason = false, -- set to false if you don't want this server to be installed with mason
