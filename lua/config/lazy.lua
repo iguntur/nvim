@@ -43,7 +43,7 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.yaml" },
 
         -- lsp
-        { import = "lazyvim.plugins.extras.lsp.none-ls" },
+        -- { import = "lazyvim.plugins.extras.lsp.none-ls" },
 
         -- UI
         { import = "lazyvim.plugins.extras.ui.treesitter-context" },
