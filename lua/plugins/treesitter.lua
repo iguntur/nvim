@@ -7,22 +7,6 @@ return {
         dependencies = {
             { "theHamsta/nvim-treesitter-pairs" },
             { "JoosepAlviste/nvim-ts-context-commentstring" },
-            {
-                "windwp/nvim-ts-autotag",
-                config = function()
-                    vim.lsp.handlers["textDocument/publishDiagnostics"] =
-                        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-                            underline = true,
-                            virtual_text = {
-                                spacing = 5,
-                                severity = {
-                                    min = vim.diagnostic.severity.WARN,
-                                },
-                            },
-                            update_in_insert = true,
-                        })
-                end,
-            },
         },
         opts = {
             pairs = { -- "theHamsta/nvim-treesitter-pairs"
