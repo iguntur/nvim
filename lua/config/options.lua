@@ -12,6 +12,7 @@ opt.backspace = { "indent", "eol", "start" }
 opt.cindent = true
 opt.cino = ":0" -- (C Lang) No indent for case:/default:
 opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
 opt.expandtab = false -- convert tabs to spaces
 opt.shiftwidth = 4
 opt.smarttab = true
