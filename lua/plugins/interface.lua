@@ -136,14 +136,15 @@ return {
     --     end,
     -- },
 
-    -- {
-    --     "echasnovski/mini.indentscope",
-    --     opts = {
-    --         symbol = "▏",
-    --         -- symbol = "│",
-    --         -- symbol = "█",
-    --     },
-    -- },
+    {
+        "echasnovski/mini.indentscope",
+        opts = {
+            -- symbol = "▏",
+            symbol = "│",
+            -- symbol = "█",
+            options = { try_as_border = true },
+        },
+    },
 
     --
     -- status line

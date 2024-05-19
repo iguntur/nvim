@@ -53,6 +53,7 @@ require("lazy").setup({
 
         -- UI
         { import = "lazyvim.plugins.extras.ui.treesitter-context" },
+        { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
 
         -- util
         { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
