@@ -155,6 +155,15 @@ return {
         opts = function(_, opts)
             local config = {
                 theme = "auto",
+                -- theme = "moonfly",
+                section_separators = {
+                    left = "",
+                    right = "",
+                },
+                component_separators = {
+                    left = "",
+                    right = "",
+                },
             }
 
             opts.options = vim.tbl_extend("force", opts.options or {}, config)
