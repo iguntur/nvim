@@ -1,13 +1,5 @@
 return {
     {
-        "LazyVim/LazyVim",
-        opts = {
-            -- colorscheme = "solarized-osaka",
-            colorscheme = "tokyonight",
-        },
-    },
-
-    {
         "folke/tokyonight.nvim",
         opts = {
             style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
