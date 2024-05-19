@@ -2,7 +2,7 @@ local opt = vim.opt
 
 -- Set Leader to a comma - <leader>
 vim.g.mapleader = ","
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = ";"
 
 --------------------------------------------------------------------------------
 -- Text encoding and editing
