@@ -1,3 +1,3 @@
-require("util").SafeRequire("persistence", function(session)
-    session.load()
-end)
+-- require("util").SafeRequire("persistence", function(session)
+--     -- session.load()
+-- end)
