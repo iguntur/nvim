@@ -289,4 +289,49 @@ return {
             prefix = "",
         },
     },
+
+    --
+    -- illuminate: goto next/previous reference
+    --
+    {
+        "RRethy/vim-illuminate",
+        event = "LazyFile",
+        opts = {
+            delay = 200,
+            large_file_cutoff = 2000,
+            large_file_overrides = {
+                providers = { "lsp" },
+            },
+        },
+        config = function(_, opts)
+            require("illuminate").configure(opts)
+
+            local function map(key, direction, buffer)
+                local key_options = {
+                    desc = direction:sub(1, 1):upper() .. direction:sub(2) .. " Reference",
+                    buffer = buffer,
+                }
+
+                vim.keymap.set("n", key, function()
+                    require("illuminate")["goto_" .. direction .. "_reference"](false)
+                end, key_options)
+            end
+
+            map("<M-n>", "next")
+            map("<M-m>", "prev")
+
+            -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function()
+                    local buffer = vim.api.nvim_get_current_buf()
+                    map("<M-n>", "next", buffer)
+                    map("<M-m>", "prev", buffer)
+                end,
+            })
+        end,
+        keys = {
+            { "<M-n>", desc = "Next Reference" },
+            { "<M-m>", desc = "Prev Reference" },
+        },
+    },
 }

@@ -68,5 +68,8 @@ return {
                 },
             },
         },
+        keys = {
+            { "<space>lr", "<cmd>LspRestart<cr>", desc = "Restart LSP Engine" },
+        },
     },
 }

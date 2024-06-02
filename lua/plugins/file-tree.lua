@@ -10,9 +10,9 @@ return {
         config = function()
             require("oil").setup()
 
-            vim.keymap.set("n", "<space>;", "<CMD>Oil<CR>", {
+            vim.keymap.set("n", "<space>-", "<CMD>Oil<CR>", {
                 silent = true,
-                desc = "Open parent directory",
+                desc = "Create/edit file and directory like NetRW",
             })
         end,
     },
