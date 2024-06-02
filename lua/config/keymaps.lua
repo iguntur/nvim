@@ -210,6 +210,16 @@ keymap.set("n", "<leader><tab>[", ":tabprevious<CR>", { silent = true, noremap =
 -- keymap.set("n", "<C-Right>", "<C-w>l", options) -- move cursor to "right" window
 
 --------------------------------------------------------------------------------
+-- Full window
+--------------------------------------------------------------------------------
+keymap.set(
+    "n",
+    "<leader>wf",
+    "<C-w>| <C-w>_",
+    { silent = true, noremap = true, desc = "Max out the window width and height" }
+)
+
+--------------------------------------------------------------------------------
 -- Resize window (Ctrl-<Arrow_Keys>)
 --------------------------------------------------------------------------------
 keymap.set("n", "<C-Up>", ":resize +5<CR>", options) -- " Up
