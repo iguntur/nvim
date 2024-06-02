@@ -119,14 +119,15 @@ return {
     --
     {
         "nathom/filetype.nvim",
+        enabled = false,
         opts = {
             overrides = {
                 complex = {
                     -- Set the filetype of any full filename matching the regex to gitconfig
                     [".*git/config"] = "gitconfig", -- Included in the plugin
                     [".env"] = "sh",
-                    [".env.*"] = "sh",
-                    [".*.env.*"] = "sh",
+                    -- [".env.*"] = "sh",
+                    -- ["*.env.*"] = "sh",
                     ["tsconfig*.json"] = "jsonc",
                     ["Dockerfile.*"] = "dockerfile",
                 },
@@ -270,26 +271,6 @@ return {
                 "<cmd>TextCaseOpenTelescopeLSPChange<CR>",
                 { silent = true, noremap = true, desc = "Telescope LSP Change" }
             )
-        end,
-    },
-
-    --
-    -- maximize window
-    --
-    {
-        "declancm/maximize.nvim",
-        config = function()
-            require("maximize").setup({
-                plugins = {
-                    aerial = { enable = true }, -- enable aerial.nvim integration
-                    dapui = { enable = true }, -- enable nvim-dap-ui integration
-                    tree = { enable = false }, -- enable nvim-tree.lua integration
-                },
-            })
-
-            vim.keymap.set("n", "<leader>z", function()
-                require("maximize").toggle()
-            end, { silent = true, desc = "Toggle Maximize" })
         end,
     },
 
