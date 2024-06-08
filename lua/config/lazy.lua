@@ -20,6 +20,11 @@ require("lazy").setup({
             },
         },
 
+        -- UI
+        { import = "lazyvim.plugins.extras.ui.treesitter-context" },
+        { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
+        -- { import = "lazyvim.plugins.extras.ui.edgy" },
+
         -- import any extras modules here
         -- coding
         -- { import = "lazyvim.plugins.extras.coding.codeium" },
@@ -52,10 +57,6 @@ require("lazy").setup({
 
         -- lsp
         -- { import = "lazyvim.plugins.extras.lsp.none-ls" },
-
-        -- UI
-        { import = "lazyvim.plugins.extras.ui.treesitter-context" },
-        { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
 
         -- util
         { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
