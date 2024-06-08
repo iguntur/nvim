@@ -60,6 +60,31 @@ return {
             "rcarriga/nvim-notify",
         },
         opts = {
+            routes = {
+                {
+                    filter = {
+                        event = "msg_show",
+                        any = {
+                            { find = "%d+L, %d+B" },
+                            { find = "; after #%d+" },
+                            { find = "; before #%d+" },
+                            { find = "%d fewer lines" },
+                            { find = "%d more lines" },
+                        },
+                    },
+                    view = "mini",
+                },
+                {
+                    filter = {
+                        event = "msg_show",
+                        any = {
+                            { find = "DB:" },
+                        },
+                    },
+                    opts = { skip = true },
+                },
+            },
+
             -- you can enable a preset for easier configuration
             presets = {
                 bottom_search = true, -- use a classic bottom cmdline for search
