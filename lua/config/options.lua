@@ -26,6 +26,7 @@ opt.undofile = true -- enable persistent undo
 opt.undodir = vim.fn.expand("$HOME/.cache/nvim-undodir")
 opt.clipboard = ""
 opt.shortmess:append("I") -- Disable Neovim welcome page
+opt.shortmess:append("Ws") -- Disable Neovim welcome page
 
 --------------------------------------------------------------------------------
 -- Interface
