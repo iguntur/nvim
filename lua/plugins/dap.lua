@@ -88,30 +88,30 @@ return {
             -- setup dap adapters
             --
             local port = 38690
-            dap.adapters.go = {
-                type = "server",
-
-                -- a string that defines the port to start delve debugger.
-                -- default to string "${port}" which instructs nvim-dap
-                -- to start the process in a random available port
-                -- port = 38697,
-                -- port = port,
-                port = "${port}",
-
-                executable = {
-                    -- the path to the executable dlv which will be used for debugging.
-                    -- by default, this is the "dlv" executable on your PATH.
-                    command = vim.fn.expand("$GOBIN/dlv"),
-                    -- command = vim.fn.stdpath("data") .. "/mason/bin/dlv",
-
-                    -- additional args to pass to dlv
-                    -- args = { "dap", "-l", "0.0.0.0:" .. port },
-                    args = { "dap", "-l", "0.0.0.0:${port}" },
-                },
-                options = {
-                    initialize_timeout_sec = 20,
-                },
-            }
+            -- dap.adapters.go = {
+            --     type = "server",
+            --
+            --     -- a string that defines the port to start delve debugger.
+            --     -- default to string "${port}" which instructs nvim-dap
+            --     -- to start the process in a random available port
+            --     -- port = 38697,
+            --     -- port = port,
+            --     port = "${port}",
+            --
+            --     executable = {
+            --         -- the path to the executable dlv which will be used for debugging.
+            --         -- by default, this is the "dlv" executable on your PATH.
+            --         command = vim.fn.expand("$GOBIN/dlv"),
+            --         -- command = vim.fn.stdpath("data") .. "/mason/bin/dlv",
+            --
+            --         -- additional args to pass to dlv
+            --         -- args = { "dap", "-l", "0.0.0.0:" .. port },
+            --         args = { "dap", "-l", "0.0.0.0:${port}" },
+            --     },
+            --     options = {
+            --         initialize_timeout_sec = 20,
+            --     },
+            -- }
 
             --
             -- setup dap go
