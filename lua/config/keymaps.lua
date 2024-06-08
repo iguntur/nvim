@@ -212,12 +212,13 @@ keymap.set("n", "<leader><tab>[", ":tabprevious<CR>", { silent = true, noremap =
 --------------------------------------------------------------------------------
 -- Full window
 --------------------------------------------------------------------------------
-keymap.set(
-    "n",
-    "<leader>wf",
-    "<C-w>| <C-w>_",
-    { silent = true, noremap = true, desc = "Max out the window width and height" }
-)
+for _, k in pairs({ "<leader>wf", "<leader>M" }) do
+    keymap.set("n", k, "<C-w>| <C-w>_", {
+        silent = true,
+        noremap = true,
+        desc = "Max out the window width and height",
+    })
+end
 
 --------------------------------------------------------------------------------
 -- Resize window (Ctrl-<Arrow_Keys>)
