@@ -26,6 +26,7 @@ require("lazy").setup({
         -- { import = "lazyvim.plugins.extras.coding.copilot" },
 
         -- editor
+        { import = "lazyvim.plugins.extras.editor.inc-rename" },
         { import = "lazyvim.plugins.extras.editor.aerial" },
         -- { import = "lazyvim.plugins.extras.editor.navic" },
         -- { import = "lazyvim.plugins.extras.editor.symbols-outline" },
