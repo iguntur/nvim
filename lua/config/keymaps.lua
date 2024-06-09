@@ -209,6 +209,12 @@ keymap.set("n", "<leader><tab>[", ":tabprevious<CR>", { silent = true, noremap =
 -- keymap.set("n", "<C-Up>", "<C-w>k", options) -- move cursor to "top" window
 -- keymap.set("n", "<C-Right>", "<C-w>l", options) -- move cursor to "right" window
 
+-- move cursor to the first or last window
+-- ctrl-(alt|option)-h | ctrl-alt-l
+for _, k in pairs({ "h", "l" }) do
+    keymap.set("n", "<C-M-" .. k .. ">", "<C-w>999" .. k .. "<ESC>", { silent = true, noremap = true })
+end
+
 --------------------------------------------------------------------------------
 -- Full window
 --------------------------------------------------------------------------------
