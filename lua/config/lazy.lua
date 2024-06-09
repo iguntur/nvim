@@ -29,6 +29,7 @@ require("lazy").setup({
         -- coding
         -- { import = "lazyvim.plugins.extras.coding.codeium" },
         -- { import = "lazyvim.plugins.extras.coding.copilot" },
+        { import = "lazyvim.plugins.extras.coding.mini-surround" },
 
         -- editor
         { import = "lazyvim.plugins.extras.editor.inc-rename" },
