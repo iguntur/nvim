@@ -173,8 +173,8 @@ keymap.set("v", "<M-d>", '"_d<ESC>', options)
 --------------------------------------------------------------------------------
 -- Buffer and File
 --------------------------------------------------------------------------------
-keymap.set("n", "<M-]>", ":bnext<CR>", { silent = true, noremap = true, desc = "Next buffer" })
-keymap.set("n", "<M-[>", ":bprevious<CR>", { silent = true, noremap = true, desc = "Previous buffer" })
+-- keymap.set("n", "<M-]>", ":bnext<CR>", { silent = true, noremap = true, desc = "Next buffer" })
+-- keymap.set("n", "<M-[>", ":bprevious<CR>", { silent = true, noremap = true, desc = "Previous buffer" })
 
 -- Write or saving file: (⌥ or alt) + s
 keymap.set("v", "<M-s>", "<ESC><CMD>w<CR><ESC>", options)
@@ -197,8 +197,12 @@ keymap.set("n", "<leader><tab>l", ":tablast<CR>", { silent = true, noremap = tru
 -- Navigate tab
 keymap.set("n", "<tab>", ":tabnext<CR>", { silent = true, noremap = true, desc = "Move to next tab" }) -- tab
 keymap.set("n", "<S-tab>", ":tabprevious<CR>", { silent = true, noremap = true, desc = "Move to previous tab" }) -- shift+tab
-keymap.set("n", "<leader><tab>]", ":tabnext<CR>", { silent = true, noremap = true, desc = "Move to next tab" })
-keymap.set("n", "<leader><tab>[", ":tabprevious<CR>", { silent = true, noremap = true, desc = "Move to previous tab" })
+keymap.set("n", "<M-]>", ":tabnext<CR>", { silent = true, noremap = true, desc = "Move to next tab" })
+keymap.set("n", "<M-[>", ":tabprevious<CR>", { silent = true, noremap = true, desc = "Move to previous tab" })
+keymap.set("n", "<C-M-]>", ":tablast<CR>", { silent = true, noremap = true, desc = "Move to last tab" })
+keymap.set("n", "<C-M-[>", ":tabfirst<CR>", { silent = true, noremap = true, desc = "Move to first tab" })
+keymap.set("n", "<M-{>", ":tabmove -1<CR>", { silent = true, noremap = true, desc = "Move tab to the left" })
+keymap.set("n", "<M-}>", ":tabmove +1<CR>", { silent = true, noremap = true, desc = "Move tab to the right" })
 
 --------------------------------------------------------------------------------
 -- Window
@@ -237,11 +241,17 @@ keymap.set("n", "<C-Right>", ":vertical resize +5<CR>", options) -- " Right
 --------------------------------------------------------------------------------
 -- Terminal
 --------------------------------------------------------------------------------
+keymap.set("n", "$$", ":terminal<CR>A", options)
+keymap.set("n", "$-", ":split<CR>:terminal<CR>A", options)
+keymap.set("n", "$|", ":vsplit<CR>:terminal<CR>A", options)
+keymap.set("n", "<leader><tab>$", ":tabnew<CR>:terminal<CR>A", options)
+
 -- Terminal navigation
 -- keymap.set("t", "<C-h>", "<C-\\><C-N><C-w>h", options)
 -- keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j", options)
 -- keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", options)
 -- keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", options)
+keymap.set("t", "<C-l>", "<C-l>", options)
 
 --------------------------------------------------------------------------------
 -- Jump tmux session
