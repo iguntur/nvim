@@ -311,4 +311,12 @@ return {
             { "<M-m>", desc = "Prev Reference" },
         },
     },
+
+    --
+    -- indent-o-matic
+    --
+    {
+        "Darazaki/indent-o-matic",
+        opts = {},
+    },
 }
