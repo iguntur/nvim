@@ -180,6 +180,7 @@ keymap.set("v", "<M-d>", '"_d<ESC>', options)
 keymap.set("v", "<M-s>", "<ESC><CMD>w<CR><ESC>", options)
 keymap.set("n", "<M-s>", "<CMD>w<CR><ESC>", options)
 keymap.set("i", "<M-s>", "<ESC><CMD>w<CR><ESC>a", options) -- allow writing in insert mode
+keymap.set("n", "<M-S>", "<CMD>wa<CR><ESC>", options)
 
 -- Close current buffer: (⌥ or alt) + w
 -- keymap.set("n", '<M-w>', ':bw<ESC>', options)
