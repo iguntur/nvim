@@ -1,6 +1,8 @@
-local ts = vim.treesitter
+local config = require("otel.config")
 
+local ts = vim.treesitter
 local M = {}
+local lang = "go" -- parser:lang()
 
 local query_str = [[
 (method_declaration
@@ -15,19 +17,6 @@ local query_str = [[
 	body: (block) @bb
 )
 ]]
-
-local lang = "go" -- parser:lang()
-
-local default = {
-    format_case = "", -- "" or snakecase
-    delimiter = ".",
-    template = {
-        context_var = "ctx",
-        span_var = "span",
-        tracer_start_func = "opentelemetry.GetTracer().Start",
-        trace_ctx_param_name = "ctx",
-    },
-}
 
 local function starts_with(str, start)
     return str:sub(1, #start) == start
@@ -45,12 +34,17 @@ local function str_snake_case(s)
     return s
 end
 
----@param opts? table
-local function traceme(opts)
-    opts = vim.tbl_extend("force", default, opts or {})
+function M.fire()
+    local opts = config.get()
+
     local t = opts.template
 
     local current_node = ts.get_node()
+
+    if current_node == nil then
+        return
+    end
+
     local node_type = current_node:type()
 
     if node_type ~= "field_identifier" then
@@ -108,13 +102,5 @@ local function traceme(opts)
 
     vim.api.nvim_buf_set_lines(0, line_number, line_number + 1, false, output_texts)
 end
-
-function M.setup(opts)
-    traceme(opts)
-end
-
-M.setup({
-    format_case = "snakecase",
-})
 
 return M
