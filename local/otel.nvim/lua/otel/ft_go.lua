@@ -35,6 +35,10 @@ local function str_snake_case(s)
 end
 
 function M.fire()
+    if vim.bo.filetype ~= lang then
+        return
+    end
+
     local opts = config.get()
 
     local t = opts.template
