@@ -28,6 +28,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 local ignore_filetypes = {
     "neo-tree",
     "NvimTree",
+    "dbui",
 }
 local ignore_buftypes = {
     "nofile",
