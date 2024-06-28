@@ -156,7 +156,9 @@ return {
             "nvim-tree/nvim-web-devicons", -- optional dependency
         },
         opts = {
-            -- configurations go here
+            ---Whether to replace file icon with the modified symbol when buffer is modified.
+            ---@type boolean
+            show_modified = true,
         },
     },
 
