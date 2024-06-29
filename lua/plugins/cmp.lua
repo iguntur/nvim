@@ -1,11 +1,13 @@
 return {
     {
         "hrsh7th/nvim-cmp",
+        version = false,
         event = "LazyFile",
         dependencies = {
             { "hrsh7th/cmp-cmdline" },
         },
-        config = function()
+        ---@param opts cmp.ConfigSchema
+        opts = function(_, opts)
             local cmp = require("cmp")
 
             cmp.setup.cmdline("/", {
@@ -28,6 +30,8 @@ return {
                     },
                 }),
             })
+
+            return opts
         end,
     },
 }
