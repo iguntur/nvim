@@ -16,7 +16,12 @@ require("lazy").setup({
             "LazyVim/LazyVim",
             import = "lazyvim.plugins",
             opts = {
-                colorscheme = "ayu",
+                colorscheme = "tokyonight",
+                -- colorscheme = "catppuccin",
+                -- colorscheme = "catppuccin-macchiato",
+                -- colorscheme = "catppuccin-frappe",
+                -- colorscheme = "catppuccin-latte",
+                -- colorscheme = "catppuccin-mocha",
             },
         },
 
