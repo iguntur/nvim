@@ -6,8 +6,30 @@ return {
         "folke/tokyonight.nvim",
         opts = {
             style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-            -- light_style = "day", -- The theme is used when the background is set to light
             transparent = true, -- Enable this to disable setting the background color
+            -- light_style = "day", -- The theme is used when the background is set to light
+            -- dim_inactive = true, -- dims inactive windows
+            styles = {
+                sidebars = "transparent",
+                floats = "transparent",
+            },
+            on_highlights = function(hl, c)
+                -- remove telescope background
+                hl.TelescopeNormal = { bg = "NONE" }
+                hl.TelescopeBorder = { bg = "NONE" }
+                hl.TelescopePromptNormal = { bg = "NONE" }
+                hl.TelescopePromptBorder = { bg = "NONE" }
+                hl.TelescopePromptTitle = { bg = "NONE" }
+                hl.TelescopePreviewTitle = { bg = "NONE" }
+                hl.TelescopePreviewBorder = { bg = "NONE" }
+                hl.TelescopeResultsTitle = { bg = "NONE" }
+                hl.TelescopeResultsBorder = { bg = "NONE" }
+            end,
+
+            ---@type table<string, boolean|{enabled:boolean}>
+            -- plugins = {
+            --     -- telescope = true,
+            -- },
         },
     },
 
