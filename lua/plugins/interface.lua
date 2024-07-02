@@ -94,7 +94,7 @@ return {
                 },
             }
 
-            opts.options = vim.tbl_extend("force", opts.options or {}, config)
+            opts.options = vim.tbl_deep_extend("force", opts.options or {}, config)
         end,
     },
 
