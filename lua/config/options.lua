@@ -32,7 +32,7 @@ opt.shortmess:append("Ws") -- Disable Neovim welcome page
 -- Interface
 --------------------------------------------------------------------------------
 opt.background = "dark"
-opt.colorcolumn = "110"
+opt.colorcolumn = "80,110,120"
 opt.cursorline = true
 opt.laststatus = 2
 opt.list = true
