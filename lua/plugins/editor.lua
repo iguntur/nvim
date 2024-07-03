@@ -338,4 +338,33 @@ return {
             },
         },
     },
+
+    --
+    -- move
+    --
+    {
+        "fedepujol/move.nvim",
+        config = function()
+            require("move").setup({
+                line = {
+                    enable = false, -- Enables line movement
+                    indent = false, -- Toggles indentation
+                },
+                block = {
+                    enable = false, -- Enables block movement
+                    indent = false, -- Toggles indentation
+                },
+                word = {
+                    enable = false, -- Enables word movement
+                },
+                char = {
+                    enable = true, -- Enables char movement
+                },
+            })
+
+            local opts = { noremap = true, silent = true }
+            vim.keymap.set("n", "<M-h>", ":MoveHChar(-1)<CR>", opts)
+            vim.keymap.set("n", "<M-l>", ":MoveHChar(1)<CR>", opts)
+        end,
+    },
 }
