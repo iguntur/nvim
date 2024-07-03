@@ -12,9 +12,9 @@ return {
         },
         opts = {
             -- provide the inlay hints.
-            -- inlay_hints = {
-            --     enabled = true,
-            -- },
+            inlay_hints = {
+                enabled = false,
+            },
 
             -- document_highlight = {
             --     enabled = false,
