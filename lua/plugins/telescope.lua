@@ -223,14 +223,7 @@ return {
                 desc = "Find files (cwd)",
             },
             {
-                "<leader>ff",
-                function()
-                    find_cwd_files()
-                end,
-                desc = "Find files (cwd)",
-            },
-            {
-                "<leader>fF",
+                "<M-P>",
                 function()
                     find_project_root_files()
                 end,
