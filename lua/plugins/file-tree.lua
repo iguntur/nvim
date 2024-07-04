@@ -43,6 +43,11 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         config = function()
+            local function label(path)
+                path = path:gsub(os.getenv("HOME"), "~", 1)
+                return path:gsub("([a-zA-Z])[a-z0-9]+", "%1") .. (path:match("[a-zA-Z]([a-z0-9]*)$") or "")
+            end
+
             require("nvim-tree").setup({
                 -- sort_by = "case_sensitive",
                 view = {
@@ -59,8 +64,9 @@ return {
                     highlight_git = true,
                     -- full_name = false,
                     highlight_opened_files = "all", -- "none", "icon" "name" "all"
-                    -- root_folder_modifier = ":~",
-                    root_folder_label = true,
+                    root_folder_modifier = ":~",
+                    -- root_folder_label = true,
+                    root_folder_label = label,
                     indent_markers = {
                         enable = true,
                     },
