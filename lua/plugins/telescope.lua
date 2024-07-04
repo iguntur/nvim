@@ -237,11 +237,6 @@ return {
                 desc = "Find files (project directory)",
             },
             {
-                "<leader>fg",
-                "<CMD>Telescope git_status<CR>",
-                desc = "Telescope git status",
-            },
-            {
                 "<leader>fj",
                 function()
                     open_journals_files()
