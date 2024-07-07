@@ -1,3 +1,59 @@
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+
+local workspaces = {
+    -- Format: <name_of_workspace> = <path_to_workspace_root>
+    personal = "~/dev/notes/guntur",
+    efishery = "~/dev/notes/efishery",
+    ruangguru = "~/dev/notes/ruangguru",
+}
+
+local function select_neorg_workspace()
+    -- basic telescope configuration
+    local conf = require("telescope.config").values
+    local workspace_names = {}
+
+    for name, _ in pairs(workspaces) do
+        table.insert(workspace_names, name)
+    end
+
+    local function run_selection(prompt_bufnr)
+        actions.select_default:replace(function()
+            actions.close(prompt_bufnr)
+            local selection = action_state.get_selected_entry()
+
+            vim.cmd([[silent! Neorg workspace ]] .. selection[1])
+        end)
+
+        return true
+    end
+
+    local opts = {
+        layout_strategy = "vertical", -- vertical, horizontal, flex, bottom_pane
+        sorting_strategy = "ascending",
+        layout_config = {
+            prompt_position = "top",
+            vertical = {
+                width = 0.5,
+                height = 0.5,
+            },
+        },
+    }
+
+    require("telescope.pickers")
+        .new(opts, {
+            prompt_title = " Select Neorg Workspaces",
+            finder = require("telescope.finders").new_table({
+                results = workspace_names,
+            }),
+            previewer = false,
+            -- previewer = conf.file_previewer({}),
+            sorter = conf.generic_sorter({}),
+            attach_mappings = run_selection,
+        })
+        :find()
+end
+
 return {
     --
     -- luarocks
@@ -37,12 +93,7 @@ return {
                     -- dirman
                     ["core.dirman"] = {
                         config = {
-                            workspaces = {
-                                -- Format: <name_of_workspace> = <path_to_workspace_root>
-                                personal = "~/dev/notes/guntur",
-                                efishery = "~/dev/notes/efishery",
-                                ruangguru = "~/dev/notes/ruangguru",
-                            },
+                            workspaces = workspaces,
                             default_workspace = "personal",
                             index = "index.norg", -- The name of the main (root) .norg file
                         },
@@ -64,5 +115,37 @@ return {
                 },
             })
         end,
+    },
+
+    {
+        "nvim-telescope/telescope.nvim",
+        keys = {
+            {
+                "<leader>nw",
+                select_neorg_workspace,
+                silent = true,
+                noremap = true,
+                desc = "Select neorg workspaces",
+            },
+            {
+                "<leader>nf",
+                function()
+                    require("telescope.builtin").find_files({
+                        prompt_title = "󰗚 Find Workspace Files",
+                        cwd = "~/dev/notes",
+                    })
+                end,
+                silent = true,
+                noremap = true,
+                desc = "Select neorg files",
+            },
+            {
+                "<leader>nr",
+                "<cmd>Neorg return<cr>",
+                silent = true,
+                noremap = true,
+                desc = "Neorg return",
+            },
+        },
     },
 }
