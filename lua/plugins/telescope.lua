@@ -243,17 +243,65 @@ return {
     -- telescopt with LSP
     --
     {
-        "nvim-telescope/telescope.nvim",
-        optional = true,
-        keys = {
-            {
-                "gi",
-                function()
-                    require("telescope.builtin").lsp_implementations({ reuse_win = true })
-                end,
-                desc = "Go To Implementation",
-            },
-        },
+        -- "nvim-telescope/telescope.nvim",
+        "neovim/nvim-lspconfig",
+        -- optional = true,
+        opts = function()
+            if LazyVim.pick.want() ~= "telescope" then
+                return
+            end
+
+            local lazy_keys = require("lazyvim.plugins.lsp.keymaps").get()
+
+            local keys = {
+                -- go to definition
+                {
+                    "gd",
+                    function()
+                        require("telescope.builtin").lsp_definitions({
+                            reuse_win = true,
+                            -- jump_type = "vsplit",
+                        })
+                    end,
+                    silent = true,
+                    remap = true,
+                    desc = "[g]oto [d]efinition...",
+                },
+
+                -- go to implementation
+                {
+                    "gi",
+                    function()
+                        require("telescope.builtin").lsp_implementations({
+                            reuse_win = true,
+                            -- jump_type = "vsplit",
+                        })
+                    end,
+                    desc = "[g]oto [i]mplementation",
+                },
+                {
+                    "gI",
+                    function()
+                        require("telescope.builtin").lsp_implementations({
+                            reuse_win = true,
+                            -- jump_type = "vsplit",
+                        })
+                    end,
+                    desc = "[g]oto [i]mplementation",
+                },
+
+                -- select git branch
+                {
+                    "<space>gb",
+                    function()
+                        require("telescope.builtin").git_branches({})
+                    end,
+                    desc = "Select [g]it [b]ranch",
+                },
+            }
+
+            vim.list_extend(lazy_keys, keys)
+        end,
     },
 
     --
@@ -276,8 +324,9 @@ return {
             {
                 "<leader>fw",
                 "<cmd>Telescope file_browser path=%:p:h<CR>",
-                remap = true,
-                desc = "Telescope file browser",
+                silent = true,
+                noremap = true,
+                desc = "Telescope [f]ile bro[w]ser",
             },
         },
     },
