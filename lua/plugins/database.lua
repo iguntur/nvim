@@ -1,5 +1,27 @@
 local sql_ft = { "sql", "mysql", "plsql" }
 
+local function find_query_files()
+    local data_path = vim.fn.expand("$HOME/.local/share/dadbod_ui")
+
+    local opts = {
+        prompt_title = "󱤟 Find Query",
+        cwd = data_path,
+        find_command = {
+            "rg",
+            "--follow",
+            "--files",
+            "--no-ignore",
+            "--hidden",
+            "--ignore-file",
+            vim.env.HOME .. "/.rgignore",
+            "--sort",
+            "path",
+        },
+    }
+
+    require("telescope.builtin").find_files(opts)
+end
+
 return {
     --
     -- dadbod core
@@ -78,5 +100,19 @@ return {
                 table.insert(opts.linters_by_ft[ft], "sqlfluff")
             end
         end,
+    },
+
+    {
+        "nvim-telescope/telescope.nvim",
+        optional = true,
+        keys = {
+            {
+                "<leader>fq",
+                find_query_files,
+                silent = true,
+                noremap = true,
+                desc = "[F]ind [q]uery files",
+            },
+        },
     },
 }
