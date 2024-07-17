@@ -23,11 +23,15 @@ return {
             -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
             -- Be aware that you also will need to properly configure your LSP server to
             servers = {
-                -- gopls = {
-                --     settings = {
-                --         gopls = {},
-                --     },
-                -- },
+                tailwindcss = {
+                    settings = {
+                        tailwindCSS = {
+                            includeLanguages = {
+                                templ = "html",
+                            },
+                        },
+                    },
+                },
                 lua_ls = {
                     -- mason = false, -- set to false if you don't want this server to be installed with mason
                     -- Use this to add any additional keymaps
