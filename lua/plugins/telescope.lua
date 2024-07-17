@@ -173,8 +173,8 @@ return {
                 buffers = {
                     mappings = {
                         -- delete/remove buffer from list
-                        n = { ["<c-w>"] = actions.delete_buffer },
-                        i = { ["<c-w>"] = actions.delete_buffer },
+                        n = { ["<M-d>"] = actions.delete_buffer },
+                        i = { ["<M-d>"] = actions.delete_buffer },
                     },
                 },
             }
