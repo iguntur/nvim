@@ -44,7 +44,6 @@ opt.listchars = {
     -- eol = '↲',
 }
 opt.mouse = "a"
-opt.number = true
 opt.numberwidth = 6
 opt.ruler = true
 opt.scrolloff = 10
@@ -60,8 +59,10 @@ opt.termguicolors = true -- enable 24-bit RGB colors
 opt.splitbelow = true -- make all horizontal split to go below window
 opt.splitright = true -- make all vertical split to go to the right
 opt.backup = false -- create backup file
+opt.number = true
 opt.relativenumber = true
-opt.statuscolumn = "%s%=%l%= %=%r│%T"
+opt.statuscolumn = "%s%=%l%= %=%r │%T"
+opt.smoothscroll = true -- Optional but improves reproducibility
 
 -- vim.cmd([[ set winbar=%f ]])
 -- vim.o.ls = 0
