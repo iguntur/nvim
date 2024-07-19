@@ -148,6 +148,7 @@ return {
                 sorting_strategy = "ascending",
                 layout_config = {
                     prompt_position = "top",
+                    preview_width = 110,
                     horizontal = {
                         width = 500,
                         height = 500,
