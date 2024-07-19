@@ -6,6 +6,14 @@ return {
         "nvim-focus/focus.nvim",
         version = "*",
         opts = {
+            autoresize = {
+                -- enable = true, -- Enable or disable auto-resizing of splits
+                width = 140, -- Force width for the focused window
+                -- height = 0, -- Force height for the focused window
+                -- minwidth = 0, -- Force minimum width for the unfocused window
+                -- minheight = 0, -- Force minimum height for the unfocused window
+                -- height_quickfix = 10, -- Set the height of quickfix panel
+            },
             ui = {
                 -- number = false, -- Display line numbers in the focussed window only
                 -- relativenumber = false, -- Display relative line numbers in the focussed window only
