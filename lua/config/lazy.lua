@@ -32,16 +32,10 @@ require("lazy").setup({
 
         -- import any extras modules here
         -- coding
-        -- { import = "lazyvim.plugins.extras.coding.codeium" },
-        -- { import = "lazyvim.plugins.extras.coding.copilot" },
         { import = "lazyvim.plugins.extras.coding.mini-surround" },
 
         -- editor
         { import = "lazyvim.plugins.extras.editor.inc-rename" },
-        { import = "lazyvim.plugins.extras.editor.aerial" },
-        -- { import = "lazyvim.plugins.extras.editor.navic" },
-        -- { import = "lazyvim.plugins.extras.editor.symbols-outline" },
-        -- { import = "lazyvim.plugins.extras.editor.illuminate" },
 
         -- formatting
         { import = "lazyvim.plugins.extras.formatting.prettier" },
