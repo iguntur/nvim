@@ -148,13 +148,18 @@ return {
                 sorting_strategy = "ascending",
                 layout_config = {
                     prompt_position = "top",
-                    preview_width = 110,
+                    vertical = {
+                        width = 0.9,
+                        height = 0.9,
+                    },
                     horizontal = {
-                        width = 500,
-                        height = 500,
+                        width = 0.98,
+                        height = 999,
+                        preview_width = 0.6,
                     },
                     bottom_pane = {
-                        height = 100,
+                        preview_width = 0.6,
+                        height = 999,
                     },
                 },
                 mappings = {
