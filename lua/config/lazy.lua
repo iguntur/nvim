@@ -71,6 +71,12 @@ require("lazy").setup({
 
         -- import/override with your plugins
         { import = "plugins" },
+
+        -- import custom plugins
+        {
+            dir = vim.fn.expand("$HOME/dev/github.com/iguntur/gt.nvim"),
+            import = "gt.plugins",
+        },
     },
 
     defaults = {
