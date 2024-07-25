@@ -51,19 +51,47 @@ return {
     },
 
     --
+    -- swap
+    --
+    {
+        "Wansmer/sibling-swap.nvim",
+        opts = {
+            keymaps = {
+                ["<space>["] = "swap_with_left",
+                ["<space>]"] = "swap_with_right",
+                ["<space>,"] = "swap_with_left_with_opp",
+                ["<space>."] = "swap_with_right_with_opp",
+            },
+        },
+    },
+
+    --
     -- join and split text line
     --
     {
         "Wansmer/treesj",
-        opts = {
-            max_join_length = 800,
-        },
+        opts = function(_, opts)
+            local tsj_utils = require("treesj.langs.utils")
+            local html = require("treesj.langs.html")
+            local langs = {
+                templ = tsj_utils.merge_preset(html, {}), -- TODO
+            }
+
+            local options = {
+                max_join_length = 800,
+                langs = langs,
+            }
+
+            return vim.tbl_deep_extend("force", opts, options)
+        end,
         keys = {
             {
                 "<space>m",
                 function()
                     require("treesj").toggle()
                 end,
+                silent = true,
+                noremap = true,
                 desc = "Split and join code block (toggle)",
             },
             {
@@ -71,10 +99,13 @@ return {
                 function()
                     require("treesj").toggle({ split = { recursive = true } })
                 end,
+                silent = true,
+                noremap = true,
                 desc = "Split and join code block recursively (toggle)",
             },
         },
     },
+
     -- {
     --     "AndrewRadev/splitjoin.vim",
     --     version = "^1.0.0",
