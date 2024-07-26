@@ -305,7 +305,7 @@ keymap.set(
 keymap.set("n", "<leader>;", "<cmd>so %<CR>", { silent = true, noremap = true, desc = "Reload nvim.config" })
 keymap.set(
     "n",
-    "<space>x",
+    "<space><space>x",
     "<cmd>put=system(getline('.'))<CR>",
     { silent = true, noremap = true, desc = "Execute current line and put the results below" }
 )
