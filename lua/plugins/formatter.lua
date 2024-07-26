@@ -12,14 +12,16 @@ return {
                         "goimports-reviser",
                         "golines",
                     },
-                    svelte = { "prettier" },
-                    templ = { "templ" },
+                    svelte = { "prettier", "rustywind" },
+                    templ = { "templ", "rustywind" },
+                    php = { "pint" },
+                    blade = { "blade-formatter", "rustywind" },
                 },
 
                 formatters = {
                     injected = { options = { ignore_errors = true } },
                     golines = {
-                        prepend_args = { "--max-len=250" },
+                        prepend_args = { "--max-len=120" },
                     },
                 },
             }
