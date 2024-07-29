@@ -204,30 +204,39 @@ return {
             bm.setup({
                 -- sign_priority = 8,  --set bookmark sign priority to cover other sign
                 save_file = vim.fn.expand("$HOME/.config/nvim/.cache/bookmarks"), -- bookmarks save file path
-                on_attach = function(bufnr)
-                    local bm = require("bookmarks")
-
+                on_attach = function(_)
                     vim.keymap.set("n", "mm", bm.bookmark_toggle, {
+                        noremap = true,
                         silent = true,
                         desc = "Add or remove bookmark at current line",
                     })
                     vim.keymap.set("n", "mi", bm.bookmark_ann, {
+                        noremap = true,
                         silent = true,
                         desc = "Add or edit mark annotation at current line",
                     })
                     vim.keymap.set("n", "mc", bm.bookmark_clean, {
+                        noremap = true,
                         silent = true,
                         desc = "Clean all marks in current buffer",
                     })
+                    vim.keymap.set("n", "mx", bm.bookmark_clear_all, {
+                        noremap = true,
+                        silent = true,
+                        desc = "Clear all bookmarks",
+                    })
                     vim.keymap.set("n", "mn", bm.bookmark_next, {
+                        noremap = true,
                         silent = true,
                         desc = "Jump to next mark in current buffer",
                     })
                     vim.keymap.set("n", "mp", bm.bookmark_prev, {
+                        noremap = true,
                         silent = true,
                         desc = "Jump to previous mark in current buffer",
                     })
                     vim.keymap.set("n", "ml", require("telescope").extensions.bookmarks.list, {
+                        noremap = true,
                         silent = true,
                         desc = "Show marked files in bookmark lists",
                     })
