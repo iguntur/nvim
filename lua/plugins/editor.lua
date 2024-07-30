@@ -31,7 +31,6 @@ return {
                 "<C-n>",
                 function()
                     require("neoscroll").scroll(10, true, 250)
-                    vim.cmd("normal! zzzv")
                 end,
                 mode = { "n", "x" },
                 remap = true,
@@ -41,7 +40,6 @@ return {
                 "<C-m>",
                 function()
                     require("neoscroll").scroll(-10, true, 250)
-                    vim.cmd("normal! zzzv")
                 end,
                 mode = { "n", "x" },
                 remap = true,

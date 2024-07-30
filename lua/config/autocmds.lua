@@ -63,3 +63,17 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
     desc = "Disable focus autoresize for FileType",
 })
+
+-- always centered screen
+-- when jumping using lsp go to definition
+-- then force screen always centered event cursor target on the bottom
+local centered_group = vim.api.nvim_create_augroup("CenteredGroup", { clear = true })
+local centered_options = {
+    group = centered_group,
+    callback = function()
+        vim.cmd("normal! zz")
+    end,
+}
+
+vim.api.nvim_create_autocmd("BufEnter", centered_options)
+vim.api.nvim_create_autocmd("CursorMoved", centered_options)
