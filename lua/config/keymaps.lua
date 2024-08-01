@@ -196,8 +196,6 @@ keymap.set("n", "<leader><tab>f", ":tabfirst<CR>", { silent = true, noremap = tr
 keymap.set("n", "<leader><tab>l", ":tablast<CR>", { silent = true, noremap = true, desc = "Jump to the last tab" })
 
 -- Navigate tab
-keymap.set("n", "<tab>", ":tabnext<CR>", { silent = true, noremap = true, desc = "Move to next tab" }) -- tab
-keymap.set("n", "<S-tab>", ":tabprevious<CR>", { silent = true, noremap = true, desc = "Move to previous tab" }) -- shift+tab
 keymap.set("n", "<M-]>", ":tabnext<CR>", { silent = true, noremap = true, desc = "Move to next tab" })
 keymap.set("n", "<M-[>", ":tabprevious<CR>", { silent = true, noremap = true, desc = "Move to previous tab" })
 keymap.set("n", "<C-M-]>", ":tablast<CR>", { silent = true, noremap = true, desc = "Move to last tab" })
@@ -286,14 +284,14 @@ end, { silent = true, noremap = true, desc = "Cleanup git state" })
 keymap.set("n", "x", '"_x', options)
 
 -- Increment/decrement
-keymap.set("n", "+", "<C-a>", options)
-keymap.set("n", "-", "<C-x>", options)
+-- keymap.set("n", "+", "<C-a>", options)
+-- keymap.set("n", "-", "<C-x>", options)
 
 -- delete word from the end
 keymap.set("n", "dw", 'viw"_d', options)
 
 -- select all
-keymap.set("n", "<C-a>", "gg<S-v>G", options)
+keymap.set("n", "<M-a>", "gg<S-v>G", options)
 
 keymap.set(
     "n",
