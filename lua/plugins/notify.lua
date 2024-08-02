@@ -42,6 +42,7 @@ return {
                             { find = "DB:" },
                             { find = "E475: Invalid argument" }, -- eg: tab move
                             { find = "E384: vim" }, -- (vim-illuminate)
+                            { find = "E553: No more items" }, -- (quickfix list cycle)
                         },
                     },
                     opts = { skip = true },
