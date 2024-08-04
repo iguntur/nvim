@@ -31,10 +31,11 @@ opt.shortmess:append("Ws") -- Disable Neovim welcome page
 --------------------------------------------------------------------------------
 -- Interface
 --------------------------------------------------------------------------------
+opt.guicursor = "n-v-c-sm:blinkon1,i-ci-ve:ver25,r-cr-o:hor20"
 opt.background = "dark"
 opt.colorcolumn = "80,110,120"
 opt.cursorline = true
-opt.laststatus = 2
+opt.laststatus = 3
 opt.list = true
 -- opt.listchars = { tab = "▸ ", trail = "·", eol = "↴" } -- eol = '↲'
 opt.listchars = {
@@ -61,8 +62,9 @@ opt.splitright = true -- make all vertical split to go to the right
 opt.backup = false -- create backup file
 opt.number = true
 opt.relativenumber = true
-opt.statuscolumn = "%s%=%l%= %=%r │%T"
 opt.smoothscroll = true -- Optional but improves reproducibility
+opt.statuscolumn = [[%!v:lua.require('util.ui').statuscolumn()]]
+opt.signcolumn = "auto:3"
 
 -- vim.cmd([[ set winbar=%f ]])
 -- vim.o.ls = 0
@@ -70,7 +72,6 @@ opt.smoothscroll = true -- Optional but improves reproducibility
 --------------------------------------------------------------------------------
 -- Search
 --------------------------------------------------------------------------------
--- opt.guicursor = ""
 opt.hlsearch = true -- highlight search result
 opt.ignorecase = true
 opt.smartcase = true
@@ -85,10 +86,3 @@ opt.wildignore:append({
 -- LSP Stuff
 --------------------------------------------------------------------------------
 -- vim.cmd([[ set tagfunc=v:lua.vim.lsp.tagfunc ]])
-
--- vim.cmd([[
--- 	augroup highlight_on_yank
--- 		autocmd!
--- 		autocmd TextYankPost * lua vim.highlight.on_yank()
--- 	augroup END
--- ]])

@@ -38,10 +38,11 @@ local ignore_buftypes = {
     "popup",
 }
 
-local focus_group = vim.api.nvim_create_augroup("FocusDisable", { clear = true })
+local focus_disable_group = vim.api.nvim_create_augroup("FocusDisable", { clear = true })
+local focus_enable_group = vim.api.nvim_create_augroup("FocusEnable", { clear = true })
 
 vim.api.nvim_create_autocmd("WinEnter", {
-    group = focus_group,
+    group = focus_disable_group,
     callback = function(_)
         if vim.tbl_contains(ignore_buftypes, vim.bo.buftype) then
             vim.w.focus_disable = true
@@ -53,7 +54,7 @@ vim.api.nvim_create_autocmd("WinEnter", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    group = focus_group,
+    group = focus_disable_group,
     callback = function(_)
         if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
             vim.b.focus_disable = true
@@ -67,13 +68,18 @@ vim.api.nvim_create_autocmd("FileType", {
 -- always centered screen
 -- when jumping using lsp go to definition
 -- then force screen always centered event cursor target on the bottom
-local centered_group = vim.api.nvim_create_augroup("CenteredGroup", { clear = true })
-local centered_options = {
+local centered_group = vim.api.nvim_create_augroup("centered_group", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, { -- "BufWinEnter",
     group = centered_group,
     callback = function()
-        vim.cmd("normal! zz")
+        vim.cmd("normal! zzzv")
     end,
-}
+})
 
-vim.api.nvim_create_autocmd("BufEnter", centered_options)
-vim.api.nvim_create_autocmd("CursorMoved", centered_options)
+-- vim.api.nvim_create_autocmd("BufReadCmd", centered_options)
+-- vim.api.nvim_create_autocmd("CursorMoved", {
+--     group = centered_group,
+--     callback = function(...)
+--     end,
+-- })
