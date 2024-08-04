@@ -269,6 +269,7 @@ return {
 
                 vim.keymap.set("n", key, function()
                     require("illuminate")["goto_" .. direction .. "_reference"](false)
+                    vim.cmd("normal! zz")
                 end, key_options)
             end
 

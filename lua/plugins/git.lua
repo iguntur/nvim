@@ -32,9 +32,9 @@ return {
             -- current_line_blame_formatter = "    <author>, <author_time:%Y-%m-%d> - <summary>",
         },
         keys = {
-            { "<M-,>", "<cmd>Gitsigns next_hunk<cr>", noremap = true, desc = "Next hunk" },
-            { "<M-.>", "<cmd>Gitsigns prev_hunk<cr>", noremap = true, desc = "Previous hunk" },
-            { "<space>gr", "<cmd>Gitsigns refresh<cr>", noremap = true, desc = "Refresh git signs" },
+            { "<M-,>", "<cmd>Gitsigns next_hunk<cr>zz", silent = true, noremap = true, desc = "Next hunk" },
+            { "<M-.>", "<cmd>Gitsigns prev_hunk<cr>zz", silent = true, noremap = true, desc = "Previous hunk" },
+            { "<space>gr", "<cmd>Gitsigns refresh<cr>zz", silent = true, noremap = true, desc = "Refresh git signs" },
         },
     },
 

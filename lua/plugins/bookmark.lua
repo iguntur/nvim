@@ -8,7 +8,7 @@ return {
             local marks = require("marks")
             local config = {
                 -- whether the shada file is updated after modifying uppercase marks. default false
-                force_write_shada = true,
+                -- force_write_shada = true,
                 mappings = {
                     next = "<M-L>",
                     prev = "<M-H>", -- pass false to disable only this default mapping
@@ -20,6 +20,16 @@ return {
             local function keymap_opts(opts)
                 return vim.tbl_deep_extend("force", { noremap = true, silent = true }, opts)
             end
+
+            vim.keymap.set("n", "<M-L>", function()
+                marks.next()
+                vim.cmd("normal! zz")
+            end, { silent = true, noremap = true })
+
+            vim.keymap.set("n", "<M-H>", function()
+                marks.prev()
+                vim.cmd("normal! zz")
+            end, { silent = true, noremap = true })
 
             vim.keymap.set(
                 "n",
