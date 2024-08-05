@@ -38,6 +38,15 @@ local ignore_buftypes = {
     "popup",
 }
 
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
+    group = augroup("statuscolumn"),
+    callback = function(_)
+        if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+            vim.wo.statuscolumn = ""
+        end
+    end,
+})
+
 local focus_disable_group = vim.api.nvim_create_augroup("FocusDisable", { clear = true })
 local focus_enable_group = vim.api.nvim_create_augroup("FocusEnable", { clear = true })
 
