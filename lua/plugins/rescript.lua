@@ -1,0 +1,22 @@
+return {}
+
+-- return {
+--     {
+--         "rescript-lang/nvim-treesitter-rescript",
+--     },
+--
+--     {
+--         "rescript-lang/vim-rescript",
+--         ft = "rescript",
+--     },
+--
+--     {
+--         "neovim/nvim-lspconfig",
+--         event = "LazyFile",
+--         opts = {
+--             servers = {
+--                 rescriptls = {},
+--             },
+--         },
+--     },
+-- }
