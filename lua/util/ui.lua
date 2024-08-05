@@ -14,6 +14,9 @@ function M.statuscolumn()
         T = "%T",
     }
 
+    --  ┃, ┆, ┇, ┊, ┋, ╎, ╏, ║, ╽, ╿
+
+    -- local border = "║"
     local p = parts
 
     local components = {
@@ -35,11 +38,11 @@ function M.statuscolumn()
         p.space,
         p.align_right,
         p.line_number, -- absolute line number
-        p.space,
 
         ------------------------------------------------------------------------
         -- right
         ------------------------------------------------------------------------
+        p.space,
         p.pipe,
         p.T,
     }
