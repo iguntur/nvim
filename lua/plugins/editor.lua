@@ -419,4 +419,13 @@ return {
             tint.setup(opts)
         end,
     },
+
+    -- {
+    --     "echasnovski/mini.align",
+    --     version = "*",
+    -- },
+
+    {
+        "dhruvasagar/vim-table-mode",
+    },
 }

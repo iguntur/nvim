@@ -11,6 +11,27 @@ end
 -- vim.keymap.del({ "n", "t" }, "<c-/>")
 
 --------------------------------------------------------------------------------
+-- disable keys
+--------------------------------------------------------------------------------
+-- Disable Arrow-keys
+for _, k in pairs({ "<Up>", "<Down>", "<Left>", "<Right>" }) do
+    keymap.set({ "n", "v" }, k, "<Nop>")
+end
+
+-- Disable keys
+local disable_keys = { "Q", "<Cmd-k>" }
+for _, k in pairs(disable_keys) do
+    keymap.set({ "n", "v" }, k, "<Nop>")
+end
+
+-- terminal
+keymap.set({ "n", "v", "t" }, "<C-/>", "<Nop>", options())
+keymap.set({ "n", "v", "t" }, "<C-_>", "<Nop>", options())
+
+keymap.set("v", "<M-K>", "<Nop>")
+keymap.set("v", "<M-J>", "<Nop>")
+
+--------------------------------------------------------------------------------
 -- Common Shortcut
 --------------------------------------------------------------------------------
 --- Control (⌃ / ctrl)
@@ -23,17 +44,6 @@ end
 
 -- Reload (source nvim.config): F5
 -- keymap.set("n", "<F5>", ":source $HOME/.config/nvim/init.lua<CR><Esc>", options())
-
--- Disable Arrow-keys
-for _, k in pairs({ "<Up>", "<Down>", "<Left>", "<Right>" }) do
-    keymap.set({ "n", "v" }, k, "<Nop>", options())
-end
-
--- Disable keys
-local disable_keys = { "Q", "<Cmd-k>" }
-for _, k in pairs(disable_keys) do
-    keymap.set({ "n", "v" }, k, "<Nop>", options())
-end
 
 -- Set space/del/backspace to Esc
 keymap.set("n", "<Del>", "<Esc>", options())
@@ -54,8 +64,10 @@ keymap.set("v", "p", '"_dP', options()) -- keep the "yank" value
 keymap.set({ "n", "i" }, "<space><space>2", "<Esc>2a<space><Esc>i", options())
 
 -- comments (Ctrl + /)
-keymap.set({ "n", "i" }, "<c-_>", "<Esc>gcc<Esc>", { silent = true, remap = true })
-keymap.set("v", "<c-_>", "gc<Esc>", { silent = true, remap = true })
+keymap.set({ "n", "i" }, "<C-/>", "<Esc>gcc<Esc>", options({ remap = true }))
+keymap.set({ "n", "i" }, "<C-_>", "<Esc>gcc<Esc>", options({ remap = true }))
+keymap.set("v", "<C-/>", "gc<Esc>", options({ remap = true }))
+keymap.set("v", "<C-_>", "gc<Esc>", options({ remap = true }))
 
 --------------------------------------------------------------------------------
 -- Cursor movement
@@ -65,12 +77,6 @@ keymap.set("n", "H", "^<ESC>", options())
 
 -- Move cursor to the last character: (shift + l)
 keymap.set("n", "L", "$<ESC>", options())
-
--- Move cursor when insert mode: (control) + (h/j/k/l)
--- keymap.set("i", "<C-h>", "<Left>",  set_options())
--- keymap.set("i", "<C-j>", "<Down>",  set_options())
--- keymap.set("i", "<C-k>", "<Up>",    set_options())
--- keymap.set("i", "<C-l>", "<Right>", set_options())
 
 --------------------------------------------------------------------------------
 -- Scroll
@@ -159,9 +165,6 @@ keymap.set("n", "<M-J>", function()
     vim.fn.setpos(".", { 0, lineNumber + 1, column, 0 })
 end, options())
 
-keymap.set("v", "<M-K>", "<NOP>", options())
-keymap.set("v", "<M-J>", "<NOP>", options())
-
 --------------------------------------------------------------------------------
 -- Delete Line(s)
 --------------------------------------------------------------------------------
@@ -181,10 +184,12 @@ keymap.set("v", "<M-d>", '"_d<ESC>', options())
 -- keymap.set("n", "<C-}>", ":bnext<CR>", options({ desc = "Next buffer" }))
 -- keymap.set("n", "<C-{>", ":bprevious<CR>", options({ desc = "Previous buffer" }))
 
--- Write or saving file: (⌥ or alt) + s
-keymap.set("v", "<M-s>", "<ESC><CMD>w<CR><ESC>", options())
-keymap.set("n", "<M-s>", "<CMD>w<CR><ESC>", options())
-keymap.set("i", "<M-s>", "<ESC><CMD>w<CR><ESC>a", options()) -- allow writing in insert mode
+-- Write or saving current buffer: ctrl + s
+keymap.set("v", "<C-s>", "<ESC><CMD>w<CR><ESC>", options())
+keymap.set("n", "<C-s>", "<CMD>w<CR><ESC>", options())
+keymap.set("i", "<C-s>", "<ESC><CMD>w<CR><ESC>a", options()) -- allow writing in insert mode
+
+-- Write or saving all buffers: alt or option + S
 keymap.set("n", "<M-S>", "<CMD>wa<CR><ESC>", options())
 
 -- Close current buffer: (⌥ or alt) + w
@@ -253,7 +258,7 @@ keymap.set("t", "<C-l>", "<C-l>", options())
 --------------------------------------------------------------------------------
 -- Jump tmux session
 --------------------------------------------------------------------------------
-keymap.set("n", "<C-f>", "<cmd>silent !tmux neww -n '󰇘 ' -t 0 tmux-select-project<CR>", options())
+keymap.set("n", "<C-f>", "<cmd>silent !tmux neww -n '󰇘 ' -t 0 _tmux-select-project<CR>", options())
 keymap.set("n", "<C-g>", "<cmd>silent !tmux neww -n '󰇘 ' -t 0 lazygit<CR>", options())
 keymap.set("n", "<leader>gg", "<cmd>silent !tmux neww -n '󰇘 ' -t 0 lazygit<CR>", options({ desc = "Open lazygit" }))
 

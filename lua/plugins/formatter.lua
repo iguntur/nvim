@@ -16,6 +16,7 @@ return {
                     templ = { "templ", "rustywind" },
                     php = { "pint" },
                     blade = { "blade-formatter", "rustywind" },
+                    nix = { "nixfmt" },
                 },
 
                 formatters = {

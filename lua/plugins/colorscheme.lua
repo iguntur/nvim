@@ -1,11 +1,48 @@
 return {
+    {
+        "LazyVim/LazyVim",
+        opts = {
+            -- colorscheme = "tokyonight",
+            -- colorscheme = "catppuccin",
+            -- colorscheme = "nightfox",
+            colorscheme = "rose-pine",
+        },
+    },
+
+    --
+    -- rose pine
+    --
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        opts = {
+            variant = "moon",
+            dark_variant = "main",
+            styles = {
+                transparency = true,
+            },
+        },
+    },
+
+    --
+    -- nightfox
+    --
+    {
+        "EdenEast/nightfox.nvim",
+        opts = {
+            options = {
+                transparent = true, -- enable setting background
+            },
+        },
+    },
+
     --
     -- tokyonight
     --
     {
         "folke/tokyonight.nvim",
         opts = {
-            style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+            -- style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
             transparent = true, -- Enable this to disable setting the background color
             -- light_style = "day", -- The theme is used when the background is set to light
             -- dim_inactive = true, -- dims inactive windows

@@ -1,21 +1,46 @@
 local util = require("util")
 local LazyUtil = require("lazyvim.util")
 
-local function find_cwd_files()
+local rg = {
+    find_command = { "fd", "--type", "file" },
+    vimgrep_arguments = {
+        "rg",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--unrestricted",
+        "--trim",
+    },
+}
+
+local function find_files_cwd()
     local opts = {
         prompt_title = " Find Files (CWD)",
         cwd = vim.fn.getcwd(),
-        find_command = {
-            "rg",
-            "--follow",
-            "--files",
-            "--no-ignore",
-            "--hidden",
-            "--ignore-file",
-            vim.env.HOME .. "/.rgignore",
-            "--sort",
-            "path",
-        },
+        find_command = rg.find_command,
+    }
+
+    require("telescope.builtin").find_files(opts)
+end
+
+local function find_files_relative_cwd()
+    local cwd = vim.fn.expand("%:h:p")
+    local opts = {
+        prompt_title = " Find Files Relative (CWD)",
+        cwd = cwd,
+        find_command = rg.find_command,
+    }
+
+    require("telescope.builtin").find_files(opts)
+end
+
+local function find_files_project_root()
+    local opts = {
+        prompt_title = " Project Files",
+        cwd = util.find_dir_up({ ".git", "Makefile", "go.work", ".nvmrc", "go.mod", "package.json" }),
+        find_command = rg.find_command,
     }
 
     require("telescope.builtin").find_files(opts)
@@ -25,65 +50,28 @@ local function live_grep_cwd_files()
     local opts = {
         prompt_title = " Live Grep Files (CWD)",
         cwd = vim.fn.getcwd(),
-        vimgrep_arguments = {
-            "rg",
-            "--follow",
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-            "--hidden",
-            "--ignore-file",
-            vim.env.HOME .. "/.rgignore",
-            "--glob",
-            "!**/.git/*",
-        },
+        vimgrep_arguments = rg.vimgrep_arguments,
     }
 
     require("telescope.builtin").live_grep(opts)
 end
 
-local function find_project_root_files()
+local function live_grep_relative_dir()
+    local cwd = vim.fn.expand("%:h:p")
     local opts = {
-        prompt_title = " Project Files",
-        cwd = util.find_dir_up({ ".git", "Makefile", "go.work", ".nvmrc", "go.mod", "package.json" }),
-        find_command = {
-            "rg",
-            "--follow",
-            "--files",
-            "--no-ignore",
-            "--hidden",
-            "--ignore-file",
-            vim.env.HOME .. "/.rgignore",
-            "--sort",
-            "path",
-        },
+        prompt_title = " Live Grep Relative Directory",
+        cwd = cwd,
+        vimgrep_arguments = rg.vimgrep_arguments,
     }
 
-    require("telescope.builtin").find_files(opts)
+    require("telescope.builtin").live_grep(opts)
 end
 
-local function live_grep_project()
+local function live_grep_project_root()
     local opts = {
         prompt_title = " Live Grep Project Files",
         cwd = util.find_dir_up({ ".git", "Makefile", "go.work", ".nvmrc", "go.mod", "package.json" }),
-        vimgrep_arguments = {
-            "rg",
-            "--follow",
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-            "--hidden",
-            "--ignore-file",
-            vim.env.HOME .. "/.rgignore",
-            "--glob",
-            "!**/.git/*",
-        },
+        vimgrep_arguments = rg.vimgrep_arguments,
     }
 
     require("telescope.builtin").live_grep(opts)
@@ -93,17 +81,7 @@ local function open_journals_files()
     local opts = {
         prompt_title = "󱨋 Journals",
         cwd = vim.env.HOME .. "/journals",
-        find_command = {
-            "rg",
-            "--follow",
-            "--files",
-            "--no-ignore",
-            "--hidden",
-            "--ignore-file",
-            vim.env.HOME .. "/.rgignore",
-            "--sort",
-            "path",
-        },
+        find_command = rg.find_command,
     }
 
     require("telescope.builtin").find_files(opts)
@@ -123,16 +101,7 @@ return {
 
             -- Clone the default Telescope configuration
             local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
-            local argvs = {
-                "--follow",
-                "--hidden",
-                "--ignore-file",
-                vim.env.HOME .. "/.rgignore",
-                "--glob",
-                "!**/.git/*",
-                -- "-u", -- alias for --unrestricted
-                -- "--trim" -- add this value
-            }
+            local argvs = {}
 
             for _, argv in ipairs(argvs) do
                 table.insert(vimgrep_arguments, argv)
@@ -203,43 +172,78 @@ return {
             opts.extensions = vim.tbl_deep_extend("force", opts.extensions or {}, extensions)
         end,
         keys = {
+            --
+            -- Live grep
+            --
             {
-                "<leader>/",
+                "<leader>sg",
                 function()
                     live_grep_cwd_files()
                 end,
-                remap = true,
+                noremap = true,
                 silent = true,
                 desc = "Telescope live grep (cwd)",
             },
             {
-                "<leader>?",
+                "<leader>./",
                 function()
-                    live_grep_project()
+                    live_grep_relative_dir()
                 end,
-                remap = true,
+                noremap = true,
                 silent = true,
-                desc = "Telescope live grep (project directory)",
+                desc = "Telescope live grep (relative file)",
             },
+            {
+                "<leader>sG",
+                function()
+                    live_grep_project_root()
+                end,
+                noremap = true,
+                silent = true,
+                desc = "Telescope live grep (project root directory)",
+            },
+
+            --
+            -- Find files
+            --
             {
                 "<C-p>",
                 function()
-                    find_cwd_files()
+                    find_files_cwd()
                 end,
+                noremap = true,
+                silent = true,
                 desc = "Find files (cwd)",
+            },
+            {
+                "<leader>fw",
+                function()
+                    find_files_relative_cwd()
+                end,
+                silent = true,
+                noremap = true,
+                desc = "Telescope [f]ind files relative [w]orking file",
             },
             {
                 "<M-P>",
                 function()
-                    find_project_root_files()
+                    find_files_project_root()
                 end,
+                noremap = true,
+                silent = true,
                 desc = "Find files (project directory)",
             },
+
+            --
+            -- Find others
+            --
             {
                 "<leader>fj",
                 function()
                     open_journals_files()
                 end,
+                noremap = true,
+                silent = true,
                 desc = "Search Journal",
             },
         },
@@ -308,32 +312,5 @@ return {
 
             vim.list_extend(lazy_keys, keys)
         end,
-    },
-
-    --
-    -- telescope file browser
-    --
-    {
-        "nvim-telescope/telescope.nvim",
-        optional = true,
-        dependencies = {
-            {
-                "nvim-telescope/telescope-file-browser.nvim",
-                config = function()
-                    LazyUtil.on_load("telescope.nvim", function()
-                        require("telescope").load_extension("file_browser") -- load this after fzf
-                    end)
-                end,
-            },
-        },
-        keys = {
-            {
-                "<leader>fw",
-                "<cmd>Telescope file_browser path=%:p:h<CR>",
-                silent = true,
-                noremap = true,
-                desc = "Telescope [f]ile bro[w]ser",
-            },
-        },
     },
 }
